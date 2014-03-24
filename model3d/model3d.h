@@ -1,8 +1,13 @@
 #ifndef MODEL3D
 #define MODEL3D
+#ifdef WIN32
 #include <windows.h>
 #include <gl/GL.h>
 #include <gl/glut.h>
+#else
+#include <OpenGL/gl.h>
+#include <GLUT/glut.h>
+#endif
 #include <vector>
 
 typedef union vector3{
@@ -49,7 +54,7 @@ class CMesh{
 private:
 	GLuint  m_nVBOVertices;
 	GLfloat *m_pVertices;
-	int     m_nVertexCount;
+	unsigned long      m_nVertexCount;
 public:
 	bool load(const char* filename);
 	void draw();

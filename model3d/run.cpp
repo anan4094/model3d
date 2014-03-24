@@ -4,23 +4,23 @@
 CMesh mesh;
 void init()  
 {  
-	glClearColor(0.0f, 0.0f, 0.0f, 0.0f);  
+	glClearColor(0.0f, 0.0f, 1.0f, 0.0f);
 	glShadeModel(GL_SMOOTH);  
 }  
 void draw_triangle()  
 {  
 	glBegin(GL_POLYGON);  
-	glVertex3f(-4.0f, -4.0f, -4.0f);  
-	glVertex3f(4.0f, -4.0f, -4.0f);  
-	glVertex3f(4.0f, 4.0f, -4.0f);  
-	glVertex3f(-4.0f, 4.0f, -4.0f);  
+	glVertex3f(-4.0f, -4.0f, 4.0f);
+	glVertex3f(4.0f, -4.0f, 4.0f);
+	glVertex3f(4.0f, 4.0f, 4.0f);
+	glVertex3f(-4.0f, 4.0f, 4.0f);  
 	glEnd();  
 }  
 void display()  
 {  
-	glClear(GL_COLOR_BUFFER_BIT);
-	mesh.draw();
-	//draw_triangle();  
+	glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
+	//mesh.draw();
+	draw_triangle();
 	glutSwapBuffers();
 }  
 void reshape(int w, int h)  
@@ -29,8 +29,8 @@ void reshape(int w, int h)
 }  
 int main(int argc, char **argv)  
 {  
-	mesh.load("C:\\Users\\anan\\Desktop\\cube.obj");
-	mesh.log();
+	//mesh.load("/Users/anan/Documents/github/model3d/res/cube.obj");
+	//mesh.log();
 	glutInit(&argc, argv);  
 	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB);  
 	glutInitWindowPosition(600, 400);  

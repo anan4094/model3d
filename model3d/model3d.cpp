@@ -1,17 +1,18 @@
 #include "model3d.h"
 #include<fstream>
+#ifdef WIN32
 #define GL_ARRAY_BUFFER_ARB 0x8892
 #define GL_STATIC_DRAW_ARB 0x88E4
 typedef void (APIENTRY * PFNGLBINDBUFFERARBPROC) (GLenum target, GLuint buffer);
 typedef void (APIENTRY * PFNGLDELETEBUFFERSARBPROC) (GLsizei n, const GLuint *buffers);
 typedef void (APIENTRY * PFNGLGENBUFFERSARBPROC) (GLsizei n, GLuint *buffers);
 typedef void (APIENTRY * PFNGLBUFFERDATAARBPROC) (GLenum target, int size, const GLvoid *data, GLenum usage);
-
 // VBO Extension Function Pointers
 PFNGLGENBUFFERSARBPROC glGenBuffersARB = NULL;                  // VBO Name Generation Procedure
 PFNGLBINDBUFFERARBPROC glBindBufferARB = NULL;                  // VBO Bind Procedure
 PFNGLBUFFERDATAARBPROC glBufferDataARB = NULL;                  // VBO Data Loading Procedure
 PFNGLDELETEBUFFERSARBPROC glDeleteBuffersARB = NULL;                // VBO Deletion Procedure
+#endif
 using namespace std;
 bool CMesh::load(const char* filename){
 	ifstream fs(filename);
@@ -118,11 +119,11 @@ bool CMesh::load(const char* filename){
 }
 
 void CMesh::draw(){
-	glEnableClientState(GL_VERTEX_ARRAY); //��ʼʹ��vbo
-	//glBindBufferARB(GL_ARRAY_BUFFER_ARB, m_nVBOVertices); //ѡ��ǰʹ�õ�vbo
-	glVertexPointer(3, GL_FLOAT, 0, m_pVertices); //ָ��vbo�����ʽ
-	glDrawArrays( GL_TRIANGLES, 0, m_nVertexCount/3); //����
-	glDisableClientState(GL_VERTEX_ARRAY); //ֹͣʹ��vbo
+	glEnableClientState(GL_VERTEX_ARRAY); //ø™ º π”√vbo
+	//glBindBufferARB(GL_ARRAY_BUFFER_ARB, m_nVBOVertices); //—°‘Òµ±«∞ π”√µƒvbo
+	glVertexPointer(3, GL_FLOAT, 0, m_pVertices); //÷∏∂®vbo∂•µ„∏Ò Ω
+	glDrawArrays( GL_TRIANGLES, 0, m_nVertexCount/3); //ª≠∞…
+	//glDisableClientState(GL_VERTEX_ARRAY); //Õ£÷π π”√vbo
 }
 
 void CMesh::log(){
@@ -131,10 +132,12 @@ void CMesh::log(){
 	}
 }
 CMesh::CMesh():m_nVBOVertices(0),m_nVertexCount(0),m_pVertices(nullptr){
+#ifdef WIN32
 	glGenBuffersARB = (PFNGLGENBUFFERSARBPROC) wglGetProcAddress("glGenBuffersARB");
 	glBindBufferARB = (PFNGLBINDBUFFERARBPROC) wglGetProcAddress("glBindBufferARB");
 	glBufferDataARB = (PFNGLBUFFERDATAARBPROC) wglGetProcAddress("glBufferDataARB");
 	glDeleteBuffersARB = (PFNGLDELETEBUFFERSARBPROC) wglGetProcAddress("glDeleteBuffersARB");
+#endif
 }
 CMesh::~CMesh(){
 	if (m_pVertices){
