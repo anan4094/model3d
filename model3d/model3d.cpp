@@ -38,18 +38,23 @@ bool CMesh::load(const char* filename){
 	while (c!=EOF){
 		switch (c){	
 		case 'v':{
-				fs>>c;
-				if (c=='n'){
+                int ntmp=fs.peek();
+                if (ntmp==32) {
+                    fs>>v.x>>v.y>>v.z;
+                    printf("v %f,%f,%f\n",v.x,v.y,v.z);
+                    m_positions.push_back(v);
+                }else if (ntmp=='n'){
+                    fs>>c;
 					hasnormal=true;
 					fs>>n.x>>n.y>>n.z;
 					m_normals.push_back(n);
-				}else if(c=='t'){
+				}else if(ntmp=='t'){
+                    fs>>c;
 					hastexcood=true;
 					fs>>t.s>>t.t>>t.r;
 					m_texcoords.push_back(t);
 				}else{
-					fs>>v.x>>v.y>>v.z;
-					m_positions.push_back(v);
+					
 				}
 			}break;
 		case '#':{
@@ -95,7 +100,7 @@ bool CMesh::load(const char* filename){
 		}
 	}
 	fs.close();
-	m_nVertexCount= 3*m_faces.size();
+	m_nVertexCount= (GLsizei)(3*m_faces.size());
 	m_pVertices=new GLfloat[3*m_nVertexCount];
 	for (int i=0;i<m_faces.size();i++){
 		m_pVertices[9*i]=m_positions[m_faces[i].pi[0]-1].x;
@@ -119,19 +124,32 @@ bool CMesh::load(const char* filename){
 }
 
 void CMesh::draw(){
+    glMatrixMode(GL_MODELVIEW);
+    glLoadIdentity();
+    glRotatef(rx, 1, 0, 0);
+    glRotatef(ry, 0, 1, 0);
+    glRotatef(rz, 0, 0, 1);
 	glEnableClientState(GL_VERTEX_ARRAY); //ø™ º π”√vbo
+    glDisableClientState(GL_COLOR_ARRAY);
+    glDisableClientState(GL_NORMAL_ARRAY);
 	//glBindBufferARB(GL_ARRAY_BUFFER_ARB, m_nVBOVertices); //—°‘Òµ±«∞ π”√µƒvbo
 	glVertexPointer(3, GL_FLOAT, 0, m_pVertices); //÷∏∂®vbo∂•µ„∏Ò Ω
-	glDrawArrays( GL_TRIANGLES, 0, m_nVertexCount/3); //ª≠∞…
-	//glDisableClientState(GL_VERTEX_ARRAY); //Õ£÷π π”√vbo
+	glDrawArrays( GL_TRIANGLES, 0, m_nVertexCount); //ª≠∞…
+	glDisableClientState(GL_VERTEX_ARRAY); //Õ£÷π π”√vbo
+}
+
+void CMesh::setRotation(GLfloat rx, GLfloat ry, GLfloat rz){
+    this->rx = rx;
+    this->ry = ry;
+    this->rz = rz;
 }
 
 void CMesh::log(){
 	for(int i=0;i<m_nVertexCount;i++){
-		printf("p:%f,%f,%f\n",m_pVertices[3*i],m_pVertices[3*i+1],m_pVertices[3*i+2]);
+		printf("p%d:%f,%f,%f\n",i,m_pVertices[3*i],m_pVertices[3*i+1],m_pVertices[3*i+2]);
 	}
 }
-CMesh::CMesh():m_nVBOVertices(0),m_nVertexCount(0),m_pVertices(nullptr){
+CMesh::CMesh():m_nVBOVertices(0),m_nVertexCount(0),m_pVertices(nullptr),rx(0),ry(0),rz(0){
 #ifdef WIN32
 	glGenBuffersARB = (PFNGLGENBUFFERSARBPROC) wglGetProcAddress("glGenBuffersARB");
 	glBindBufferARB = (PFNGLBINDBUFFERARBPROC) wglGetProcAddress("glBindBufferARB");

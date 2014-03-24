@@ -52,12 +52,17 @@ typedef struct tag3DObject
 
 class CMesh{
 private:
-	GLuint  m_nVBOVertices;
-	GLfloat *m_pVertices;
-	unsigned long      m_nVertexCount;
+	GLuint    m_nVBOVertices;
+	GLfloat   *m_pVertices;
+	GLsizei   m_nVertexCount;
+    
+    GLfloat   rx,ry,rz;
 public:
 	bool load(const char* filename);
 	void draw();
+    
+    void setRotation(GLfloat rx,GLfloat ry,GLfloat rz);
+    
 	void log();
 	CMesh();
 	~CMesh();
