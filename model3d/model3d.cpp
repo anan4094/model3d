@@ -100,8 +100,9 @@ bool CMesh::load(const char* filename){
 		}
 	}
 	fs.close();
-	m_nVertexCount= (GLsizei)(3*m_faces.size());
-	m_pVertices=new GLfloat[3*m_nVertexCount];
+	m_nVertexCount = (GLsizei)(3*m_faces.size());
+	m_pVertices = new GLfloat[3*m_nVertexCount];
+	m_pNormals = new GLfloat[3*m_nVertexCount];
 	for (int i=0;i<m_faces.size();i++){
 		m_pVertices[9*i]=m_positions[m_faces[i].pi[0]-1].x;
 		m_pVertices[9*i+1]=m_positions[m_faces[i].pi[0]-1].y;
@@ -112,6 +113,16 @@ bool CMesh::load(const char* filename){
 		m_pVertices[9*i+6]=m_positions[m_faces[i].pi[2]-1].x;
 		m_pVertices[9*i+7]=m_positions[m_faces[i].pi[2]-1].y;
 		m_pVertices[9*i+8]=m_positions[m_faces[i].pi[2]-1].z;
+
+		m_pNormals[9*i]=m_normals[m_faces[i].ni[0]-1].x;
+		m_pNormals[9*i+1]=m_normals[m_faces[i].ni[0]-1].y;
+		m_pNormals[9*i+2]=m_normals[m_faces[i].ni[0]-1].z;
+		m_pNormals[9*i+3]=m_normals[m_faces[i].ni[1]-1].x;
+		m_pNormals[9*i+4]=m_normals[m_faces[i].ni[1]-1].y;
+		m_pNormals[9*i+5]=m_normals[m_faces[i].ni[1]-1].z;
+		m_pNormals[9*i+6]=m_normals[m_faces[i].ni[2]-1].x;
+		m_pNormals[9*i+7]=m_normals[m_faces[i].ni[2]-1].y;
+		m_pNormals[9*i+8]=m_normals[m_faces[i].ni[2]-1].z;
 	}
 	//glGenBuffersARB(1, &m_nVBOVertices);
 	//glBindBufferARB(GL_ARRAY_BUFFER_ARB,m_nVBOVertices);
@@ -129,13 +140,14 @@ void CMesh::draw(){
     glRotatef(rx, 1, 0, 0);
     glRotatef(ry, 0, 1, 0);
     glRotatef(rz, 0, 0, 1);
-	glEnableClientState(GL_VERTEX_ARRAY); //ø™ º π”√vbo
+	glEnableClientState(GL_VERTEX_ARRAY);
     glDisableClientState(GL_COLOR_ARRAY);
-    glDisableClientState(GL_NORMAL_ARRAY);
-	//glBindBufferARB(GL_ARRAY_BUFFER_ARB, m_nVBOVertices); //—°‘Òµ±«∞ π”√µƒvbo
-	glVertexPointer(3, GL_FLOAT, 0, m_pVertices); //÷∏∂®vbo∂•µ„∏Ò Ω
-	glDrawArrays( GL_TRIANGLES, 0, m_nVertexCount); //ª≠∞…
-	glDisableClientState(GL_VERTEX_ARRAY); //Õ£÷π π”√vbo
+    glEnableClientState(GL_NORMAL_ARRAY);
+	//glBindBufferARB(GL_ARRAY_BUFFER_ARB, m_nVBOVertices);
+	glVertexPointer(3, GL_FLOAT, 0, m_pVertices);
+	glNormalPointer(GL_FLOAT, 0, m_pNormals);
+	glDrawArrays( GL_TRIANGLES, 0, m_nVertexCount);
+	glDisableClientState(GL_VERTEX_ARRAY);
 }
 
 void CMesh::setRotation(GLfloat rx, GLfloat ry, GLfloat rz){
@@ -148,8 +160,11 @@ void CMesh::log(){
 	for(int i=0;i<m_nVertexCount;i++){
 		printf("p%d:%f,%f,%f\n",i,m_pVertices[3*i],m_pVertices[3*i+1],m_pVertices[3*i+2]);
 	}
+	for(int i=0;i<m_nVertexCount;i++){
+		printf("n%d:%f,%f,%f\n",i,m_pNormals[3*i],m_pNormals[3*i+1],m_pNormals[3*i+2]);
+	}
 }
-CMesh::CMesh():m_nVBOVertices(0),m_nVertexCount(0),m_pVertices(nullptr),rx(0),ry(0),rz(0){
+CMesh::CMesh():m_nVBOVertices(0),m_nVertexCount(0),m_pVertices(nullptr),m_pNormals(nullptr),rx(0),ry(0),rz(0){
 #ifdef WIN32
 	glGenBuffersARB = (PFNGLGENBUFFERSARBPROC) wglGetProcAddress("glGenBuffersARB");
 	glBindBufferARB = (PFNGLBINDBUFFERARBPROC) wglGetProcAddress("glBindBufferARB");
@@ -160,6 +175,9 @@ CMesh::CMesh():m_nVBOVertices(0),m_nVertexCount(0),m_pVertices(nullptr),rx(0),ry
 CMesh::~CMesh(){
 	if (m_pVertices){
 		delete[] m_pVertices;
+	}
+	if (m_pNormals){
+		delete[] m_pNormals;
 	}
 	if (m_nVBOVertices){
 		glDeleteBuffersARB(1,&m_nVBOVertices);

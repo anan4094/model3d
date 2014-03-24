@@ -1,6 +1,6 @@
 #ifndef MODEL3D
 #define MODEL3D
-#ifdef WIN32
+#ifndef __APPLE__
 #include <windows.h>
 #include <gl/GL.h>
 #include <gl/glut.h>
@@ -33,27 +33,11 @@ typedef struct face{
 	int ni[3];
 }Face;
 
-// 对象信息结构体 
-typedef struct tag3DObject  
-{ 
-	int                         nMaterialID;       // 纹理ID 
-	bool                        bHasTexture;       // 是否具有纹理映射 
-	bool                        bHasNormal;        // 是否具有法线 
-	std::vector<Vector3>        PosVerts;          // 对象的顶点 
-	std::vector<Vector3>        Normals;           // 对象的法向量 
-	std::vector<TexCoord>       Texcoords;         // 纹理UV坐标 
-	std::vector<unsigned short> Indexes;           // 对象的顶点索引 
-	unsigned int                nNumIndexes;       // 索引数目 
-	GLuint                      nPosVBO; 
-	GLuint                      nNormVBO; 
-	GLuint                      nTexcoordVBO; 
-	GLuint                      nIndexVBO; 
-}t3DObject;
-
 class CMesh{
 private:
 	GLuint    m_nVBOVertices;
 	GLfloat   *m_pVertices;
+	GLfloat   *m_pNormals;
 	GLsizei   m_nVertexCount;
     
     GLfloat   rx,ry,rz;
