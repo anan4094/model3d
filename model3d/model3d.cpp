@@ -137,12 +137,18 @@ bool CMesh::load(const char* filename){
 void CMesh::draw(){
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
+    glTranslatef(0, 0, -20);
     glRotatef(rx, 1, 0, 0);
     glRotatef(ry, 0, 1, 0);
     glRotatef(rz, 0, 0, 1);
+    
 	glEnableClientState(GL_VERTEX_ARRAY);
     glDisableClientState(GL_COLOR_ARRAY);
     glEnableClientState(GL_NORMAL_ARRAY);
+    GLfloat globel_ambient[] = { 0.1 , 0.1 , 0.1 , 1.0 };
+    
+    //打开全局光照
+    glLightModelfv(GL_LIGHT_MODEL_AMBIENT , globel_ambient);
 	//glBindBufferARB(GL_ARRAY_BUFFER_ARB, m_nVBOVertices);
 	glVertexPointer(3, GL_FLOAT, 0, m_pVertices);
 	glNormalPointer(GL_FLOAT, 0, m_pNormals);

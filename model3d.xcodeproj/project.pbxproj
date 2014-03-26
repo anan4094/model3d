@@ -32,6 +32,8 @@
 		271DA60318DFC0D600BC7A8C /* run.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = run.cpp; sourceTree = "<group>"; };
 		271DA60618DFC1BF00BC7A8C /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
 		271DA60818DFC1DF00BC7A8C /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = System/Library/Frameworks/GLUT.framework; sourceTree = SDKROOT; };
+		27F8CD3618E1698100FBAC17 /* cube.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cube.mtl; sourceTree = "<group>"; };
+		27F8CD3718E1698100FBAC17 /* cube.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cube.obj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +55,7 @@
 				271DA60818DFC1DF00BC7A8C /* GLUT.framework */,
 				271DA60618DFC1BF00BC7A8C /* OpenGL.framework */,
 				2701E04218DFC03500723795 /* model3d */,
+				27F8CD3518E1693B00FBAC17 /* res */,
 				2701E04118DFC03500723795 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -73,6 +76,15 @@
 				271DA60318DFC0D600BC7A8C /* run.cpp */,
 			);
 			path = model3d;
+			sourceTree = "<group>";
+		};
+		27F8CD3518E1693B00FBAC17 /* res */ = {
+			isa = PBXGroup;
+			children = (
+				27F8CD3618E1698100FBAC17 /* cube.mtl */,
+				27F8CD3718E1698100FBAC17 /* cube.obj */,
+			);
+			path = res;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
