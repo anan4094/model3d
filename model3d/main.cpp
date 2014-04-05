@@ -1,12 +1,39 @@
 #define GLUT_DISABLE_ATEXIT_HACK
  
-#include "model3d.h"
+#include "CMesh.h"
 #include <unistd.h>
 CMesh mesh;
-GLfloat rx=0,ry=0,rz=0;
+GLfloat rad=0;
+bool loop=true;
+//用来检查OpenGL版本，需要GLSL 2.0支持
+void getGlVersion( int *major, int *minor )
+{
+    const char* verstr = (const char*)glGetString( GL_VERSION );
+    if( (verstr == NULL) || (sscanf( verstr, "%d.%d", major, minor ) != 2) )
+    {
+        *major = *minor = 0;
+        fprintf( stderr, "Invalid GL_VERSION format!!!\n" );
+    }
+}
 void init()  
-{  
-	glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
+{
+    glewExperimental = true;
+    GLenum err = glewInit();
+    if (err != GLEW_OK ){
+        printf("Error: %s\n", glewGetErrorString(err));
+    }
+    int gl_major, gl_minor;
+    // Make sure that OpenGL 2.0 is supported by the driver
+    getGlVersion(&gl_major, &gl_minor);
+    printf("GL_VERSION major=%d minor=%d\n", gl_major, gl_minor);
+    if (gl_major < 2)
+    {
+        printf("GL_VERSION major=%d minor=%d\n", gl_major, gl_minor);
+        printf("Support for OpenGL 2.0 is required for this demo...exiting\n");
+        exit(1);
+    }
+
+	glClearColor(0.9f, 0.9f, 0.9f, 0.0f);
 	glShadeModel(GL_SMOOTH);
     glLightModeli(GL_LIGHT_MODEL_TWO_SIDE , GL_FALSE);
 }  
@@ -22,7 +49,7 @@ void draw_triangle()
 void display()  
 {  
 	glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
-    rx+=.3f;ry+=.3f;rz+=.3f;
+    rad+=.3f;
 	static const GLfloat light_position[] = {20.0f, 20.0f, 20.0f, 0.0f};
 	static const GLfloat light_ambient[]   = {0.1f, 0.1f, 0.1f, 1.0f};
 	static const GLfloat light_diffuse[]   = {1.0f, 1.0f, 1.0f, 1.0f};
@@ -49,7 +76,8 @@ void display()
     glMaterialfv(GL_FRONT, GL_SHININESS, shine);
     glMaterialfv(GL_FRONT, GL_EMISSION, matEmission);  // 用来模拟物体发光的效果，但这不是光源
     
-    mesh.setRotation(rx, ry, rz);
+    mesh.setRadian(rad);
+    mesh.setPosition(0, 0, -20);
 	mesh.draw();
 	//draw_triangle();
 	glutSwapBuffers();
@@ -61,26 +89,38 @@ void reshape(int w, int h)
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
 	glFrustum(-1.0f, 1.0f, -1.0f*w/h, 1.0f*w/h,1.0f, 40.0f);
-}  
-int main(int argc, char **argv)  
+}
+
+void keyboard(unsigned char key,int x,int y){
+    if (key=='q') {
+        loop = false;
+    }
+}
+int main(int argc, char **argv)
 {
     char buf[1024];
     getcwd(buf,1024);
+    glutInit(&argc, argv);
+	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB|GLUT_DEPTH);
+	glutInitWindowPosition(600, 400);  
+	glutInitWindowSize(480, 480);
+	glutCreateWindow("OpenGL Hello World");  
+	init();
 #ifdef __APPLE__
-    mesh.load("/Users/anan/Documents/github/model3d/res/cube.obj");
+    mesh.load("/Users/anan/Documents/github/model3d/res/twocube.obj");
 #else
 	mesh.load("../res/cube.obj");
 #endif
-	//mesh.log();
-	glutInit(&argc, argv);  
-	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB|GLUT_DEPTH);
-	glutInitWindowPosition(600, 400);  
-	glutInitWindowSize(400, 400);  
-	glutCreateWindow("OpenGL Hello World");  
-	init();  
-	glColor3f(1.0f, 1.0f, 1.0f);
+    //
+    mesh.initShader();
+    mesh.setRotationAxis(1, 1, 1);
+    mesh.setScale(3, 3, 3);
+	glColor3f(1.0f, 0.0f, 1.0f);
 	glutDisplayFunc(display);  
 	glutReshapeFunc(reshape);
-	glutMainLoop();
+    glutKeyboardFunc(keyboard);
+	while (loop) {
+        glutCheckLoop();
+    }
 	return 0;  
 }  
