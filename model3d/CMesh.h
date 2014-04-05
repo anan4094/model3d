@@ -75,7 +75,7 @@ public:
     CMesh(const char *name);
 	~CMesh();
 };
-
+void getFilePath(const char *filename,char*childfilename);
 Matrix4 setFrustum(GLfloat l,GLfloat r,GLfloat b,GLfloat t,GLfloat n,GLfloat f);
 
 #endif // !MODEL3D

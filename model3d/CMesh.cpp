@@ -110,16 +110,7 @@ bool CMesh::load(const char* filename){
                 if (tmp[0]=='t'&&tmp[1]=='l'&&tmp[2]=='l'&&tmp[3]=='i'&&tmp[4]=='b'&&tmp[5]==0) {
                     fs.getline(tmp, 128,'\r');
                     printf("mtllib %s\n",tmp);
-                    if (tmp[1]!=':') {
-                        int nlen=0;
-                        char*p=const_cast<char*>(filename);
-                        for (; *p; p++,nlen++);
-                        for (; nlen>=0&&*p!='/'; p--,nlen--);
-                        if (nlen>=0) {
-                            memmove(&tmp[nlen+1], tmp, strlen(tmp)+1);
-                            memcpy(tmp, filename, nlen+1);
-                        }
-                    }
+                    getFilePath(filename, tmp);
                     m_iMaterial.load(tmp);
                 }else{
                     printf("ignore:m%s ",tmp);
@@ -293,6 +284,19 @@ CMesh::~CMesh(){
 	}
     if (m_vertexArray) {
         glDeleteVertexArrays(1,&m_vertexArray);
+    }
+}
+
+void getFilePath(const char *filename,char *childfilename){
+    if (childfilename[1]!=':') {
+        int nlen=0;
+        char*p=const_cast<char*>(filename);
+        for (; *p; p++,nlen++);
+        for (; nlen>=0&&*p!='/'; p--,nlen--);
+        if (nlen>=0) {
+            memmove(&childfilename[nlen+1], childfilename, strlen(childfilename)+1);
+            memcpy(childfilename, filename, nlen+1);
+        }
     }
 }
 
