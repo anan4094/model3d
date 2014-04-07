@@ -2,19 +2,20 @@
 #define MODEL3D
 #ifndef __APPLE__
 #include <windows.h>
-#include <gl/GL.h>
-#include <gl/glut.h>
+#include <GL/glew.h>
+#include <GL/freeglut.h>
 #else
-#include <glew.h>
 #include <OpenGL/gl.h>
 #include <GLUT/glut.h>
+#include <glew.h>
 #endif
 #include <vector>
 #include "NormalShader.h"
 #include "Matrices.h"
 #include "Vectors.h"
 #include "CMaterial.h"
-#include <math.h>
+
+#define M_PI       3.14159265358979323846
 
 /*typedef union vector3{
 	struct{
@@ -63,6 +64,8 @@ private:
     NormalShader *normalShader;
 public:
 	bool load(const char* filename);
+	bool loadObj_bak(const char* filename);
+	bool loadObj(const char* filename);
     int initShader();
 	void draw();
     

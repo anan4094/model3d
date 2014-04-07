@@ -8,11 +8,16 @@
 
 #ifndef __model3d__shader__
 #define __model3d__shader__
+#ifndef __APPLE__
+#include <windows.h>
+#include <GL/glew.h>
+#include <GL/freeglut.h>
 
-#include <glew.h>
+#else
 #include <OpenGL/gl.h>
 #include <GLUT/glut.h>
-
+#include <glew.h>
+#endif
 typedef enum{
     attrib_position,
     attrib_normal,

@@ -12,6 +12,9 @@
 #include <string.h>
 #include <fcntl.h>
 #include <sys/stat.h>
+#ifdef WIN32
+#include <io.h>
+#endif // WIN32
 
 Shader::Shader():VertexShaderObject(0),FragmentShaderObject(0),ProgramObject(0){
 }
@@ -59,12 +62,18 @@ int Shader::shaderSize(const char *fileName, EShaderType shaderType)
     int count = -1;
     // Open the file, seek to the end to find its length
     // Open the file, seek to the end to find its length
+#ifdef WIN32
+	int fd = _open(name, _O_RDONLY);
+#else
     int fd = open(name, O_RDONLY);
-    struct stat stat;
-    if (fd != -1)
-    {
+	struct stat stat;
+#endif
+    if (fd != -1){
+#ifdef WIN32
+		count = _lseek(fd, 0, SEEK_END) + 1;
+#else
         count = (int)((fstat(fd,&stat) < 0) ? -1 : stat.st_size);
-        //count = _lseek(fd, 0, SEEK_END) + 1;
+#endif
     }
     return count;
 }

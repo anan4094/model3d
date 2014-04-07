@@ -9,7 +9,16 @@
 #ifndef __model3d__CMaterial__
 #define __model3d__CMaterial__
 
+#ifndef __APPLE__
+#include <windows.h>
+#include <GL/glew.h>
+#include <GL/freeglut.h>
+
+#else
+#include <OpenGL/gl.h>
+#include <GLUT/glut.h>
 #include <glew.h>
+#endif
 #include <vector>
 
 typedef enum attrib_material{
@@ -63,6 +72,9 @@ private:
 public:
     bool load(const char*filename);
     mtl* find(const char*name);
+	CMaterial();
+	CMaterial(const char *filename);
+	~CMaterial();
 };
 
 #endif /* defined(__model3d__CMaterial__) */

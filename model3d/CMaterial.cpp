@@ -11,6 +11,19 @@
 #include<string.h>
 using namespace std;
 
+CMaterial::CMaterial(){
+
+}
+
+CMaterial::CMaterial(const char *filename){
+	CMaterial();
+	load(filename);
+}
+
+CMaterial::~CMaterial(){
+	m_imtls.clear();
+}
+
 bool CMaterial::load(const char *filename){
     ifstream fs(filename);
 	if (fs.good()){
@@ -28,7 +41,11 @@ bool CMaterial::load(const char *filename){
             case 'n':{
                 fs.getline(tmp, 128,' ');
                 if (tmp[0]=='e'&&tmp[1]=='w'&&tmp[2]=='m'&&tmp[3]=='t'&&tmp[4]=='l'&&tmp[5]==0) {
-                    fs.getline(tmp, 128,'\r');
+#ifdef WIN32
+					fs.getline(tmp,128,'\n');
+#else
+					fs.getline(tmp, 128,'\r');
+#endif
                     if (mtl.name[0]) {
                         m_imtls.push_back(mtl);
                     }

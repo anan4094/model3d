@@ -1,7 +1,9 @@
 #define GLUT_DISABLE_ATEXIT_HACK
  
 #include "CMesh.h"
+#ifndef WIN32
 #include <unistd.h>
+#endif
 CMesh mesh;
 GLfloat rad=0;
 bool loop=true;
@@ -49,7 +51,7 @@ void draw_triangle()
 void display()  
 {  
 	glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
-    rad+=.3f;
+    rad+=.1f;
 	static const GLfloat light_position[] = {20.0f, 20.0f, 20.0f, 0.0f};
 	static const GLfloat light_ambient[]   = {0.1f, 0.1f, 0.1f, 1.0f};
 	static const GLfloat light_diffuse[]   = {1.0f, 1.0f, 1.0f, 1.0f};
@@ -77,7 +79,6 @@ void display()
     glMaterialfv(GL_FRONT, GL_EMISSION, matEmission);  // 用来模拟物体发光的效果，但这不是光源
     
     mesh.setRadian(rad);
-    mesh.setPosition(0, 0, -20);
 	mesh.draw();
 	//draw_triangle();
 	glutSwapBuffers();
@@ -99,28 +100,37 @@ void keyboard(unsigned char key,int x,int y){
 int main(int argc, char **argv)
 {
     char buf[1024];
-    getcwd(buf,1024);
+    //getcwd(buf,1024);
     glutInit(&argc, argv);
 	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB|GLUT_DEPTH);
 	glutInitWindowPosition(600, 400);  
 	glutInitWindowSize(480, 480);
-	glutCreateWindow("OpenGL Hello World");  
+	glutSetOption(GLUT_ACTION_ON_WINDOW_CLOSE,GLUT_ACTION_GLUTMAINLOOP_RETURNS);
+	glutCreateWindow("OpenGL Hello World");
+
 	init();
 #ifdef __APPLE__
     mesh.load("/Users/anan/Documents/github/model3d/res/twocube.obj");
 #else
-	mesh.load("../res/cube.obj");
+	mesh.load("../res/female/female.obj");
 #endif
     //
     mesh.initShader();
-    mesh.setRotationAxis(1, 1, 1);
-    mesh.setScale(3, 3, 3);
+    mesh.setRotationAxis(0, 1, 0);
+    mesh.setScale(0.02, 0.02, 0.02);
+	mesh.setPosition(0, -16, -20);
+
+	//mesh.setPosition(0, 0, -20);
 	glColor3f(1.0f, 0.0f, 1.0f);
 	glutDisplayFunc(display);  
 	glutReshapeFunc(reshape);
     glutKeyboardFunc(keyboard);
 	while (loop) {
-        glutCheckLoop();
+#ifdef __APPLE__
+		glutCheckLoop();
+#else
+		glutMainLoopEvent();
+#endif
     }
 	return 0;  
 }  
