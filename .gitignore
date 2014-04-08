@@ -5,7 +5,7 @@
 *.pydevproject
 .project
 .metadata
-.xcuserstate
+*.xcuserstate
 bin/
 tmp/
 *.tmp
