@@ -111,6 +111,7 @@ int main(int argc, char **argv)
 	glutCreateWindow("OpenGL Hello World");
 
 	init();
+    //下面两个方法要在load后加载
     mesh.setForceGenerateNormal(true);
     mesh.setSmoothSurface(true);
 #ifdef __APPLE__
@@ -121,11 +122,15 @@ int main(int argc, char **argv)
     //
     mesh.initShader();
     mesh.setRotationAxis(0, 1, 0);
+    
+    //let famele.obj show us
     //mesh.setScale(0.02, 0.02, 0.02);
 	//mesh.setPosition(0, -16, -20);
 
+    //let tails.obj show us
     mesh.setScale(2.4f, 2.4f, 2.4f);
 	mesh.setPosition(0, -8, -20);
+    
 	glColor3f(1.0f, 0.0f, 1.0f);
 	glutDisplayFunc(display);  
 	glutReshapeFunc(reshape);

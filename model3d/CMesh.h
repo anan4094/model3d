@@ -17,22 +17,6 @@
 
 #define M_PI       3.14159265358979323846
 
-/*typedef union vector3{
-	struct{
-		GLfloat x,y,z;
-	};
-	GLfloat d[3];
-}Vector3;*/
-
-typedef union texCoord{
-	struct{
-		GLfloat s,t,r;
-	};
-	struct{
-		GLfloat u,v,w;
-	};
-	GLfloat d[3];
-}TexCoord;
 
 typedef struct face{
 	int pi[3];
@@ -65,19 +49,29 @@ private:
     std::vector<MtlInfo> m_iMaterialArray;
     NormalShader *normalShader;
 public:
+    //加载模型
 	bool load(const char* filename);
+    //加载obj模型（第一版 逻辑较清晰但速度慢）
 	bool loadObj_bak(const char* filename);
+    //加载obj模型（第二版 速度快)
 	bool loadObj(const char* filename);
+    //使用glsl着色器 不调用则不使用glsl着色
     int initShader();
+    
+    //绘制模型
 	void draw();
+    
     
     inline void setRotationAxis(GLfloat rx,GLfloat ry,GLfloat rz){GLfloat len=sqrt(rx*rx+ry*ry+rz*rz); rax=rx/len;ray=ry/len;raz=rz/len;}
     inline void setRadian(GLfloat rad){radian=rad;}
     inline void setDegree(GLfloat deg){radian=deg*M_PI/180;}
     inline void setPosition(GLfloat x,GLfloat y,GLfloat z){this->x=x;this->y=y;this->z=z;};
     inline void setScale(GLfloat x,GLfloat y,GLfloat z){scalex=x;scaley=y;scalez=z;}
+    //设置当模型没有法线时是否自动生成法线
     inline void setForceGenerateNormal(bool fgn){m_bForceGenerateNormal = fgn;}
+    //设置当自己生成法线时是否光滑表面
     inline void setSmoothSurface(bool ss){m_bSmoothSurface = ss;}
+    
 	CMesh();
     CMesh(const char *name);
 	~CMesh();

@@ -66,13 +66,13 @@ bool CMesh::loadObj_bak(const char* filename){
 	timer.start();
 	std::vector<Vector3>        m_positions;
 	std::vector<Vector3>        m_normals;
-	std::vector<TexCoord>       m_texcoords;
+	std::vector<Vector3>       m_texcoords;
 	std::vector<Face>           m_faces;
     
 	char tmp[128];
 	Vector3 v;
 	Vector3 n;
-	texCoord t;
+	Vector3 t;
 	bool hasnormal=false,hastexcood=false;
 	Face fa;
     MtlInfo mtlinf;
@@ -101,7 +101,7 @@ bool CMesh::loadObj_bak(const char* filename){
 				}else if(ntmp=='t'){
                     fs>>c;
 					hastexcood=true;
-					fs>>t.s>>t.t>>t.r;
+					fs>>t.x>>t.y>>t.z;
 					m_texcoords.push_back(t);
 				}else{
                     fs.getline(tmp, 128,'\n');
