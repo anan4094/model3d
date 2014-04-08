@@ -16,11 +16,7 @@ NormalShader::NormalShader(){
  NormalShader* NormalShader::sharedInstance(){
      if (instance==nullptr) {
         instance = new NormalShader();
-#ifdef WIN32
-		instance->readShaderSource("../res/shader");
-#else
-		instance->readShaderSource("/Users/anan/Documents/github/model3d/res/shader");
-#endif // WIN32
+		instance->readShaderSource(SHADER_PATH "normal/shader");
         if (!instance->build()) {
             delete instance;
             instance = nullptr;

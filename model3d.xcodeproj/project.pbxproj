@@ -125,6 +125,23 @@
 			name = mesh;
 			sourceTree = "<group>";
 		};
+		278D74BB18F3A58A00324A19 /* shader */ = {
+			isa = PBXGroup;
+			children = (
+				278D74BC18F3A5AC00324A19 /* normal */,
+			);
+			path = shader;
+			sourceTree = "<group>";
+		};
+		278D74BC18F3A5AC00324A19 /* normal */ = {
+			isa = PBXGroup;
+			children = (
+				27FCF13618E7FD8F00A390F8 /* shader.vert */,
+				27FCF13718E7FDAA00A390F8 /* shader.frag */,
+			);
+			path = normal;
+			sourceTree = "<group>";
+		};
 		27D968CF18E2CC8600E7AF37 /* framework */ = {
 			isa = PBXGroup;
 			children = (
@@ -138,7 +155,7 @@
 		27F8CD3518E1693B00FBAC17 /* res */ = {
 			isa = PBXGroup;
 			children = (
-				27FCF13518E7FD5E00A390F8 /* normal_shader */,
+				278D74BB18F3A58A00324A19 /* shader */,
 				27FD4AFD18EF113C00A4A8F6 /* teapot.mtl */,
 				27FD4AFE18EF113C00A4A8F6 /* teapot.obj */,
 				27FD4AFF18EF113C00A4A8F6 /* twocube.mtl */,
@@ -156,15 +173,6 @@
 				2700A01E18E50E8B0030CA02 /* Shader.cpp */,
 			);
 			name = base;
-			sourceTree = "<group>";
-		};
-		27FCF13518E7FD5E00A390F8 /* normal_shader */ = {
-			isa = PBXGroup;
-			children = (
-				27FCF13618E7FD8F00A390F8 /* shader.vert */,
-				27FCF13718E7FDAA00A390F8 /* shader.frag */,
-			);
-			name = normal_shader;
 			sourceTree = "<group>";
 		};
 		27FCF13818E8074300A390F8 /* matrix */ = {

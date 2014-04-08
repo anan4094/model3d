@@ -12,12 +12,18 @@
 #include <windows.h>
 #include <GL/glew.h>
 #include <GL/freeglut.h>
-
 #else
 #include <glew.h>
 #include <OpenGL/gl.h>
 #include <GLUT/glut.h>
 #endif
+
+#ifdef WIN32
+#define SHADER_PATH "../res/shader/"
+#else
+#define SHADER_PATH "/Users/anan/Documents/github/model3d/res/shader/"
+#endif
+
 typedef enum{
     attrib_position,
     attrib_normal,
