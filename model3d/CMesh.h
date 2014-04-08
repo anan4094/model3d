@@ -5,9 +5,9 @@
 #include <GL/glew.h>
 #include <GL/freeglut.h>
 #else
+#include <glew.h>
 #include <OpenGL/gl.h>
 #include <GLUT/glut.h>
-#include <glew.h>
 #endif
 #include <vector>
 #include "NormalShader.h"

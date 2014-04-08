@@ -105,12 +105,14 @@ int main(int argc, char **argv)
 	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB|GLUT_DEPTH);
 	glutInitWindowPosition(600, 400);  
 	glutInitWindowSize(480, 480);
+#ifdef WIN32
 	glutSetOption(GLUT_ACTION_ON_WINDOW_CLOSE,GLUT_ACTION_GLUTMAINLOOP_RETURNS);
+#endif
 	glutCreateWindow("OpenGL Hello World");
 
 	init();
 #ifdef __APPLE__
-    mesh.load("/Users/anan/Documents/github/model3d/res/twocube.obj");
+    mesh.load("/Users/anan/Documents/github/model3d/res/female/female.obj");
 #else
 	mesh.load("../res/female/female.obj");
 #endif

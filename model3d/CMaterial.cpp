@@ -7,6 +7,7 @@
 //
 
 #include "CMaterial.h"
+#include "Timer.h"
 #include<fstream>
 #include<string.h>
 using namespace std;
@@ -25,6 +26,8 @@ CMaterial::~CMaterial(){
 }
 
 bool CMaterial::load(const char *filename){
+    Timer timer;
+    timer.start();
     ifstream fs(filename);
 	if (fs.good()){
 		printf("open file[%s] success\n",filename);
@@ -41,11 +44,8 @@ bool CMaterial::load(const char *filename){
             case 'n':{
                 fs.getline(tmp, 128,' ');
                 if (tmp[0]=='e'&&tmp[1]=='w'&&tmp[2]=='m'&&tmp[3]=='t'&&tmp[4]=='l'&&tmp[5]==0) {
-#ifdef WIN32
 					fs.getline(tmp,128,'\n');
-#else
-					fs.getline(tmp, 128,'\r');
-#endif
+                    for (char*pch=tmp;*pch;pch++){if(*pch=='\r'&&*(pch+1)==0)*pch=0;}
                     if (mtl.name[0]) {
                         m_imtls.push_back(mtl);
                     }
@@ -98,6 +98,8 @@ bool CMaterial::load(const char *filename){
 		}
 	}
 	fs.close();
+    timer.stop();
+	printf("read mtl time consuming:%lfms\n",timer.getElapsedTimeInMilliSec());
     if (mtl.name[0]) {
         m_imtls.push_back(mtl);
     }

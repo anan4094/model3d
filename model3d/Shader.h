@@ -14,9 +14,9 @@
 #include <GL/freeglut.h>
 
 #else
+#include <glew.h>
 #include <OpenGL/gl.h>
 #include <GLUT/glut.h>
-#include <glew.h>
 #endif
 typedef enum{
     attrib_position,

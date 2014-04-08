@@ -16,6 +16,7 @@
 		27D968CE18E2A94000E7AF37 /* libGLEW.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 27D968CD18E2A94000E7AF37 /* libGLEW.a */; };
 		27FCF13418E7F4A100A390F8 /* NormalShader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 27FCF13218E7F4A100A390F8 /* NormalShader.cpp */; };
 		27FCF13D18E8077F00A390F8 /* Matrices.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 27FCF13918E8077F00A390F8 /* Matrices.cpp */; };
+		27FF669518F386C5008F8626 /* Timer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 27FF669318F386C5008F8626 /* Timer.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -55,6 +56,8 @@
 		27FD4AFE18EF113C00A4A8F6 /* teapot.obj */ = {isa = PBXFileReference; lastKnownFileType = text; path = teapot.obj; sourceTree = "<group>"; };
 		27FD4AFF18EF113C00A4A8F6 /* twocube.mtl */ = {isa = PBXFileReference; lastKnownFileType = text; path = twocube.mtl; sourceTree = "<group>"; };
 		27FD4B0018EF113C00A4A8F6 /* twocube.obj */ = {isa = PBXFileReference; lastKnownFileType = text; path = twocube.obj; sourceTree = "<group>"; };
+		27FF669318F386C5008F8626 /* Timer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Timer.cpp; sourceTree = "<group>"; };
+		27FF669418F386C5008F8626 /* Timer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Timer.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -177,6 +180,8 @@
 		27FF669218F38503008F8626 /* util */ = {
 			isa = PBXGroup;
 			children = (
+				27FF669318F386C5008F8626 /* Timer.cpp */,
+				27FF669418F386C5008F8626 /* Timer.h */,
 			);
 			name = util;
 			sourceTree = "<group>";
@@ -237,6 +242,7 @@
 				27FCF13418E7F4A100A390F8 /* NormalShader.cpp in Sources */,
 				27FCF13D18E8077F00A390F8 /* Matrices.cpp in Sources */,
 				271DA60418DFC0D600BC7A8C /* CMesh.cpp in Sources */,
+				27FF669518F386C5008F8626 /* Timer.cpp in Sources */,
 				271DA60518DFC0D600BC7A8C /* main.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
