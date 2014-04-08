@@ -102,6 +102,7 @@
 		2701E04218DFC03500723795 /* model3d */ = {
 			isa = PBXGroup;
 			children = (
+				27FF669218F38503008F8626 /* util */,
 				27808DDE18EDB11200B76A2C /* mesh */,
 				27FCF13818E8074300A390F8 /* matrix */,
 				2700A01D18E50E540030CA02 /* shader */,
@@ -171,6 +172,13 @@
 				27FCF13C18E8077F00A390F8 /* Vectors.h */,
 			);
 			name = matrix;
+			sourceTree = "<group>";
+		};
+		27FF669218F38503008F8626 /* util */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = util;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
