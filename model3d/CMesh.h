@@ -58,6 +58,8 @@ private:
     GLfloat   rax,ray,raz,radian;
     GLfloat   x,y,z;
     GLfloat   scalex,scaley,scalez;
+    bool      m_bForceGenerateNormal;
+    bool      m_bSmoothSurface;
     
     CMaterial m_iMaterial;
     std::vector<MtlInfo> m_iMaterialArray;
@@ -74,6 +76,8 @@ public:
     inline void setDegree(GLfloat deg){radian=deg*M_PI/180;}
     inline void setPosition(GLfloat x,GLfloat y,GLfloat z){this->x=x;this->y=y;this->z=z;};
     inline void setScale(GLfloat x,GLfloat y,GLfloat z){scalex=x;scaley=y;scalez=z;}
+    inline void setForceGenerateNormal(bool fgn){m_bForceGenerateNormal = fgn;}
+    inline void setSmoothSurface(bool ss){m_bSmoothSurface = ss;}
 	CMesh();
     CMesh(const char *name);
 	~CMesh();

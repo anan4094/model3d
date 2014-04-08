@@ -111,18 +111,21 @@ int main(int argc, char **argv)
 	glutCreateWindow("OpenGL Hello World");
 
 	init();
+    mesh.setForceGenerateNormal(true);
+    mesh.setSmoothSurface(true);
 #ifdef __APPLE__
-    mesh.load("/Users/anan/Documents/github/model3d/res/female/female.obj");
+    mesh.load("/Users/anan/Documents/github/model3d/res/tails/Tails.obj");
 #else
 	mesh.load("../res/female/female.obj");
 #endif
     //
     mesh.initShader();
     mesh.setRotationAxis(0, 1, 0);
-    mesh.setScale(0.02, 0.02, 0.02);
-	mesh.setPosition(0, -16, -20);
+    //mesh.setScale(0.02, 0.02, 0.02);
+	//mesh.setPosition(0, -16, -20);
 
-	//mesh.setPosition(0, 0, -20);
+    mesh.setScale(2.4f, 2.4f, 2.4f);
+	mesh.setPosition(0, -8, -20);
 	glColor3f(1.0f, 0.0f, 1.0f);
 	glutDisplayFunc(display);  
 	glutReshapeFunc(reshape);

@@ -9,6 +9,36 @@
 #define BIND_VERTEX_ARRAY glBindVertexArray
 #endif
 
+#define BUFF_LEN (2048)
+#define LINE_LEN (128)
+
+void normalize(float v[3],float out[3]){
+	GLfloat d = sqrt(v[0]*v[0]+v[1]*v[1]+v[2]*v[2]);
+	if(d == 0.0){
+		return;
+	}
+	out[0] = v[0]/d;
+	out[1] = v[1]/d;
+	out[2] = v[2]/d;
+}
+
+void normcrossprod(float v1[3],float v2[3],float out[3]){
+	out[0] = v1[1]*v2[2] - v1[2]*v2[1];
+	out[1] = v1[2]*v2[0] - v1[0]*v2[2];
+	out[2] = v1[0]*v2[1] - v1[1]*v2[0];
+	normalize(out,out);
+}
+
+void normcrossprodadd(float v1[3],float v2[3],float cache[3]){
+    float tmp[3];
+	tmp[0] = v1[1]*v2[2] - v1[2]*v2[1];
+	tmp[1] = v1[2]*v2[0] - v1[0]*v2[2];
+	tmp[2] = v1[0]*v2[1] - v1[1]*v2[0];
+	normalize(tmp,tmp);
+    cache[0]+=tmp[0];
+    cache[1]+=tmp[1];
+    cache[2]+=tmp[2];
+}
 
 using namespace std;
 bool CMesh::load(const char* filename){
@@ -190,7 +220,6 @@ bool CMesh::loadObj_bak(const char* filename){
 			(*q++)=m_normals[fctmp.ni[2]-1].y;
 			(*q++)=m_normals[fctmp.ni[2]-1].z;
 		}
-		
 	}
 	GEN_VERTEX_ARRAYS(1, &m_vertexArray);
 	BIND_VERTEX_ARRAY(m_vertexArray);
@@ -240,21 +269,19 @@ bool CMesh::loadObj(const char* filename){
 	std::vector<Vector3>       m_texcoords;
 	std::vector<Face>           m_faces;
 
-	char tmp[2048];
+	char tmp[BUFF_LEN];
 	char *p,*end;
 	Vector3 v;
 	bool hasnormal=false,hastexcood=false;
 	Face fa;
 	MtlInfo mtlinf;
 	memset(&mtlinf, 0, sizeof(MtlInfo));
-	bool fsection = false;
-	fs.read(tmp,2048-128);
+	fs.read(tmp,BUFF_LEN-LINE_LEN);
 	p = tmp;
 	end = p+fs.gcount();
-	fs.getline(end,128);
+	fs.getline(end,LINE_LEN);
 	for (;*end;end++);
 	GLfloat vec3[3];
-	unsigned long long linenum=0;
 	while (true){
 		if(*p=='v'){
 			p++;
@@ -385,17 +412,13 @@ bool CMesh::loadObj(const char* filename){
 			}
 		}
 		if (p==end){
-			linenum++;
-			if (linenum==3429){
-				linenum++;
-			}
-			fs.read(tmp,2048-128);
+			fs.read(tmp,BUFF_LEN-LINE_LEN);
 			p = tmp;
 			end = p+fs.gcount();
 			if (p==end){
 				break;
 			}
-			fs.getline(end,128,'\n');
+			fs.getline(end,LINE_LEN,'\n');
 			for (;*end;end++);
 		}else{
 			p++;
@@ -410,36 +433,84 @@ bool CMesh::loadObj(const char* filename){
 	timer.start();
 	m_nVertexCount = (GLsizei)(3*m_faces.size());
 	m_pVertices = new GLfloat[3*m_nVertexCount];
-	if(hasnormal){
+    GLfloat *normal4smooth=nullptr;
+	if(hasnormal||m_bForceGenerateNormal){
 		m_pNormals = new GLfloat[3*m_nVertexCount];
+        if(m_bSmoothSurface){
+            normal4smooth = new GLfloat[3*m_positions.size()];
+            memset(normal4smooth, 0, 3*m_positions.size());
+        }
 	}
 	unsigned long fnum = m_faces.size();
 	GLfloat *pv=m_pVertices,*qv=m_pNormals;
+    GLfloat edge1[3],edge2[3];
 	for (unsigned long i=0;i<fnum;i++){
 		Face &fctmp=(Face&)m_faces[i];
-		(*pv++)=m_positions[fctmp.pi[0]-1].x;
-		(*pv++)=m_positions[fctmp.pi[0]-1].y;
-		(*pv++)=m_positions[fctmp.pi[0]-1].z;
-		(*pv++)=m_positions[fctmp.pi[1]-1].x;
-		(*pv++)=m_positions[fctmp.pi[1]-1].y;
-		(*pv++)=m_positions[fctmp.pi[1]-1].z;
-		(*pv++)=m_positions[fctmp.pi[2]-1].x;
-		(*pv++)=m_positions[fctmp.pi[2]-1].y;
-		(*pv++)=m_positions[fctmp.pi[2]-1].z;
+        int ni1= fctmp.pi[0]-1,ni2= fctmp.pi[1]-1,ni3= fctmp.pi[2]-1;
+        Vector3 &v1=m_positions[ni1];
+        Vector3 &v2=m_positions[ni2];
+        Vector3 &v3=m_positions[ni3];
+		(*pv++)=v1.x;
+		(*pv++)=v1.y;
+		(*pv++)=v1.z;
+		(*pv++)=v2.x;
+		(*pv++)=v2.y;
+		(*pv++)=v2.z;
+		(*pv++)=v3.x;
+		(*pv++)=v3.y;
+		(*pv++)=v3.z;
 
 		if (hasnormal){
-			(*qv++)=m_normals[fctmp.ni[0]-1].x;
-			(*qv++)=m_normals[fctmp.ni[0]-1].y;
-			(*qv++)=m_normals[fctmp.ni[0]-1].z;
-			(*qv++)=m_normals[fctmp.ni[1]-1].x;
-			(*qv++)=m_normals[fctmp.ni[1]-1].y;
-			(*qv++)=m_normals[fctmp.ni[1]-1].z;
-			(*qv++)=m_normals[fctmp.ni[2]-1].x;
-			(*qv++)=m_normals[fctmp.ni[2]-1].y;
-			(*qv++)=m_normals[fctmp.ni[2]-1].z;
-		}
+            Vector3 &n1=m_normals[fctmp.ni[0]-1];
+            Vector3 &n2=m_normals[fctmp.ni[1]-1];
+            Vector3 &n3=m_normals[fctmp.ni[2]-1];
+			(*qv++)=n1.x;
+			(*qv++)=n1.y;
+			(*qv++)=n1.z;
+			(*qv++)=n2.x;
+			(*qv++)=n2.y;
+			(*qv++)=n2.z;
+			(*qv++)=n3.x;
+			(*qv++)=n3.y;
+			(*qv++)=n3.z;
+		}else if (m_bForceGenerateNormal){
+            edge1[0]=v1.x-v2.x;
+            edge1[1]=v1.y-v2.y;
+            edge1[2]=v1.z-v2.z;
+            edge2[0]=v2.x-v3.x;
+            edge2[1]=v2.y-v3.y;
+            edge2[2]=v2.z-v3.z;
+            if (m_bSmoothSurface) {
+                normcrossprodadd(edge1, edge2, normal4smooth+3*ni1);
+                normcrossprodadd(edge1, edge2, normal4smooth+3*ni2);
+                normcrossprodadd(edge1, edge2, normal4smooth+3*ni3);
+            }else{
+                normcrossprod(edge1,edge2,qv);
+                *(qv+3)=*(qv+6)=*qv;
+                *(qv+4)=*(qv+7)=*(qv+1);
+                *(qv+5)=*(qv+8)=*(qv+2);
+            }
+            qv+=9;
+        }
 
 	}
+    if (m_bSmoothSurface) {
+        qv=m_pNormals;
+        for (unsigned long i=0;i<fnum;i++){
+            Face &fctmp=(Face&)m_faces[i];
+            int ni1= fctmp.pi[0]-1,ni2= fctmp.pi[1]-1,ni3= fctmp.pi[2]-1;
+            *qv++=*(normal4smooth+3*ni1);
+            *qv++=*(normal4smooth+3*ni1+1);
+            *qv++=*(normal4smooth+3*ni1+2);
+            *qv++=*(normal4smooth+3*ni2);
+            *qv++=*(normal4smooth+3*ni2+1);
+            *qv++=*(normal4smooth+3*ni2+2);
+            *qv++=*(normal4smooth+3*ni3);
+            *qv++=*(normal4smooth+3*ni3+1);
+            *qv++=*(normal4smooth+3*ni3+2);
+        }
+        delete [] normal4smooth;
+    }
 	GEN_VERTEX_ARRAYS(1, &m_vertexArray);
 	BIND_VERTEX_ARRAY(m_vertexArray);
 
@@ -534,7 +605,7 @@ void CMesh::draw(){
     }
 }
 
-CMesh::CMesh():m_nVBOVertices(0),m_nVertexCount(0),m_pVertices(nullptr),m_pNormals(nullptr),normalShader(nullptr),rax(0),ray(0),raz(1),x(0),y(0),z(0),scalex(1),scaley(1),scalez(1){
+CMesh::CMesh():m_nVBOVertices(0),m_nVertexCount(0),m_pVertices(nullptr),m_pNormals(nullptr),normalShader(nullptr),rax(0),ray(0),raz(1),x(0),y(0),z(0),scalex(1),scaley(1),scalez(1),m_bForceGenerateNormal(false),m_bSmoothSurface(false){
 }
 CMesh::CMesh(const char* filename){
 	CMesh();
