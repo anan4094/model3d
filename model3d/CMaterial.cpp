@@ -99,7 +99,7 @@ bool CMaterial::load(const char *filename){
 	}
 	fs.close();
     timer.stop();
-	printf("read mtl time consuming:%lfms\n",timer.getElapsedTimeInMilliSec());
+	printf("read mtl file time consuming:%lfms\n",timer.getElapsedTimeInMilliSec());
     if (mtl.name[0]) {
         m_imtls.push_back(mtl);
     }

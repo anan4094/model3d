@@ -188,7 +188,7 @@ bool CMesh::loadObj_bak(const char* filename){
     }
 	fs.close();
 	timer.stop();
-	printf("read file time consuming:%lfms\n",timer.getElapsedTimeInMilliSec());
+	printf("read obj file time consuming:%lfms\n",timer.getElapsedTimeInMilliSec());
 	timer.start();
 	m_nVertexCount = (GLsizei)(3*m_faces.size());
 	m_pVertices = new GLfloat[3*m_nVertexCount];
@@ -251,7 +251,7 @@ bool CMesh::loadObj_bak(const char* filename){
 	m_texcoords.clear();
 	m_faces.clear();
 	timer.stop();
-	printf("new vertexs time consuming:%lfms\n",timer.getElapsedTimeInMilliSec());
+	printf("generate vertexs time consuming:%lfms\n",timer.getElapsedTimeInMilliSec());
 	return true;
 }
 bool CMesh::loadObj(const char* filename){
@@ -429,7 +429,7 @@ bool CMesh::loadObj(const char* filename){
 	}
 	fs.close();
 	timer.stop();
-	printf("read file time consuming:%lfms\n",timer.getElapsedTimeInMilliSec());
+	printf("read obj file time consuming:%lfms\n",timer.getElapsedTimeInMilliSec());
 	timer.start();
 	m_nVertexCount = (GLsizei)(3*m_faces.size());
 	m_pVertices = new GLfloat[3*m_nVertexCount];
@@ -494,7 +494,7 @@ bool CMesh::loadObj(const char* filename){
         }
 
 	}
-    if (m_bSmoothSurface) {
+    if (!hasnormal&&m_bSmoothSurface) {
         qv=m_pNormals;
         for (unsigned long i=0;i<fnum;i++){
             Face &fctmp=(Face&)m_faces[i];
@@ -541,7 +541,7 @@ bool CMesh::loadObj(const char* filename){
 	m_texcoords.clear();
 	m_faces.clear();
 	timer.stop();
-	printf("new vertexs time consuming:%lfms\n",timer.getElapsedTimeInMilliSec());
+	printf("generate vertexs time consuming:%lfms\n",timer.getElapsedTimeInMilliSec());
 	return true;
 }
 
