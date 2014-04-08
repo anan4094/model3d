@@ -65,12 +65,12 @@ void display()
 	glEnable(GL_LIGHT0);
 	glEnable(GL_LIGHTING);
 	glEnable(GL_DEPTH_TEST);
-    GLfloat matAmbient[] = {0.6, 0.6, 0.6, 1.0};
-    GLfloat matDiffuse[]   = {0.35, 0.35, 0.35, 1.0};
-    GLfloat matAmbDif[]   = {0.5, 0.5, 0.5, 1.0};
-    GLfloat matSpecular[] = {0.2, 0.2, 0.2, 1.0};
-    GLfloat shine[] = {5.0};
-    GLfloat matEmission[] = {0.3, 0.1, 0.1, 1.0};
+    GLfloat matAmbient[] = {0.6f, 0.6f, 0.6f, 1.0f};
+    GLfloat matDiffuse[]   = {0.35f, 0.35f, 0.35f, 1.0f};
+    GLfloat matAmbDif[]   = {0.5f, 0.5f, 0.5f, 1.0f};
+    GLfloat matSpecular[] = {0.2f, 0.2f, 0.2f, 1.0f};
+    GLfloat shine[] = {5.0f};
+    GLfloat matEmission[] = {0.3f, 0.1f, 0.1f, 1.0f};
     glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT, matAmbient);
     glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, matDiffuse);
     glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE, matAmbDif);  // 将背景颜色和散射颜色设置成同一颜色
@@ -93,7 +93,7 @@ void reshape(int w, int h)
 }
 
 void keyboard(unsigned char key,int x,int y){
-    if (key=='q') {
+    if (key=='q'||key==0x1b) {
         loop = false;
     }
 }
@@ -130,7 +130,7 @@ int main(int argc, char **argv)
     //let tails.obj show us
     //mesh.setScale(2.4f, 2.4f, 2.4f);
 	//mesh.setPosition(0, -8, -20);
-    
+
 	glColor3f(1.0f, 0.0f, 1.0f);
 	glutDisplayFunc(display);  
 	glutReshapeFunc(reshape);

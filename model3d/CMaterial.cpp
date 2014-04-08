@@ -10,6 +10,10 @@
 #include "Timer.h"
 #include<fstream>
 #include<string.h>
+
+#define BUFF_LEN (1024)
+#define LINE_LEN (128)
+
 using namespace std;
 
 CMaterial::CMaterial(){
@@ -18,103 +22,126 @@ CMaterial::CMaterial(){
 
 CMaterial::CMaterial(const char *filename){
 	CMaterial();
-	load(filename);
+	//loadMtl(filename);
 }
 
 CMaterial::~CMaterial(){
 	m_imtls.clear();
 }
 
-bool CMaterial::load(const char *filename){
-    Timer timer;
-    timer.start();
-    ifstream fs(filename);
+bool CMaterial::loadMtl(const char*filename){
+	Timer timer;
+	timer.start();
+	ifstream fs(filename);
 	if (fs.good()){
 		printf("open file[%s] success\n",filename);
 	}else{
 		printf("open file[%s] failed\n",filename);
 		return false;
 	}
-    char c = fs.get();
-    char tmp[128];
-    Mtl mtl;
-    memset(&mtl, 0, sizeof(Mtl));
-	while (c!=EOF){
-		switch (c){
-            case 'n':{
-                fs.getline(tmp, 128,' ');
-                if (tmp[0]=='e'&&tmp[1]=='w'&&tmp[2]=='m'&&tmp[3]=='t'&&tmp[4]=='l'&&tmp[5]==0) {
-					fs.getline(tmp,128,'\n');
-                    for (char*pch=tmp;*pch;pch++){if(*pch=='\r'&&*(pch+1)==0)*pch=0;}
-                    if (mtl.name[0]) {
-                        m_imtls.push_back(mtl);
-                    }
-                    memset(&mtl,0,sizeof(Mtl));
-                    strcpy(mtl.name, tmp);
-                    printf("new mtl:%s\n",mtl.name);
-                }else{
-                    printf("ignore:n%s",tmp);
-                    fs.getline(tmp, 128,'\n');
-                    printf(" %s",tmp);
-                }
-			}break;
-            case 'N':{
-                c = fs.get();
-                if (c=='s') {
-                    fs>>mtl.ns;
-                }else if (c=='i'){
-                    fs>>mtl.ni;
-                }else{
-                    fs.getline(tmp, 128,'\n');
-                    printf("ignore:N%c%s",c,tmp);
-                }
-            }break;
-            case 'K':{
-                c = fs.get();
-                if (c=='d') {
-                    fs.getline(tmp, 128,'\n');
-                    readColor(KD,mtl,tmp);
-                }else{
-                    fs.getline(tmp, 128,'\n');
-                    printf("ignore:K%c%s",c,tmp);
-                }
-            }break;
-            case '#':{
-				fs.getline(tmp, 128,'\n');
-				printf("#%s\n",tmp);
-			}break;
-            default:
-                fs.getline(tmp, 128,'\n');
-                printf("ignore:%c%s\n",c,tmp);
-                break;
+	char tmp[BUFF_LEN];
+	char *p,*end;
+	Mtl mtl;
+	memset(&mtl, 0, sizeof(Mtl));
+	fs.read(tmp,BUFF_LEN-LINE_LEN);
+	p = tmp;
+	end = p+fs.gcount();
+	fs.getline(end,LINE_LEN);
+	for (;*end;end++);
+	while (true){
+		if (*p=='\t'){
+			p++;
 		}
-		while (!fs.eof()&&fs.peek()==10){
-			fs.getline(tmp, 128,'\n');
+		if (*p=='n'){
+			if (p[1]=='e'&&p[2]=='w'&&p[3]=='m'&&p[4]=='t'&&p[5]=='l'&&p[6]==' ') {
+				p=p+7;
+				char name[64];
+				int ind = 0;
+				for (;*p!='\n'&&*p!='\r'&&p!=end;p++,ind++){
+					name[ind]=*p;
+				}
+				name[ind]=0;
+				if (mtl.name[0]) {
+					m_imtls.push_back(mtl);
+				}
+				memset(&mtl,0,sizeof(Mtl));
+				strcpy(mtl.name, name);
+			}
+			
+		}else if(*p=='N'){
+			p++;
+			GLfloat dot = 0;
+			if (*p=='s'){
+				for (p++;*p!='\n'&&*p!='\r'&&p!=end;p++){
+					if (*p>='0'&&*p<='9'){
+						if (dot==0){
+							mtl.ns=mtl.ns*10+(GLfloat)(*p-'0');
+						}else{
+							mtl.ns += dot*(GLfloat)(*p-'0');
+							dot/=10;
+						}
+					}else if (*p=='.'){
+						dot = 0.1f;
+					}
+				}
+			}else if (*p=='i'){
+				for (p++;*p!='\n'&&*p!='\r'&&p!=end;p++){
+					if (*p>='0'&&*p<='9'){
+						if (dot==0){
+							mtl.ni=mtl.ns*10+(GLfloat)(*p-'0');
+						}else{
+							mtl.ni += dot*(GLfloat)(*p-'0');
+							dot/=10;
+						}
+					}else if (*p=='.'){
+						dot = 0.1f;
+					}
+				}
+			}else{
+				for (p++;*p!='\n'&&*p!='\r'&&p!=end;p++);
+			}
+		}else if(*p=='K'){
+			p++;
+			if (*p=='d'){
+				p++;
+				readColor(KD,mtl,p);
+			}else{
+				for (p++;*p!='\n'&&*p!='\r'&&p!=end;p++);
+			}
+		}else if(*p=='#'){
+			for (p++;*p!='\n'&&*p!='\r'&&p!=end;p++);
 		}
-		if (!fs.eof()){
-			fs>>c;
+		if (p==end){
+			fs.read(tmp,BUFF_LEN-LINE_LEN);
+			p = tmp;
+			end = p+fs.gcount();
+			if (p==end){
+				break;
+			}
+			fs.getline(end,LINE_LEN,'\n');
+			for (;*end;end++);
+			printf("%s",tmp);
 		}else{
-			break;
+			p++;
 		}
 	}
 	fs.close();
-    timer.stop();
+	timer.stop();
 	printf("read mtl file time consuming:%lfms\n",timer.getElapsedTimeInMilliSec());
-    if (mtl.name[0]) {
-        m_imtls.push_back(mtl);
-    }
-    return true;
+	if (mtl.name[0]) {
+		m_imtls.push_back(mtl);
+	}
+	return true;
 }
 
-void CMaterial::readColor(AttribMaterial am,Mtl &mtl,char* bundle){
+void CMaterial::readColor(AttribMaterial am,Mtl &mtl,char* &p){
     int flag = 0,channel = 0;
     GLfloat tmp=0,dot=0;
-    char *p=bundle;
     do{
         if (*p>='0' && *p<='9') {
             if (flag==0) {
                 flag=1;
-                tmp=*p-'0';
+                tmp=(GLfloat)(*p-'0');
             }else if(flag==1){
                 tmp=tmp*10+(*p-'0');
             }else if(flag==2){
@@ -126,7 +153,7 @@ void CMaterial::readColor(AttribMaterial am,Mtl &mtl,char* bundle){
                 flag=2;
                 dot=0.1f;
             }
-        }else if(*p==' '||*p==0){
+        }else if(*p==' '||*p==0||*p=='\r'||*p=='\n'){
             if (flag==1||flag==2) {
                 if (am==KD) {
                     mtl.kd.d[channel]=tmp;
@@ -134,8 +161,12 @@ void CMaterial::readColor(AttribMaterial am,Mtl &mtl,char* bundle){
                 channel++;
             }
             flag = 0;
+			if (*p!=' '){
+				break;
+			}
         }
-    }while (*p++);
+		p++;
+    }while (true);
 }
 
 Mtl* CMaterial::find(const char* name){

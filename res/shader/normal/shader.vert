@@ -13,7 +13,7 @@ void main()
 {    
     vec4 nor = normalMatrix*normal;
     vec3 eyeNormal = normalize(nor.xyz);
-    vec3 lightPosition = vec3(0.0, 0.0, 1.0);
+    vec3 lightPosition = vec3(0.0, 0.0, -1.0);
     
     float nDotVP = max(0.0, dot(eyeNormal, normalize(lightPosition)));
     

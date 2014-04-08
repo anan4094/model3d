@@ -29,8 +29,8 @@
     <ClCompile Include="Timer.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\res\shader.frag" />
-    <None Include="..\res\shader.vert" />
+    <None Include="..\res\shader\normal\shader.frag" />
+    <None Include="..\res\shader\normal\shader.vert" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{6A74D9E1-81B0-4402-B4DF-30444DAA68CE}</ProjectGuid>

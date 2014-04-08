@@ -68,9 +68,9 @@ class CMaterial{
 private:
     std::vector<Mtl> m_imtls;
     
-    void readColor(AttribMaterial am,Mtl &mtl,char*bundle);
+    void readColor(AttribMaterial am,Mtl &mtl,char*&bundle);
 public:
-    bool load(const char*filename);
+    bool loadMtl(const char*filename);
     mtl* find(const char*name);
 	CMaterial();
 	CMaterial(const char *filename);

@@ -25,7 +25,7 @@ void normalize(float v[3],float out[3]){
 void normcrossprod(float v1[3],float v2[3],float out[3]){
 	out[0] = v1[1]*v2[2] - v1[2]*v2[1];
 	out[1] = v1[2]*v2[0] - v1[0]*v2[2];
-	out[2] = v1[0]*v2[1] - v1[1]*v2[0];
+	out[2] = v1[0]*v2[1] - v1[1]*v2[0]; 
 	normalize(out,out);
 }
 
@@ -162,7 +162,7 @@ bool CMesh::loadObj_bak(const char* filename){
 					for (char*pch=tmp;*pch;pch++){if(*pch=='\r'&&*(pch+1)==0)*pch=0;}
                     //printf("mtllib %s\n",tmp);
                     getFilePath(filename, tmp);
-                    m_iMaterial.load(tmp);
+                    m_iMaterial.loadMtl(tmp);
                 }else{
                     //printf("ignore:m%s ",tmp);
                     fs.getline(tmp, 128,'\n');
@@ -313,7 +313,7 @@ bool CMesh::loadObj(const char* filename){
 					}else if (*p>='0' && *p<='9') {
 						if (flag==0) {
 							flag=1;
-							ftmp=*p-'0';
+							ftmp=(GLfloat)(*p-'0');
 						}else if(flag==1||flag==-1){
 							ftmp=ftmp*10+(*p-'0');
 						}else if(flag==2||flag==-2){
@@ -392,7 +392,7 @@ bool CMesh::loadObj(const char* filename){
 				}
 				name[ind]=0;
 				getFilePath(filename, name);
-				m_iMaterial.load(name);
+				m_iMaterial.loadMtl(name);
 			}
 		}else if (*p=='u'){
 			if (p[1]=='s'&&p[2]=='e'&&p[3]=='m'&&p[4]=='t'&&p[5]=='l'&&p[6]==' ') {
@@ -595,7 +595,7 @@ void CMesh::draw(){
         normalShader->setModelViewProjectionMatrix(_modelViewProjectionMatrix.transpose().get());
         normalShader->setNormalMatrix(_normalMatrix.get());
 		BIND_VERTEX_ARRAY(m_vertexArray);
-        for (int i=0; i<m_iMaterialArray.size(); i++) {
+        for (unsigned int i=0; i<m_iMaterialArray.size(); i++) {
             Mtl*pmtl=m_iMaterial.find(m_iMaterialArray[i].name);
             normalShader->setDiffuseColor(pmtl->kd.d);
             glDrawArrays( GL_TRIANGLES, m_iMaterialArray[i].first, m_iMaterialArray[i].size);

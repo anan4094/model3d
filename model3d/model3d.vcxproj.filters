@@ -13,6 +13,12 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;0jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="资源文件\shader">
+      <UniqueIdentifier>{16acf0e7-6c90-4240-bd8c-a69d3b0cf6b3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="资源文件\shader\normal">
+      <UniqueIdentifier>{74b0a6a1-e13c-460b-8232-3cc6c80a8385}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CMaterial.h">
@@ -61,11 +67,11 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\res\shader.frag">
-      <Filter>资源文件</Filter>
+    <None Include="..\res\shader\normal\shader.frag">
+      <Filter>资源文件\shader\normal</Filter>
     </None>
-    <None Include="..\res\shader.vert">
-      <Filter>资源文件</Filter>
+    <None Include="..\res\shader\normal\shader.vert">
+      <Filter>资源文件\shader\normal</Filter>
     </None>
   </ItemGroup>
 </Project>
