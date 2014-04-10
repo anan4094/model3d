@@ -19,6 +19,9 @@
     <Filter Include="资源文件\shader\normal">
       <UniqueIdentifier>{74b0a6a1-e13c-460b-8232-3cc6c80a8385}</UniqueIdentifier>
     </Filter>
+    <Filter Include="soil">
+      <UniqueIdentifier>{8fd213e0-84b9-4b2e-ae32-2ae71a92f1a6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CMaterial.h">
@@ -42,6 +45,27 @@
     <ClInclude Include="Timer.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="soil\image_DXT.h">
+      <Filter>soil</Filter>
+    </ClInclude>
+    <ClInclude Include="soil\image_helper.h">
+      <Filter>soil</Filter>
+    </ClInclude>
+    <ClInclude Include="soil\stb_image_aug.h">
+      <Filter>soil</Filter>
+    </ClInclude>
+    <ClInclude Include="soil\stbi_DDS_aug.h">
+      <Filter>soil</Filter>
+    </ClInclude>
+    <ClInclude Include="soil\stbi_DDS_aug_c.h">
+      <Filter>soil</Filter>
+    </ClInclude>
+    <ClInclude Include="soil\soil.h">
+      <Filter>soil</Filter>
+    </ClInclude>
+    <ClInclude Include="CTexture.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CMaterial.cpp">
@@ -63,6 +87,21 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="Timer.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="soil\image_DXT.c">
+      <Filter>soil</Filter>
+    </ClCompile>
+    <ClCompile Include="soil\image_helper.c">
+      <Filter>soil</Filter>
+    </ClCompile>
+    <ClCompile Include="soil\stb_image_aug.c">
+      <Filter>soil</Filter>
+    </ClCompile>
+    <ClCompile Include="soil\soil.c">
+      <Filter>soil</Filter>
+    </ClCompile>
+    <ClCompile Include="CTexture.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

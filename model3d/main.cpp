@@ -117,7 +117,8 @@ int main(int argc, char **argv)
 #ifdef __APPLE__
     mesh.load("/Users/anan/Documents/github/model3d/res/female/female.obj");
 #else
-	mesh.load("../res/female/female.obj");
+	mesh.load("../res/tails/Tails.obj");
+	//mesh.load("../res/female/female.obj");
 #endif
     //
     mesh.initShader();
@@ -128,8 +129,8 @@ int main(int argc, char **argv)
 	mesh.setPosition(0, -16, -20);
 
     //let tails.obj show us
-    //mesh.setScale(2.4f, 2.4f, 2.4f);
-	//mesh.setPosition(0, -8, -20);
+    mesh.setScale(2.4f, 2.4f, 2.4f);
+	mesh.setPosition(0, -8, -20);
 
 	glColor3f(1.0f, 0.0f, 1.0f);
 	glutDisplayFunc(display);  

@@ -36,16 +36,22 @@ typedef struct mtlInfo{
 
 class CMesh{
 private:
-	GLuint    m_nVBOVertices;
-    GLuint    m_nVBONormals;
-    GLuint    m_vertexArray;
+	GLuint    m_nVerticesID;
+    GLuint    m_nNormalsID;
+	GLuint    m_nTexcoordsID;
+
+    GLuint    m_nVertexArraysID;
+
 	GLfloat   *m_pVertices;
 	GLfloat   *m_pNormals;
+	GLfloat   *m_pTexCoords;
 	GLsizei   m_nVertexCount;
     
     GLfloat   rax,ray,raz,radian;
     GLfloat   x,y,z;
     GLfloat   scalex,scaley,scalez;
+	bool      m_bHasNormal;
+	bool      m_bHasTexCoord;
     bool      m_bForceGenerateNormal;
     bool      m_bSmoothSurface;
     

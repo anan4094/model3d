@@ -61,7 +61,7 @@ typedef struct mtl{
         };
         GLfloat d[3];
     }ke;
-    
+    void* map_kd;
 }Mtl;
 
 class CMaterial{

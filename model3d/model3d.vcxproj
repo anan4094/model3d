@@ -13,19 +13,31 @@
   <ItemGroup>
     <ClInclude Include="CMaterial.h" />
     <ClInclude Include="CMesh.h" />
+    <ClInclude Include="CTexture.h" />
     <ClInclude Include="Matrices.h" />
     <ClInclude Include="NormalShader.h" />
     <ClInclude Include="Shader.h" />
+    <ClInclude Include="soil\image_DXT.h" />
+    <ClInclude Include="soil\image_helper.h" />
+    <ClInclude Include="soil\soil.h" />
+    <ClInclude Include="soil\stbi_DDS_aug.h" />
+    <ClInclude Include="soil\stbi_DDS_aug_c.h" />
+    <ClInclude Include="soil\stb_image_aug.h" />
     <ClInclude Include="Timer.h" />
     <ClInclude Include="Vectors.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CMaterial.cpp" />
     <ClCompile Include="CMesh.cpp" />
+    <ClCompile Include="CTexture.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Matrices.cpp" />
     <ClCompile Include="NormalShader.cpp" />
     <ClCompile Include="Shader.cpp" />
+    <ClCompile Include="soil\image_DXT.c" />
+    <ClCompile Include="soil\image_helper.c" />
+    <ClCompile Include="soil\soil.c" />
+    <ClCompile Include="soil\stb_image_aug.c" />
     <ClCompile Include="Timer.cpp" />
   </ItemGroup>
   <ItemGroup>

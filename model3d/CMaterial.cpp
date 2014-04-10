@@ -7,6 +7,8 @@
 //
 
 #include "CMaterial.h"
+#include "CMesh.h"
+#include "CTexture.h"
 #include "Timer.h"
 #include<fstream>
 #include<string.h>
@@ -67,7 +69,6 @@ bool CMaterial::loadMtl(const char*filename){
 				memset(&mtl,0,sizeof(Mtl));
 				strcpy(mtl.name, name);
 			}
-			
 		}else if(*p=='N'){
 			p++;
 			GLfloat dot = 0;
@@ -108,6 +109,19 @@ bool CMaterial::loadMtl(const char*filename){
 			}else{
 				for (p++;*p!='\n'&&*p!='\r'&&p!=end;p++);
 			}
+		}else if(*p=='m'){
+			if (p[1]=='a'&&p[2]=='p'&&p[3]=='_'&&p[4]=='K'&&p[5]=='d'&&p[6]==' ') {
+				p=p+7;
+				char name[64];
+				int ind = 0;
+				for (;*p!='\n'&&*p!='\r'&&p!=end;p++,ind++){
+					name[ind]=*p;
+				}
+				name[ind]=0;
+				getFilePath(filename,name);
+				CTexture *ctex = new CTexture(name);
+				mtl.map_kd = (void*)ctex;
+			}
 		}else if(*p=='#'){
 			for (p++;*p!='\n'&&*p!='\r'&&p!=end;p++);
 		}
@@ -120,7 +134,7 @@ bool CMaterial::loadMtl(const char*filename){
 			}
 			fs.getline(end,LINE_LEN,'\n');
 			for (;*end;end++);
-			printf("%s",tmp);
+			//printf("%s",tmp);
 		}else{
 			p++;
 		}

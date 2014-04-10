@@ -1,4 +1,5 @@
 #include "CMesh.h"
+#include "CTexture.h"
 #include<fstream>
 #include "Timer.h"
 #ifdef __APPLE__
@@ -66,14 +67,15 @@ bool CMesh::loadObj_bak(const char* filename){
 	timer.start();
 	std::vector<Vector3>        m_positions;
 	std::vector<Vector3>        m_normals;
-	std::vector<Vector3>       m_texcoords;
+	std::vector<Vector3>        m_texcoords;
 	std::vector<Face>           m_faces;
     
 	char tmp[128];
 	Vector3 v;
 	Vector3 n;
 	Vector3 t;
-	bool hasnormal=false,hastexcood=false;
+	m_bHasNormal=false;
+	m_bHasTexCoord=false;
 	Face fa;
     MtlInfo mtlinf;
     memset(&mtlinf, 0, sizeof(MtlInfo));
@@ -95,12 +97,12 @@ bool CMesh::loadObj_bak(const char* filename){
                     m_positions.push_back(v);
                 }else if (ntmp=='n'){
                     fs>>c;
-					hasnormal=true;
+					m_bHasNormal=true;
 					fs>>n.x>>n.y>>n.z;
 					m_normals.push_back(n);
 				}else if(ntmp=='t'){
                     fs>>c;
-					hastexcood=true;
+					m_bHasTexCoord=true;
 					fs>>t.x>>t.y>>t.z;
 					m_texcoords.push_back(t);
 				}else{
@@ -192,7 +194,7 @@ bool CMesh::loadObj_bak(const char* filename){
 	timer.start();
 	m_nVertexCount = (GLsizei)(3*m_faces.size());
 	m_pVertices = new GLfloat[3*m_nVertexCount];
-	if(hasnormal){
+	if(m_bHasNormal){
 		m_pNormals = new GLfloat[3*m_nVertexCount];
 	}
     unsigned long fnum = m_faces.size();
@@ -209,7 +211,7 @@ bool CMesh::loadObj_bak(const char* filename){
 		(*p++)=m_positions[fctmp.pi[2]-1].y;
 		(*p++)=m_positions[fctmp.pi[2]-1].z;
 
-		if (hasnormal){
+		if (m_bHasNormal){
 			(*q++)=m_normals[fctmp.ni[0]-1].x;
 			(*q++)=m_normals[fctmp.ni[0]-1].y;
 			(*q++)=m_normals[fctmp.ni[0]-1].z;
@@ -221,18 +223,18 @@ bool CMesh::loadObj_bak(const char* filename){
 			(*q++)=m_normals[fctmp.ni[2]-1].z;
 		}
 	}
-	GEN_VERTEX_ARRAYS(1, &m_vertexArray);
-	BIND_VERTEX_ARRAY(m_vertexArray);
+	GEN_VERTEX_ARRAYS(1, &m_nVertexArraysID);
+	BIND_VERTEX_ARRAY(m_nVertexArraysID);
 
-    glGenBuffers(1, &m_nVBOVertices);
-	glBindBuffer(GL_ARRAY_BUFFER, m_nVBOVertices);
+    glGenBuffers(1, &m_nVerticesID);
+	glBindBuffer(GL_ARRAY_BUFFER, m_nVerticesID);
 	glBufferData(GL_ARRAY_BUFFER, sizeof(GLfloat)*3*m_nVertexCount, m_pVertices, GL_STATIC_DRAW);
     
     glVertexAttribPointer(attrib_position, 3, GL_FLOAT, GL_FALSE, 0, 0);
     glEnableVertexAttribArray(attrib_position);
     
-    glGenBuffers(1, &m_nVBONormals);
-    glBindBuffer(GL_ARRAY_BUFFER, m_nVBONormals);
+    glGenBuffers(1, &m_nNormalsID);
+    glBindBuffer(GL_ARRAY_BUFFER, m_nNormalsID);
     glBufferData(GL_ARRAY_BUFFER, sizeof(GLfloat)*3*m_nVertexCount, m_pNormals, GL_STATIC_DRAW);
     
     glVertexAttribPointer(attrib_normal, 3, GL_FLOAT, GL_FALSE, 0, 0);
@@ -264,15 +266,16 @@ bool CMesh::loadObj(const char* filename){
 	}
 	Timer timer;
 	timer.start();
-	std::vector<Vector3>        m_positions;
-	std::vector<Vector3>        m_normals;
-	std::vector<Vector3>       m_texcoords;
-	std::vector<Face>           m_faces;
+	std::vector<Vector3>        ipositions;
+	std::vector<Vector3>        inormals;
+	std::vector<Vector3>        itexcoords;
+	std::vector<Face>           ifaces;
 
 	char tmp[BUFF_LEN];
 	char *p,*end;
 	Vector3 v;
-	bool hasnormal=false,hastexcood=false;
+	m_bHasNormal=false;
+	m_bHasTexCoord=false;
 	Face fa;
 	MtlInfo mtlinf;
 	memset(&mtlinf, 0, sizeof(MtlInfo));
@@ -291,13 +294,13 @@ bool CMesh::loadObj(const char* filename){
 			}else if(*p=='n'){
 				p++;
 				if (*p==' '){
-					hasnormal = true;
+					m_bHasNormal = true;
 					type = 2;
 				}
 			}else if(*p=='t'){
 				p++;
 				if (*p==' '){
-					hastexcood = true;
+					m_bHasTexCoord = true;
 					type = 3;
 				}
 			}
@@ -345,11 +348,11 @@ bool CMesh::loadObj(const char* filename){
 				v.y=vec3[1];
 				v.z=vec3[2];
 				if (type==1){
-					m_positions.push_back(v);
+					ipositions.push_back(v);
 				}else if (type==2){
-					m_normals.push_back(v);
+					inormals.push_back(v);
 				}else if(type==3){
-					m_texcoords.push_back(v);
+					itexcoords.push_back(v);
 				}
 			}
 		}else if (*p=='f'){
@@ -377,7 +380,7 @@ bool CMesh::loadObj(const char* filename){
 					}
 				}
 				mtlinf.size+=3;
-				m_faces.push_back(fa);
+				ifaces.push_back(fa);
 			}
 		}else if(*p=='#'){
 			//like:# 3ds Max Wavefront OBJ Exporter v0.97b - (c)2007 guruware
@@ -431,25 +434,29 @@ bool CMesh::loadObj(const char* filename){
 	timer.stop();
 	printf("read obj file time consuming:%lfms\n",timer.getElapsedTimeInMilliSec());
 	timer.start();
-	m_nVertexCount = (GLsizei)(3*m_faces.size());
+	m_nVertexCount = (GLsizei)(3*ifaces.size());
 	m_pVertices = new GLfloat[3*m_nVertexCount];
+	
     GLfloat *normal4smooth=nullptr;
-	if(hasnormal||m_bForceGenerateNormal){
+	if(m_bHasNormal||m_bForceGenerateNormal){
 		m_pNormals = new GLfloat[3*m_nVertexCount];
         if(m_bSmoothSurface){
-            normal4smooth = new GLfloat[3*m_positions.size()];
-            memset(normal4smooth, 0, 3*m_positions.size());
+            normal4smooth = new GLfloat[3*ipositions.size()];
+            memset(normal4smooth, 0, 3*ipositions.size());
         }
 	}
-	unsigned long fnum = m_faces.size();
-	GLfloat *pv=m_pVertices,*qv=m_pNormals;
+	if (m_bHasTexCoord){
+		m_pTexCoords = new GLfloat[2*m_nVertexCount];
+	}
+	unsigned long fnum = ifaces.size();
+	GLfloat *pv=m_pVertices,*qv=m_pNormals,*rv=m_pTexCoords;
     GLfloat edge1[3],edge2[3];
 	for (unsigned long i=0;i<fnum;i++){
-		Face &fctmp=(Face&)m_faces[i];
+		Face &fctmp=(Face&)ifaces[i];
         int ni1= fctmp.pi[0]-1,ni2= fctmp.pi[1]-1,ni3= fctmp.pi[2]-1;
-        Vector3 &v1=m_positions[ni1];
-        Vector3 &v2=m_positions[ni2];
-        Vector3 &v3=m_positions[ni3];
+        Vector3 &v1=ipositions[ni1];
+        Vector3 &v2=ipositions[ni2];
+        Vector3 &v3=ipositions[ni3];
 		(*pv++)=v1.x;
 		(*pv++)=v1.y;
 		(*pv++)=v1.z;
@@ -460,10 +467,10 @@ bool CMesh::loadObj(const char* filename){
 		(*pv++)=v3.y;
 		(*pv++)=v3.z;
 
-		if (hasnormal){
-            Vector3 &n1=m_normals[fctmp.ni[0]-1];
-            Vector3 &n2=m_normals[fctmp.ni[1]-1];
-            Vector3 &n3=m_normals[fctmp.ni[2]-1];
+		if (m_bHasNormal){
+            Vector3 &n1=inormals[fctmp.ni[0]-1];
+            Vector3 &n2=inormals[fctmp.ni[1]-1];
+            Vector3 &n3=inormals[fctmp.ni[2]-1];
 			(*qv++)=n1.x;
 			(*qv++)=n1.y;
 			(*qv++)=n1.z;
@@ -493,11 +500,23 @@ bool CMesh::loadObj(const char* filename){
             qv+=9;
         }
 
+		if (m_bHasTexCoord){
+			Vector3 &n1=itexcoords[fctmp.ti[0]-1];
+			Vector3 &n2=itexcoords[fctmp.ti[1]-1];
+			Vector3 &n3=itexcoords[fctmp.ti[2]-1];
+			(*rv++)=n1.x;
+			(*rv++)=n1.y;
+			(*rv++)=n2.x;
+			(*rv++)=n2.y;
+			(*rv++)=n3.x;
+			(*rv++)=n3.y;
+		}
+
 	}
-    if (!hasnormal&&m_bSmoothSurface) {
+    if (!m_bHasNormal && m_bForceGenerateNormal && m_bSmoothSurface) {
         qv=m_pNormals;
         for (unsigned long i=0;i<fnum;i++){
-            Face &fctmp=(Face&)m_faces[i];
+            Face &fctmp=(Face&)ifaces[i];
             int ni1= fctmp.pi[0]-1,ni2= fctmp.pi[1]-1,ni3= fctmp.pi[2]-1;
             *qv++=*(normal4smooth+3*ni1);
             *qv++=*(normal4smooth+3*ni1+1);
@@ -509,24 +528,41 @@ bool CMesh::loadObj(const char* filename){
             *qv++=*(normal4smooth+3*ni3+1);
             *qv++=*(normal4smooth+3*ni3+2);
         }
-        delete [] normal4smooth;
     }
-	GEN_VERTEX_ARRAYS(1, &m_vertexArray);
-	BIND_VERTEX_ARRAY(m_vertexArray);
+	if (!m_bHasNormal&&m_bForceGenerateNormal){
+		m_bHasNormal=true;
+	}
+	if (normal4smooth){
+		delete [] normal4smooth;
+		normal4smooth=nullptr;
+	}
+	GEN_VERTEX_ARRAYS(1, &m_nVertexArraysID);
+	BIND_VERTEX_ARRAY(m_nVertexArraysID);
 
-	glGenBuffers(1, &m_nVBOVertices);
-	glBindBuffer(GL_ARRAY_BUFFER, m_nVBOVertices);
+	glGenBuffers(1, &m_nVerticesID);
+	glBindBuffer(GL_ARRAY_BUFFER, m_nVerticesID);
 	glBufferData(GL_ARRAY_BUFFER, sizeof(GLfloat)*3*m_nVertexCount, m_pVertices, GL_STATIC_DRAW);
 
 	glVertexAttribPointer(attrib_position, 3, GL_FLOAT, GL_FALSE, 0, 0);
 	glEnableVertexAttribArray(attrib_position);
 
-	glGenBuffers(1, &m_nVBONormals);
-	glBindBuffer(GL_ARRAY_BUFFER, m_nVBONormals);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(GLfloat)*3*m_nVertexCount, m_pNormals, GL_STATIC_DRAW);
+	if (m_bHasNormal){
+		glGenBuffers(1, &m_nNormalsID);
+		glBindBuffer(GL_ARRAY_BUFFER, m_nNormalsID);
+		glBufferData(GL_ARRAY_BUFFER, sizeof(GLfloat)*3*m_nVertexCount, m_pNormals, GL_STATIC_DRAW);
 
-	glVertexAttribPointer(attrib_normal, 3, GL_FLOAT, GL_FALSE, 0, 0);
-	glEnableVertexAttribArray(attrib_normal);
+		glVertexAttribPointer(attrib_normal, 3, GL_FLOAT, GL_FALSE, 0, 0);
+		glEnableVertexAttribArray(attrib_normal);
+	}
+	
+	if (m_bHasTexCoord){
+		glGenBuffers(1, &m_nTexcoordsID);
+		glBindBuffer(GL_ARRAY_BUFFER, m_nTexcoordsID);
+		glBufferData(GL_ARRAY_BUFFER, sizeof(GLfloat)*2*m_nVertexCount, m_pTexCoords, GL_STATIC_DRAW);
+
+		glVertexAttribPointer(attrib_texcoord0, 2, GL_FLOAT, GL_FALSE, 0, 0);
+		glEnableVertexAttribArray(attrib_texcoord0);
+	}
 
 	glBindBuffer(GL_ARRAY_BUFFER,0);
 	BIND_VERTEX_ARRAY(0);
@@ -535,11 +571,13 @@ bool CMesh::loadObj(const char* filename){
 	m_pVertices=nullptr;
 	delete []m_pNormals;
 	m_pNormals=nullptr;
+	delete []m_pTexCoords;
+	m_pTexCoords=nullptr;
 
-	m_positions.clear();
-	m_normals.clear();
-	m_texcoords.clear();
-	m_faces.clear();
+	ipositions.clear();
+	inormals.clear();
+	itexcoords.clear();
+	ifaces.clear();
 	timer.stop();
 	printf("generate vertexs time consuming:%lfms\n",timer.getElapsedTimeInMilliSec());
 	return true;
@@ -565,9 +603,9 @@ void CMesh::draw(){
         //打开全局光照
         glLightModelfv(GL_LIGHT_MODEL_AMBIENT , globel_ambient);
         
-        glBindBuffer(GL_ARRAY_BUFFER, m_nVBOVertices);
+        glBindBuffer(GL_ARRAY_BUFFER, m_nVerticesID);
         glVertexPointer(3, GL_FLOAT, 0, 0);
-        glBindBuffer(GL_ARRAY_BUFFER, m_nVBONormals);
+        glBindBuffer(GL_ARRAY_BUFFER, m_nNormalsID);
         glNormalPointer(GL_FLOAT, 0, 0);
         glDrawArrays( GL_TRIANGLES, 0, m_nVertexCount);
         
@@ -594,10 +632,16 @@ void CMesh::draw(){
         
         normalShader->setModelViewProjectionMatrix(_modelViewProjectionMatrix.transpose().get());
         normalShader->setNormalMatrix(_normalMatrix.get());
-		BIND_VERTEX_ARRAY(m_vertexArray);
+		BIND_VERTEX_ARRAY(m_nVertexArraysID);
         for (unsigned int i=0; i<m_iMaterialArray.size(); i++) {
             Mtl*pmtl=m_iMaterial.find(m_iMaterialArray[i].name);
             normalShader->setDiffuseColor(pmtl->kd.d);
+			if (pmtl->map_kd){
+				CTexture *pctex=(CTexture*)(pmtl->map_kd);
+				glActiveTexture(GL_TEXTURE0);
+				glBindTexture(GL_TEXTURE_2D,pctex->get());
+				normalShader->setTexture(0);
+			}
             glDrawArrays( GL_TRIANGLES, m_iMaterialArray[i].first, m_iMaterialArray[i].size);
         }
 		BIND_VERTEX_ARRAY(0);
@@ -605,7 +649,16 @@ void CMesh::draw(){
     }
 }
 
-CMesh::CMesh():m_nVBOVertices(0),m_nVertexCount(0),m_pVertices(nullptr),m_pNormals(nullptr),normalShader(nullptr),rax(0),ray(0),raz(1),x(0),y(0),z(0),scalex(1),scaley(1),scalez(1),m_bForceGenerateNormal(false),m_bSmoothSurface(false){
+CMesh::CMesh():m_nVerticesID(0)
+	,m_nNormalsID(0)
+	,m_nTexcoordsID(0)
+	,m_nVertexCount(0)
+	,m_pVertices(nullptr)
+	,m_pNormals(nullptr)
+	,m_pTexCoords(nullptr)
+	,normalShader(nullptr)
+	,rax(0),ray(0),raz(1),x(0),y(0),z(0),scalex(1),scaley(1),scalez(1)
+	,m_bForceGenerateNormal(false),m_bSmoothSurface(false){
 }
 CMesh::CMesh(const char* filename){
 	CMesh();
@@ -619,15 +672,20 @@ CMesh::~CMesh(){
 	}
 	if (m_pNormals){
 		delete[] m_pNormals;
+		m_pNormals = nullptr;
 	}
-	if (m_vertexArray) {
-		//glDeleteVertexArrays(1,&m_vertexArray);
+	if (m_pTexCoords){
+		delete[] m_pTexCoords;
+		m_pTexCoords = nullptr;
 	}
-	if (m_nVBOVertices){
-		//glDeleteBuffers(1,&m_nVBOVertices);
+	if (m_nVertexArraysID) {
+		//glDeleteVertexArrays(1,&m_nVertexArraysID);
 	}
-    if (m_nVBONormals){
-		//glDeleteBuffers(1,&m_nVBONormals);
+	if (m_nVerticesID){
+		//glDeleteBuffers(1,&m_nVerticesID);
+	}
+    if (m_nNormalsID){
+		//glDeleteBuffers(1,&m_nNormalsID);
 	}
 	m_iMaterialArray.clear();
 }

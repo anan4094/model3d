@@ -30,12 +30,14 @@ void NormalShader::installAttrib(){
     // This needs to be done prior to linking.
     glBindAttribLocation(ProgramObject,attrib_position,"position");
     glBindAttribLocation(ProgramObject,attrib_normal,"normal");
+	glBindAttribLocation(ProgramObject,attrib_texcoord0,"texcoord");
 }
 
 void NormalShader::installUniform(){
     m_nUniformModelViewProjectionMatrix = glGetUniformLocation(ProgramObject,"modelViewProjectionMatrix");
     m_nUniformNormalMatrix = glGetUniformLocation(ProgramObject,"normalMatrix");
     m_nUniformDiffuseColor = glGetUniformLocation(ProgramObject,"diffuseColor");
+	m_nUniformSampler2D = glGetUniformLocation(ProgramObject,"tex");
 }
 
 void NormalShader::setModelViewProjectionMatrix(const float *data){
@@ -46,4 +48,8 @@ void NormalShader::setNormalMatrix(const float *data){
 }
 void NormalShader::setDiffuseColor(const float *data){
     glUniform4fv(m_nUniformDiffuseColor,1,data);
+}
+
+void NormalShader::setTexture(int tid){
+	glUniform1i(m_nUniformSampler2D,tid);
 }
