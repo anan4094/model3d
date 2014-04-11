@@ -17,7 +17,8 @@ void main()
     vec3 eyeNormal = normalize(nor.xyz);
     vec3 lightPosition = vec3(0.0, 0.0, 1.0);
     
-    nDotVP = max(0.2, dot(eyeNormal, normalize(lightPosition)));
+    nDotVP = max(0.0, dot(eyeNormal, normalize(lightPosition)));
+    nDotVP = min(nDotVP+0.2,1.0);
 	texCoordVarying = texcoord;
     gl_Position = modelViewProjectionMatrix * position;
 }

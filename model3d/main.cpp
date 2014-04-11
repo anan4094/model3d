@@ -113,9 +113,10 @@ int main(int argc, char **argv)
 	init();
     //下面两个方法要在load后加载
     mesh.setForceGenerateNormal(true);
-    mesh.setSmoothSurface(true);
+    mesh.setSmoothSurface(false);
 #ifdef __APPLE__
-    mesh.load("/Users/anan/Documents/github/model3d/res/female/female.obj");
+    //mesh.load("/Users/anan/Documents/github/model3d/res/female/female.obj");
+    mesh.load("/Users/anan/Documents/github/model3d/res/tails/Tails.obj");
 #else
 	mesh.load("../res/tails/Tails.obj");
 	//mesh.load("../res/female/female.obj");

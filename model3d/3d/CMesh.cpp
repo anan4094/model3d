@@ -589,6 +589,9 @@ int CMesh::initShader(){
 }
 
 void CMesh::draw(){
+    if (!m_piScene) {
+        return;
+    }
     if (!normalShader) {
         glMatrixMode(GL_MODELVIEW);
         glLoadIdentity();
@@ -614,7 +617,7 @@ void CMesh::draw(){
     }else{
         normalShader->use();
         
-        Matrix4 projectionMatrix = setFrustum(-1.0f, 1.0f, -1.0f, 1.0f,1.0f, 40.0f);
+        const Matrix4& projectionMatrix = m_piScene->getProjection();
         
         // Compute the model view matrix for the object rendered with GL
         Matrix4 modelViewMatrix;
@@ -701,21 +704,4 @@ void getFilePath(const char *filename,char *childfilename){
             memcpy(childfilename, filename, nlen+1);
         }
     }
-}
-
-///////////////////////////////////////////////////////////////////////////////
-// glFrustum()
-///////////////////////////////////////////////////////////////////////////////
-Matrix4 setFrustum(float l, float r, float b, float t, float n, float f)
-{
-    Matrix4 mat;
-    mat[0]  = 2 * n / (r - l);
-    mat[2]  = (r + l) / (r - l);
-    mat[5]  = 2 * n / (t - b);
-    mat[6]  = (t + b) / (t - b);
-    mat[10] = -(f + n) / (f - n);
-    mat[11] = -(2 * f * n) / (f - n);
-    mat[14] = -1;
-    mat[15] = 0;
-    return mat;
 }

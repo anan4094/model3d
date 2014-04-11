@@ -1,16 +1,7 @@
 #ifndef __model3d__texture__
 #define __model3d__texture__
 
-#ifndef __APPLE__
-#include <windows.h>
-#include <GL/glew.h>
-#include <GL/freeglut.h>
-
-#else
-#include <glew.h>
-#include <OpenGL/gl.h>
-#include <GLUT/glut.h>
-#endif
+#include "platform.h"
 
 class CTexture
 {

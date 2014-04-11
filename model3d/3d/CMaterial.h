@@ -9,16 +9,8 @@
 #ifndef __model3d__CMaterial__
 #define __model3d__CMaterial__
 
-#ifndef __APPLE__
-#include <windows.h>
-#include <GL/glew.h>
-#include <GL/freeglut.h>
+#include "platform.h"
 
-#else
-#include <glew.h>
-#include <OpenGL/gl.h>
-#include <GLUT/glut.h>
-#endif
 #include <vector>
 
 typedef enum attrib_material{

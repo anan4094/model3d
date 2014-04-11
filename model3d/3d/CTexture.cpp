@@ -1,5 +1,5 @@
 #include "CTexture.h"
-#include "soil/soil.h"
+#include "soil.h"
 #include <stdio.h>
 
 CTexture::CTexture():m_nTextureID(0){

@@ -1,19 +1,13 @@
 #ifndef MODEL3D
 #define MODEL3D
-#ifndef __APPLE__
-#include <windows.h>
-#include <GL/glew.h>
-#include <GL/freeglut.h>
-#else
-#include <glew.h>
-#include <OpenGL/gl.h>
-#include <GLUT/glut.h>
-#endif
+#include "platform.h"
+
 #include <vector>
 #include "NormalShader.h"
 #include "Matrices.h"
 #include "Vectors.h"
 #include "CMaterial.h"
+#include "CNode.h"
 
 #ifndef M_PI
 #define M_PI       3.14159265358979323846f
@@ -34,7 +28,7 @@ typedef struct mtlInfo{
     GLuint size;
 }MtlInfo;
 
-class CMesh{
+class CMesh:public CNode{
 private:
 	GLuint    m_nVerticesID;
     GLuint    m_nNormalsID;
@@ -69,7 +63,7 @@ public:
     int initShader();
     
     //绘制模型
-	void draw();
+	virtual void draw();
     
     
     inline void setRotationAxis(GLfloat rx,GLfloat ry,GLfloat rz){GLfloat len=sqrt(rx*rx+ry*ry+rz*rz); rax=rx/len;ray=ry/len;raz=rz/len;}
@@ -87,6 +81,5 @@ public:
 	~CMesh();
 };
 void getFilePath(const char *filename,char*childfilename);
-Matrix4 setFrustum(GLfloat l,GLfloat r,GLfloat b,GLfloat t,GLfloat n,GLfloat f);
 
 #endif // !MODEL3D
