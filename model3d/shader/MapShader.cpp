@@ -1,10 +1,9 @@
 //
-//  CNode.cpp
+//  MapShader.cpp
 //  model3d
 //
 //  Created by 魏裕群 on 14-4-11.
 //  Copyright (c) 2014年 魏裕群. All rights reserved.
 //
-#include "CScene.h"
-#include "CNode.h"
 
+#include "MapShader.h"

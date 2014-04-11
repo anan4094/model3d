@@ -3,7 +3,7 @@
 #include "platform.h"
 
 #include <vector>
-#include "NormalShader.h"
+#include "Shader.h"
 #include "Matrices.h"
 #include "Vectors.h"
 #include "CMaterial.h"
@@ -51,7 +51,7 @@ private:
     
     CMaterial m_iMaterial;
     std::vector<MtlInfo> m_iMaterialArray;
-    NormalShader *normalShader;
+    Shader    *m_piShader;
 public:
     //加载模型
 	bool load(const char* filename);

@@ -1,10 +1,12 @@
 #define GLUT_DISABLE_ATEXIT_HACK
  
 #include "CMesh.h"
+#include "CScene.h"
 #ifndef WIN32
 #include <unistd.h>
 #endif
-CMesh mesh;
+CScene mainScene;
+CMesh *pmesh=nullptr;
 GLfloat rad=0;
 bool loop=true;
 //用来检查OpenGL版本，需要GLSL 2.0支持
@@ -78,8 +80,8 @@ void display()
     glMaterialfv(GL_FRONT, GL_SHININESS, shine);
     glMaterialfv(GL_FRONT, GL_EMISSION, matEmission);  // 用来模拟物体发光的效果，但这不是光源
     
-    mesh.setRadian(rad);
-	mesh.draw();
+    pmesh->setRadian(rad);
+	mainScene.draw();
 	//draw_triangle();
 	glutSwapBuffers();
 	glutPostRedisplay();
@@ -90,6 +92,7 @@ void reshape(int w, int h)
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
 	glFrustum(-1.0f, 1.0f, -1.0f*w/h, 1.0f*w/h,1.0f, 40.0f);
+    mainScene.reshape(w, h);
 }
 
 void keyboard(unsigned char key,int x,int y){
@@ -111,27 +114,30 @@ int main(int argc, char **argv)
 	glutCreateWindow("OpenGL Hello World");
 
 	init();
+    pmesh=new CMesh();
     //下面两个方法要在load后加载
-    mesh.setForceGenerateNormal(true);
-    mesh.setSmoothSurface(false);
+    pmesh->setForceGenerateNormal(true);
+    pmesh->setSmoothSurface(false);
 #ifdef __APPLE__
     //mesh.load("/Users/anan/Documents/github/model3d/res/female/female.obj");
-    mesh.load("/Users/anan/Documents/github/model3d/res/tails/Tails.obj");
+    pmesh->load("/Users/anan/Documents/github/model3d/res/tails/Tails.obj");
 #else
-	mesh.load("../res/tails/Tails.obj");
-	//mesh.load("../res/female/female.obj");
+	pmesh->load("../res/tails/Tails.obj");
+	//pmesh->load("../res/female/female.obj");
 #endif
     //
-    mesh.initShader();
-    mesh.setRotationAxis(0, 1, 0);
+    pmesh->initShader();
+    pmesh->setRotationAxis(0, 1, 0);
     
     //let famele.obj show us
-    mesh.setScale(0.02, 0.02, 0.02);
-	mesh.setPosition(0, -16, -20);
+    pmesh->setScale(0.02, 0.02, 0.02);
+	pmesh->setPosition(0, -16, -20);
 
     //let tails.obj show us
-    mesh.setScale(2.4f, 2.4f, 2.4f);
-	mesh.setPosition(0, -8, -20);
+    pmesh->setScale(2.4f, 2.4f, 2.4f);
+	pmesh->setPosition(0, -8, -20);
+    
+    mainScene.addSubNode(pmesh);
 
 	glColor3f(1.0f, 0.0f, 1.0f);
 	glutDisplayFunc(display);  

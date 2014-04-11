@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2700A02018E50E8B0030CA02 /* Shader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2700A01E18E50E8B0030CA02 /* Shader.cpp */; };
+		2702465818F83BCE00904E6A /* MapShader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2702465618F83BCE00904E6A /* MapShader.cpp */; };
 		271DA60418DFC0D600BC7A8C /* CMesh.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 271DA60118DFC0D600BC7A8C /* CMesh.cpp */; };
 		271DA60518DFC0D600BC7A8C /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 271DA60318DFC0D600BC7A8C /* main.cpp */; };
 		271DA60718DFC1BF00BC7A8C /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 271DA60618DFC1BF00BC7A8C /* OpenGL.framework */; };
@@ -21,7 +22,7 @@
 		27F667C018F7C60100CB75C5 /* CTexture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 27F667BE18F7C60100CB75C5 /* CTexture.cpp */; };
 		27F667C518F7DF2600CB75C5 /* CScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 27F667C318F7DF2600CB75C5 /* CScene.cpp */; };
 		27F667C918F7EF3600CB75C5 /* CNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 27F667C718F7EF3600CB75C5 /* CNode.cpp */; };
-		27FCF13418E7F4A100A390F8 /* NormalShader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 27FCF13218E7F4A100A390F8 /* NormalShader.cpp */; };
+		27FCF13418E7F4A100A390F8 /* NormalMapShader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 27FCF13218E7F4A100A390F8 /* NormalMapShader.cpp */; };
 		27FCF13D18E8077F00A390F8 /* Matrices.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 27FCF13918E8077F00A390F8 /* Matrices.cpp */; };
 		27FF669518F386C5008F8626 /* Timer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 27FF669318F386C5008F8626 /* Timer.cpp */; };
 /* End PBXBuildFile section */
@@ -42,6 +43,8 @@
 		2700A01E18E50E8B0030CA02 /* Shader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Shader.cpp; sourceTree = "<group>"; };
 		2700A01F18E50E8B0030CA02 /* Shader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Shader.h; sourceTree = "<group>"; };
 		2701E04018DFC03500723795 /* model3d */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = model3d; sourceTree = BUILT_PRODUCTS_DIR; };
+		2702465618F83BCE00904E6A /* MapShader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MapShader.cpp; sourceTree = "<group>"; };
+		2702465718F83BCE00904E6A /* MapShader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapShader.h; sourceTree = "<group>"; };
 		271DA60118DFC0D600BC7A8C /* CMesh.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CMesh.cpp; sourceTree = "<group>"; };
 		271DA60218DFC0D600BC7A8C /* CMesh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMesh.h; sourceTree = "<group>"; };
 		271DA60318DFC0D600BC7A8C /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
@@ -69,8 +72,8 @@
 		27F667C818F7EF3600CB75C5 /* CNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CNode.h; sourceTree = "<group>"; };
 		27F8CD3618E1698100FBAC17 /* cube.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cube.mtl; sourceTree = "<group>"; };
 		27F8CD3718E1698100FBAC17 /* cube.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cube.obj; sourceTree = "<group>"; };
-		27FCF13218E7F4A100A390F8 /* NormalShader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NormalShader.cpp; sourceTree = "<group>"; };
-		27FCF13318E7F4A100A390F8 /* NormalShader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NormalShader.h; sourceTree = "<group>"; };
+		27FCF13218E7F4A100A390F8 /* NormalMapShader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NormalMapShader.cpp; sourceTree = "<group>"; };
+		27FCF13318E7F4A100A390F8 /* NormalMapShader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NormalMapShader.h; sourceTree = "<group>"; };
 		27FCF13618E7FD8F00A390F8 /* shader.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = shader.vert; sourceTree = "<group>"; };
 		27FCF13718E7FDAA00A390F8 /* shader.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = shader.frag; sourceTree = "<group>"; };
 		27FCF13918E8077F00A390F8 /* Matrices.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Matrices.cpp; sourceTree = "<group>"; };
@@ -102,8 +105,10 @@
 			isa = PBXGroup;
 			children = (
 				27FCF0E818E7C11500A390F8 /* base */,
-				27FCF13318E7F4A100A390F8 /* NormalShader.h */,
-				27FCF13218E7F4A100A390F8 /* NormalShader.cpp */,
+				27FCF13318E7F4A100A390F8 /* NormalMapShader.h */,
+				27FCF13218E7F4A100A390F8 /* NormalMapShader.cpp */,
+				2702465718F83BCE00904E6A /* MapShader.h */,
+				2702465618F83BCE00904E6A /* MapShader.cpp */,
 			);
 			path = shader;
 			sourceTree = "<group>";
@@ -314,13 +319,14 @@
 				27ACEF7B18EEA702009E5B0D /* CMaterial.cpp in Sources */,
 				27F667C518F7DF2600CB75C5 /* CScene.cpp in Sources */,
 				2700A02018E50E8B0030CA02 /* Shader.cpp in Sources */,
-				27FCF13418E7F4A100A390F8 /* NormalShader.cpp in Sources */,
+				27FCF13418E7F4A100A390F8 /* NormalMapShader.cpp in Sources */,
 				27FCF13D18E8077F00A390F8 /* Matrices.cpp in Sources */,
 				27F667C018F7C60100CB75C5 /* CTexture.cpp in Sources */,
 				27F667BD18F7C5D100CB75C5 /* stb_image_aug.c in Sources */,
 				271DA60418DFC0D600BC7A8C /* CMesh.cpp in Sources */,
 				27FF669518F386C5008F8626 /* Timer.cpp in Sources */,
 				27F667BB18F7C5D100CB75C5 /* image_helper.c in Sources */,
+				2702465818F83BCE00904E6A /* MapShader.cpp in Sources */,
 				27F667C918F7EF3600CB75C5 /* CNode.cpp in Sources */,
 				27F667BA18F7C5D100CB75C5 /* image_DXT.c in Sources */,
 				271DA60518DFC0D600BC7A8C /* main.cpp in Sources */,

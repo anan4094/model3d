@@ -23,7 +23,7 @@ void CScene::draw(){
 }
 
 void CScene::reshape(int w, int h){
-    m_sProjection = setFrustum(-1.0f, 1.0f, -1.0f, 1.0f,1.0f, 40.0f);
+    m_sProjection = setFrustum(-1.0f, 1.0f, -1.0f*h/w, 1.0f*h/w,1.0f, 40.0f);
 }
 
 ///////////////////////////////////////////////////////////////////////////////

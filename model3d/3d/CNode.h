@@ -9,7 +9,7 @@
 #ifndef __model3d__CNode__
 #define __model3d__CNode__
 
-#include "CScene.h"
+class CScene;
 
 class CNode{
 protected:
