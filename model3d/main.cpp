@@ -1,12 +1,12 @@
 #define GLUT_DISABLE_ATEXIT_HACK
  
-#include "CMesh.h"
-#include "CScene.h"
+#include "Mesh.h"
+#include "Scene.h"
 #ifndef WIN32
 #include <unistd.h>
 #endif
-CScene mainScene;
-CMesh *pmesh=nullptr;
+Scene mainScene;
+Mesh *pmesh=nullptr;
 GLfloat rad=0;
 bool loop=true;
 //用来检查OpenGL版本，需要GLSL 2.0支持
@@ -114,28 +114,34 @@ int main(int argc, char **argv)
 	glutCreateWindow("OpenGL Hello World");
 
 	init();
-    pmesh=new CMesh();
+    pmesh=new Mesh();
     //下面两个方法要在load后加载
     pmesh->setForceGenerateNormal(true);
-    pmesh->setSmoothSurface(false);
+    pmesh->setSmoothSurface(true);
 #ifdef __APPLE__
-    //mesh.load("/Users/anan/Documents/github/model3d/res/female/female.obj");
-    pmesh->load("/Users/anan/Documents/github/model3d/res/tails/Tails.obj");
+    //mesh.load("/Users/anan/Documents/github/model3d/resource/female/female.obj");
+    pmesh->load("/Users/anan/Documents/github/model3d/resource/tails/Tails.obj");
 #else
-	pmesh->load("../res/tails/Tails.obj");
-	//pmesh->load("../res/female/female.obj");
+	//pmesh->load("../resource/tails/Tails.obj");
+	//pmesh->load("../resource/female/female.obj");
+	pmesh->load("B:/peri/peri.obj");
+
+	/*pmesh->load("B:/Vanille/vanille_obj.obj");
+	pmesh->setPosition(0, -6, -20);
+	pmesh->setScale(0.25f, 0.25f, 0.25f);*/
 #endif
     //
     pmesh->initShader();
     pmesh->setRotationAxis(0, 1, 0);
     
     //let famele.obj show us
-    pmesh->setScale(0.02, 0.02, 0.02);
+    //pmesh->setScale(0.02, 0.02, 0.02);
 	pmesh->setPosition(0, -16, -20);
+	pmesh->setScale(0.18, 0.18, 0.18);
 
     //let tails.obj show us
-    pmesh->setScale(2.4f, 2.4f, 2.4f);
-	pmesh->setPosition(0, -8, -20);
+    //pmesh->setScale(2.4f, 2.4f, 2.4f);
+	//pmesh->setPosition(0, -8, -20);
     
     mainScene.addSubNode(pmesh);
 

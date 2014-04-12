@@ -7,3 +7,39 @@
 //
 
 #include "MapShader.h"
+static MapShader* instance = nullptr;
+
+MapShader::MapShader(){
+}
+
+MapShader* MapShader::sharedInstance(){
+	if (instance==nullptr) {
+		instance = new MapShader();
+		instance->readShaderSource(SHADER_PATH "map/shader");
+		if (!instance->build()) {
+			delete instance;
+			instance = nullptr;
+		}
+	}
+	return instance;
+}
+
+void MapShader::installAttrib(){
+	// Bind attribute locations.
+	// This needs to be done prior to linking.
+	glBindAttribLocation(ProgramObject,attrib_position,"position");
+	glBindAttribLocation(ProgramObject,attrib_texcoord0,"texcoord");
+}
+
+void MapShader::installUniform(){
+	m_nUniformModelViewProjectionMatrix = glGetUniformLocation(ProgramObject,"modelViewProjectionMatrix");
+	m_nUniformSampler2D = glGetUniformLocation(ProgramObject,"tex");
+}
+
+void MapShader::setModelViewProjectionMatrix(const float *data){
+	glUniformMatrix4fv(m_nUniformModelViewProjectionMatrix,1,0,data);
+}
+
+void MapShader::setTexture(int tid){
+	glUniform1i(m_nUniformSampler2D,tid);
+}

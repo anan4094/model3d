@@ -1,14 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="源文件">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="头文件">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
-    </Filter>
     <Filter Include="资源文件">
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;0jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
@@ -16,101 +8,155 @@
     <Filter Include="资源文件\shader">
       <UniqueIdentifier>{16acf0e7-6c90-4240-bd8c-a69d3b0cf6b3}</UniqueIdentifier>
     </Filter>
-    <Filter Include="资源文件\shader\normal">
+    <Filter Include="tools">
+      <UniqueIdentifier>{914f75cc-2e15-47f9-a8da-6a700c96b9e2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="tools\matrix">
+      <UniqueIdentifier>{14a76d28-db1b-4f60-bbf8-6095ad5c55af}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="tools\timer">
+      <UniqueIdentifier>{ab8bf2cb-a575-415a-a533-810e3a772a37}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="app">
+      <UniqueIdentifier>{b50c8e43-8156-4222-8c93-c176348c22d7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="tools\soil">
+      <UniqueIdentifier>{a3e123b4-cb9d-4e92-be2f-b40a9786c394}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="3d">
+      <UniqueIdentifier>{19b981be-4789-424c-81f4-8319603ba7af}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="shader">
+      <UniqueIdentifier>{b07d1bc9-e24e-4ad4-917e-b4aaba028bfa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="shader\base">
+      <UniqueIdentifier>{663e523b-5540-4fe9-9d24-3810d770036f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="main">
+      <UniqueIdentifier>{43140a39-a200-4c0b-9991-408f3b1d2ab2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="资源文件\shader\normal_map">
       <UniqueIdentifier>{74b0a6a1-e13c-460b-8232-3cc6c80a8385}</UniqueIdentifier>
     </Filter>
-    <Filter Include="soil">
-      <UniqueIdentifier>{8fd213e0-84b9-4b2e-ae32-2ae71a92f1a6}</UniqueIdentifier>
+    <Filter Include="资源文件\shader\map">
+      <UniqueIdentifier>{f92819c5-de61-4fae-825e-a73cd267ff9a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="CMaterial.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="CMesh.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="Matrices.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="NormalShader.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="Shader.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="Vectors.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="Timer.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="soil\image_DXT.h">
-      <Filter>soil</Filter>
-    </ClInclude>
-    <ClInclude Include="soil\image_helper.h">
-      <Filter>soil</Filter>
-    </ClInclude>
-    <ClInclude Include="soil\stb_image_aug.h">
-      <Filter>soil</Filter>
-    </ClInclude>
-    <ClInclude Include="soil\stbi_DDS_aug.h">
-      <Filter>soil</Filter>
-    </ClInclude>
-    <ClInclude Include="soil\stbi_DDS_aug_c.h">
-      <Filter>soil</Filter>
-    </ClInclude>
-    <ClInclude Include="soil\soil.h">
-      <Filter>soil</Filter>
-    </ClInclude>
-    <ClInclude Include="CTexture.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="CMaterial.cpp">
-      <Filter>源文件</Filter>
+    <ClCompile Include="tools\matrix\Matrices.cpp">
+      <Filter>tools\matrix</Filter>
     </ClCompile>
-    <ClCompile Include="CMesh.cpp">
-      <Filter>源文件</Filter>
+    <ClCompile Include="tools\soil\image_DXT.c">
+      <Filter>tools\soil</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\soil\image_helper.c">
+      <Filter>tools\soil</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\soil\soil.c">
+      <Filter>tools\soil</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\soil\stb_image_aug.c">
+      <Filter>tools\soil</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\timer\Timer.cpp">
+      <Filter>tools\timer</Filter>
+    </ClCompile>
+    <ClCompile Include="shader\base\Shader.cpp">
+      <Filter>shader\base</Filter>
+    </ClCompile>
+    <ClCompile Include="shader\MapShader.cpp">
+      <Filter>shader</Filter>
+    </ClCompile>
+    <ClCompile Include="shader\NormalMapShader.cpp">
+      <Filter>shader</Filter>
     </ClCompile>
     <ClCompile Include="main.cpp">
-      <Filter>源文件</Filter>
+      <Filter>main</Filter>
     </ClCompile>
-    <ClCompile Include="Matrices.cpp">
-      <Filter>源文件</Filter>
+    <ClCompile Include="3d\Material.cpp">
+      <Filter>3d</Filter>
     </ClCompile>
-    <ClCompile Include="NormalShader.cpp">
-      <Filter>源文件</Filter>
+    <ClCompile Include="3d\Mesh.cpp">
+      <Filter>3d</Filter>
     </ClCompile>
-    <ClCompile Include="Shader.cpp">
-      <Filter>源文件</Filter>
+    <ClCompile Include="3d\Node.cpp">
+      <Filter>3d</Filter>
     </ClCompile>
-    <ClCompile Include="Timer.cpp">
-      <Filter>源文件</Filter>
+    <ClCompile Include="3d\Scene.cpp">
+      <Filter>3d</Filter>
     </ClCompile>
-    <ClCompile Include="soil\image_DXT.c">
-      <Filter>soil</Filter>
-    </ClCompile>
-    <ClCompile Include="soil\image_helper.c">
-      <Filter>soil</Filter>
-    </ClCompile>
-    <ClCompile Include="soil\stb_image_aug.c">
-      <Filter>soil</Filter>
-    </ClCompile>
-    <ClCompile Include="soil\soil.c">
-      <Filter>soil</Filter>
-    </ClCompile>
-    <ClCompile Include="CTexture.cpp">
-      <Filter>源文件</Filter>
+    <ClCompile Include="3d\Texture.cpp">
+      <Filter>3d</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\res\shader\normal\shader.frag">
-      <Filter>资源文件\shader\normal</Filter>
+    <ClInclude Include="tools\matrix\Matrices.h">
+      <Filter>tools\matrix</Filter>
+    </ClInclude>
+    <ClInclude Include="tools\matrix\Vectors.h">
+      <Filter>tools\matrix</Filter>
+    </ClInclude>
+    <ClInclude Include="tools\soil\image_DXT.h">
+      <Filter>tools\soil</Filter>
+    </ClInclude>
+    <ClInclude Include="tools\soil\image_helper.h">
+      <Filter>tools\soil</Filter>
+    </ClInclude>
+    <ClInclude Include="tools\soil\soil.h">
+      <Filter>tools\soil</Filter>
+    </ClInclude>
+    <ClInclude Include="tools\soil\stb_image_aug.h">
+      <Filter>tools\soil</Filter>
+    </ClInclude>
+    <ClInclude Include="tools\soil\stbi_DDS_aug.h">
+      <Filter>tools\soil</Filter>
+    </ClInclude>
+    <ClInclude Include="tools\soil\stbi_DDS_aug_c.h">
+      <Filter>tools\soil</Filter>
+    </ClInclude>
+    <ClInclude Include="tools\timer\Timer.h">
+      <Filter>tools\timer</Filter>
+    </ClInclude>
+    <ClInclude Include="app\platform.h">
+      <Filter>app</Filter>
+    </ClInclude>
+    <ClInclude Include="shader\base\Shader.h">
+      <Filter>shader\base</Filter>
+    </ClInclude>
+    <ClInclude Include="shader\MapShader.h">
+      <Filter>shader</Filter>
+    </ClInclude>
+    <ClInclude Include="shader\NormalMapShader.h">
+      <Filter>shader</Filter>
+    </ClInclude>
+    <ClInclude Include="3d\Material.h">
+      <Filter>3d</Filter>
+    </ClInclude>
+    <ClInclude Include="3d\Mesh.h">
+      <Filter>3d</Filter>
+    </ClInclude>
+    <ClInclude Include="3d\Node.h">
+      <Filter>3d</Filter>
+    </ClInclude>
+    <ClInclude Include="3d\Scene.h">
+      <Filter>3d</Filter>
+    </ClInclude>
+    <ClInclude Include="3d\Texture.h">
+      <Filter>3d</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\resource\shader\normal_map\shader.frag">
+      <Filter>资源文件\shader\normal_map</Filter>
     </None>
-    <None Include="..\res\shader\normal\shader.vert">
-      <Filter>资源文件\shader\normal</Filter>
+    <None Include="..\resource\shader\normal_map\shader.vert">
+      <Filter>资源文件\shader\normal_map</Filter>
+    </None>
+    <None Include="..\resource\shader\map\shader.frag">
+      <Filter>资源文件\shader\map</Filter>
+    </None>
+    <None Include="..\resource\shader\map\shader.vert">
+      <Filter>资源文件\shader\map</Filter>
     </None>
   </ItemGroup>
 </Project>

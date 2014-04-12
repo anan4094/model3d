@@ -16,7 +16,7 @@ NormalMapShader::NormalMapShader(){
  NormalMapShader* NormalMapShader::sharedInstance(){
      if (instance==nullptr) {
         instance = new NormalMapShader();
-		instance->readShaderSource(SHADER_PATH "normal/shader");
+		instance->readShaderSource(SHADER_PATH "normal_map/shader");
         if (!instance->build()) {
             delete instance;
             instance = nullptr;

@@ -19,9 +19,9 @@
 #endif
 
 #ifdef WIN32
-#define SHADER_PATH "../res/shader/"
+#define SHADER_PATH "../resource/shader/"
 #else
-#define SHADER_PATH "/Users/anan/Documents/github/model3d/res/shader/"
+#define SHADER_PATH "/Users/anan/Documents/github/model3d/resource/shader/"
 #endif
 
 typedef enum{

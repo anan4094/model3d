@@ -11,38 +11,47 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="CMaterial.h" />
-    <ClInclude Include="CMesh.h" />
-    <ClInclude Include="CTexture.h" />
-    <ClInclude Include="Matrices.h" />
-    <ClInclude Include="NormalShader.h" />
-    <ClInclude Include="Shader.h" />
-    <ClInclude Include="soil\image_DXT.h" />
-    <ClInclude Include="soil\image_helper.h" />
-    <ClInclude Include="soil\soil.h" />
-    <ClInclude Include="soil\stbi_DDS_aug.h" />
-    <ClInclude Include="soil\stbi_DDS_aug_c.h" />
-    <ClInclude Include="soil\stb_image_aug.h" />
-    <ClInclude Include="Timer.h" />
-    <ClInclude Include="Vectors.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="CMaterial.cpp" />
-    <ClCompile Include="CMesh.cpp" />
-    <ClCompile Include="CTexture.cpp" />
+    <ClCompile Include="3d\Material.cpp" />
+    <ClCompile Include="3d\Mesh.cpp" />
+    <ClCompile Include="3d\Node.cpp" />
+    <ClCompile Include="3d\Scene.cpp" />
+    <ClCompile Include="3d\Texture.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Matrices.cpp" />
-    <ClCompile Include="NormalShader.cpp" />
-    <ClCompile Include="Shader.cpp" />
-    <ClCompile Include="soil\image_DXT.c" />
-    <ClCompile Include="soil\image_helper.c" />
-    <ClCompile Include="soil\soil.c" />
-    <ClCompile Include="soil\stb_image_aug.c" />
-    <ClCompile Include="Timer.cpp" />
+    <ClCompile Include="shader\base\Shader.cpp" />
+    <ClCompile Include="shader\MapShader.cpp" />
+    <ClCompile Include="shader\NormalMapShader.cpp" />
+    <ClCompile Include="tools\matrix\Matrices.cpp" />
+    <ClCompile Include="tools\soil\image_DXT.c" />
+    <ClCompile Include="tools\soil\image_helper.c" />
+    <ClCompile Include="tools\soil\soil.c" />
+    <ClCompile Include="tools\soil\stb_image_aug.c" />
+    <ClCompile Include="tools\timer\Timer.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\res\shader\normal\shader.frag" />
-    <None Include="..\res\shader\normal\shader.vert" />
+    <ClInclude Include="3d\Material.h" />
+    <ClInclude Include="3d\Mesh.h" />
+    <ClInclude Include="3d\Node.h" />
+    <ClInclude Include="3d\Scene.h" />
+    <ClInclude Include="3d\Texture.h" />
+    <ClInclude Include="app\platform.h" />
+    <ClInclude Include="shader\base\Shader.h" />
+    <ClInclude Include="shader\MapShader.h" />
+    <ClInclude Include="shader\NormalMapShader.h" />
+    <ClInclude Include="tools\matrix\Matrices.h" />
+    <ClInclude Include="tools\matrix\Vectors.h" />
+    <ClInclude Include="tools\soil\image_DXT.h" />
+    <ClInclude Include="tools\soil\image_helper.h" />
+    <ClInclude Include="tools\soil\soil.h" />
+    <ClInclude Include="tools\soil\stbi_DDS_aug.h" />
+    <ClInclude Include="tools\soil\stbi_DDS_aug_c.h" />
+    <ClInclude Include="tools\soil\stb_image_aug.h" />
+    <ClInclude Include="tools\timer\Timer.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\resource\shader\map\shader.frag" />
+    <None Include="..\resource\shader\map\shader.vert" />
+    <None Include="..\resource\shader\normal_map\shader.frag" />
+    <None Include="..\resource\shader\normal_map\shader.vert" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{6A74D9E1-81B0-4402-B4DF-30444DAA68CE}</ProjectGuid>
@@ -81,6 +90,7 @@
       <AdditionalOptions>/D "_CRT_SECURE_NO_DEPRECATE" %(AdditionalOptions)</AdditionalOptions>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PreprocessorDefinitions>WIN32;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(SolutionDir)\model3d\shader\base;$(SolutionDir)\model3d\shader;$(SolutionDir)\model3d\3d;$(SolutionDir)\model3d\tools\timer;$(SolutionDir)\model3d\tools\soil;$(SolutionDir)\model3d\tools\matrix;$(SolutionDir)\model3d\app;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>

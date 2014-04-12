@@ -9,7 +9,7 @@
 #ifndef model3d_platform_h
 #define model3d_platform_h
 
-#ifndef __APPLE__
+#ifdef WIN32
 #include <windows.h>
 #include <GL/glew.h>
 #include <GL/freeglut.h>
