@@ -66,8 +66,8 @@ newmtl Material__271
 	Kd 0.5880 0.5880 0.5880
 	Ks 0.0000 0.0000 0.0000
 	Ke 0.0000 0.0000 0.0000
-	map_Ka tex/lian.bmp
-	map_Kd tex/lian.bmp
+	map_Ka tex/lian.jpg
+	map_Kd tex/lian.jpg
 
 newmtl Material__272
 	Ns 10.0000

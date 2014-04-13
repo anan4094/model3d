@@ -1,7 +1,7 @@
 # 3ds Max Wavefront OBJ Exporter v0.97b - (c)2007 guruware
 # File Created: 06.11.2011 02:36:13
 
-mtllib Tails.mtl
+mtllib tails.mtl
 
 #
 # object DrawCall_0362

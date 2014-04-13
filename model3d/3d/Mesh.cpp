@@ -206,7 +206,7 @@ bool Mesh::loadObj(const char* filename){
 				}
 				name[ind]=0;
 				getFilePath(filename, name);
-				m_iMaterial.loadMtl(name);
+				m_iMaterial.setName(name);
 			}
 		}else if (*p=='u'){
 			if (p[1]=='s'&&p[2]=='e'&&p[3]=='m'&&p[4]=='t'&&p[5]=='l'&&p[6]==' ') {
@@ -244,6 +244,9 @@ bool Mesh::loadObj(const char* filename){
 	fs.close();
 	timer.stop();
 	printf("read obj file time consuming:%lfms\n",timer.getElapsedTimeInMilliSec());
+
+	m_iMaterial.load();
+
 	timer.start();
 	m_nVertexCount = (GLsizei)(3*ifaces.size());
 	m_pVertices = new GLfloat[3*m_nVertexCount];
@@ -472,7 +475,7 @@ void Mesh::draw(){
         glEnableClientState(GL_VERTEX_ARRAY);
         glEnableClientState(GL_NORMAL_ARRAY);
 		glEnableClientState(GL_TEXTURE_COORD_ARRAY);
-        glEnable(GL_TEXTURE_2D);
+        
         GLfloat globel_ambient[] = { 0.1f , 0.1f , 0.1f , 1.0f };
         //打开全局光照
         glLightModelfv(GL_LIGHT_MODEL_AMBIENT , globel_ambient);
@@ -488,16 +491,19 @@ void Mesh::draw(){
 			Mtl*pmtl=m_iMaterial.find(m_iMaterialArray[i].name);
 
 			if (pmtl->map_kd){
+				glEnable(GL_TEXTURE_2D);
 				Texture *pctex=(Texture*)(pmtl->map_kd);
 				glBindTexture(GL_TEXTURE_2D,pctex->get());
 			}else{
+				glDisable(GL_TEXTURE_2D);
 				glBindTexture(GL_TEXTURE_2D,0);
 			}
 			glDrawArrays( GL_TRIANGLES, m_iMaterialArray[i].first, m_iMaterialArray[i].size);
 		}
-        
+        glDisable(GL_TEXTURE_2D);
         glDisableClientState(GL_VERTEX_ARRAY);
         glDisableClientState(GL_NORMAL_ARRAY);
+		glDisableClientState(GL_TEXTURE_COORD_ARRAY);
     }else{
         m_piShader->use();
         NormalMapShader* pnmshader = dynamic_cast<NormalMapShader*>(m_piShader);

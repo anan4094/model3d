@@ -119,34 +119,34 @@ int main(int argc, char **argv)
     pmesh->setForceGenerateNormal(false);
     pmesh->setSmoothSurface(true);
 #ifdef __APPLE__
-    //mesh.load("/Users/anan/Documents/github/model3d/resource/female/female.obj");
-    pmesh->load("/Users/anan/Documents/github/model3d/resource/tails/Tails.obj");
-    //pmesh->load("/Users/anan/Documents/github/model3d/resource/peri/peri.obj");
+    //mesh.load("/Users/anan/Documents/github/model3d/assert/female/female.obj");
+    pmesh->load("/Users/anan/Documents/github/model3d/assert/tails/Tails.obj");
+    //pmesh->load("/Users/anan/Documents/github/model3d/assert/peri/peri.obj");
 #else
-	//pmesh->load("../resource/tails/Tails.obj");
-	//pmesh->load("../resource/female/female.obj");
-	pmesh->load("B:/peri/peri.obj");
+	//pmesh->load("../assert/tails/tails.obj");
+	pmesh->load("../assert/female/female.obj");
+	//pmesh->load("../assert/peri/peri.obj");
 
-	/*pmesh->load("B:/Vanille/vanille_obj.obj");
-	pmesh->setPosition(0, -6, -20);
-	pmesh->setScale(0.25f, 0.25f, 0.25f);*/
 #endif
     //
     pmesh->initShader();
     pmesh->setRotationAxis(0, 1, 0);
     
-    //let famele.obj show us
-    //pmesh->setScale(0.02, 0.02, 0.02);
+    //let female.obj show us
+    pmesh->setScale(0.02, 0.02, 0.02);
 	pmesh->setPosition(0, -16, -20);
-	pmesh->setScale(0.18, 0.18, 0.18);
     
+	//let peri.obj show us
+	//pmesh->setPosition(0, -16, -20);
+	//pmesh->setScale(0.18, 0.18, 0.18);
+
     //test
     //pmesh->setPosition(0, 0, -20);
 	//pmesh->setScale(2, 2, 2);
 
     //let tails.obj show us
-    pmesh->setScale(2.4f, 2.4f, 2.4f);
-	pmesh->setPosition(0, -8, -20);
+    //pmesh->setScale(2.4f, 2.4f, 2.4f);
+	//pmesh->setPosition(0, -8, -20);
     
     mainScene.addSubNode(pmesh);
 
@@ -161,5 +161,6 @@ int main(int argc, char **argv)
 		glutMainLoopEvent();
 #endif
     }
+	delete pmesh;
 	return 0;  
 }  

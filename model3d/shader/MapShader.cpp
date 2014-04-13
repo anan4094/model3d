@@ -15,8 +15,10 @@ MapShader::MapShader(){
 MapShader* MapShader::sharedInstance(){
 	if (instance==nullptr) {
 		instance = new MapShader();
-		instance->readShaderSource(SHADER_PATH "map/shader");
-		if (!instance->build()) {
+		if(!instance->readShaderSource(SHADER_PATH "map/shader")){
+			delete instance;
+			instance = nullptr;
+		}else if (!instance->build()) {
 			delete instance;
 			instance = nullptr;
 		}

@@ -39,7 +39,7 @@
       <UniqueIdentifier>{74b0a6a1-e13c-460b-8232-3cc6c80a8385}</UniqueIdentifier>
     </Filter>
     <Filter Include="资源文件\shader\map">
-      <UniqueIdentifier>{f92819c5-de61-4fae-825e-a73cd267ff9a}</UniqueIdentifier>
+      <UniqueIdentifier>{3444fdb1-6764-4ec5-b567-ebd3148776b0}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -146,17 +146,17 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\resource\shader\normal_map\shader.frag">
-      <Filter>资源文件\shader\normal_map</Filter>
-    </None>
-    <None Include="..\resource\shader\normal_map\shader.vert">
-      <Filter>资源文件\shader\normal_map</Filter>
-    </None>
-    <None Include="..\resource\shader\map\shader.frag">
+    <None Include="..\assert\shader\map\shader.frag">
       <Filter>资源文件\shader\map</Filter>
     </None>
-    <None Include="..\resource\shader\map\shader.vert">
+    <None Include="..\assert\shader\map\shader.vert">
       <Filter>资源文件\shader\map</Filter>
+    </None>
+    <None Include="..\assert\shader\normal_map\shader.frag">
+      <Filter>资源文件\shader\normal_map</Filter>
+    </None>
+    <None Include="..\assert\shader\normal_map\shader.vert">
+      <Filter>资源文件\shader\normal_map</Filter>
     </None>
   </ItemGroup>
 </Project>

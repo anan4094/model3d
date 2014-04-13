@@ -18,15 +18,48 @@
 
 using namespace std;
 
-Material::Material(){
+Material::Material():m_pchName(nullptr){
 }
 
-Material::Material(const char *filename){
-	//loadMtl(filename);
+Material::Material(const char *filename):m_pchName(new char[strlen(filename)+1]){
+	strcpy(m_pchName,filename);
 }
 
 Material::~Material(){
+	if (m_pchName){
+		delete[] m_pchName;
+	}
 	clear();
+}
+
+void Material::setName(const char*filename){
+	if (m_pchName==filename){
+		return;
+	}
+	if (m_pchName){
+		delete[] m_pchName;
+	}
+	m_pchName = new char[strlen(filename)+1];
+	strcpy(m_pchName,filename);
+}
+
+bool Material::load(const char*filename){
+	if (!filename){
+		filename = m_pchName;
+		if (!filename){
+			return false;
+		}
+	}
+	char *p = const_cast<char*>(filename);
+	int len = 0;
+	for (;*p;p++);
+	for (;*p!='.'&&p!=filename;p--,len++);
+	if (len==4){
+		if ((p[1]=='m'||p[1]=='M')&&(p[2]=='t'||p[2]=='T')&&(p[3]=='l'||p[3]=='L')){
+			return loadMtl(filename);
+		}
+	}
+	return false;
 }
 
 bool Material::loadMtl(const char*filename){
@@ -35,6 +68,8 @@ bool Material::loadMtl(const char*filename){
 	ifstream fs(filename);
 	if (fs.good()){
 		printf("open file[%s] success\n",filename);
+		clear();
+		setName(filename);
 	}else{
 		printf("open file[%s] failed\n",filename);
 		return false;

@@ -22,8 +22,8 @@ newmtl SkinHip_1
 	Kd 1.0000 1.0000 1.0000
 	Ks 0.0000 0.0000 0.0000
 	Ke 0.0000 0.0000 0.0000
-	map_Ka map\CindyBodyMap_natural.jpg
-	map_Kd map\CindyBodyMap_natural.jpg
+	map_Ka tex/CindyBodyMap_natural.jpg
+	map_Kd tex/CindyBodyMap_natural.jpg
 
 newmtl SkinTorso_1
 	Ns 300.0000
@@ -36,8 +36,8 @@ newmtl SkinTorso_1
 	Kd 1.0000 1.0000 1.0000
 	Ks 0.0000 0.0000 0.0000
 	Ke 0.0000 0.0000 0.0000
-	map_Ka map\CindyBodyMap_natural.jpg
-	map_Kd map\CindyBodyMap_natural.jpg
+	map_Ka tex/CindyBodyMap_natural.jpg
+	map_Kd tex/CindyBodyMap_natural.jpg
 
 newmtl PubicHair_1
 	Ns 300.0000
@@ -62,8 +62,8 @@ newmtl SkinNeck_1
 	Kd 1.0000 1.0000 1.0000
 	Ks 0.0000 0.0000 0.0000
 	Ke 0.0000 0.0000 0.0000
-	map_Ka map\CindyBodyMap_natural.jpg
-	map_Kd map\CindyBodyMap_natural.jpg
+	map_Ka tex/CindyBodyMap_natural.jpg
+	map_Kd tex/CindyBodyMap_natural.jpg
 
 newmtl SkinHead_1
 	Ns 300.0000
@@ -76,8 +76,8 @@ newmtl SkinHead_1
 	Kd 1.0000 1.0000 1.0000
 	Ks 0.0000 0.0000 0.0000
 	Ke 0.0000 0.0000 0.0000
-	map_Ka map\Cindy_MakeUpblue.jpg
-	map_Kd map\Cindy_MakeUpblue.jpg
+	map_Ka tex/Cindy_MakeUpblue.jpg
+	map_Kd tex/Cindy_MakeUpblue.jpg
 
 newmtl SkinScalp_1
 	Ns 300.0000
@@ -90,8 +90,8 @@ newmtl SkinScalp_1
 	Kd 1.0000 1.0000 1.0000
 	Ks 0.0000 0.0000 0.0000
 	Ke 0.0000 0.0000 0.0000
-	map_Ka map\CindyHeadMap_natural.jpg
-	map_Kd map\CindyHeadMap_natural.jpg
+	map_Ka tex/CindyHeadMap_natural.jpg
+	map_Kd tex/CindyHeadMap_natural.jpg
 
 newmtl Lips_1
 	Ns 200.0000
@@ -104,8 +104,8 @@ newmtl Lips_1
 	Kd 1.0000 1.0000 1.0000
 	Ks 0.0000 0.0000 0.0000
 	Ke 0.0000 0.0000 0.0000
-	map_Ka map\Cindy_Lipsvioletred.jpg
-	map_Kd map\Cindy_Lipsvioletred.jpg
+	map_Ka tex/Cindy_Lipsvioletred.jpg
+	map_Kd tex/Cindy_Lipsvioletred.jpg
 
 newmtl EyeSocket_1
 	Ns 800.0000
@@ -118,8 +118,8 @@ newmtl EyeSocket_1
 	Kd 1.0000 1.0000 1.0000
 	Ks 0.0000 0.0000 0.0000
 	Ke 0.0000 0.0000 0.0000
-	map_Ka map\Cindy_MakeUpblue.jpg
-	map_Kd map\Cindy_MakeUpblue.jpg
+	map_Ka tex/Cindy_MakeUpblue.jpg
+	map_Kd tex/Cindy_MakeUpblue.jpg
 
 newmtl InnerMouth_1
 	Ns 300.0000
@@ -132,8 +132,8 @@ newmtl InnerMouth_1
 	Kd 1.0000 1.0000 1.0000
 	Ks 0.0000 0.0000 0.0000
 	Ke 0.0000 0.0000 0.0000
-	map_Ka map\CindyHeadMap_natural.jpg
-	map_Kd map\CindyHeadMap_natural.jpg
+	map_Ka tex/CindyHeadMap_natural.jpg
+	map_Kd tex/CindyHeadMap_natural.jpg
 
 newmtl Nostrils_1
 	Ns 300.0000
@@ -146,8 +146,8 @@ newmtl Nostrils_1
 	Kd 0.0000 0.0000 0.0000
 	Ks 0.0000 0.0000 0.0000
 	Ke 0.0000 0.0000 0.0000
-	map_Ka map\CindyHeadMap_natural.jpg
-	map_Kd map\CindyHeadMap_natural.jpg
+	map_Ka tex/CindyHeadMap_natural.jpg
+	map_Kd tex/CindyHeadMap_natural.jpg
 
 newmtl Lacrimal_1
 	Ns 300.0000
@@ -160,8 +160,8 @@ newmtl Lacrimal_1
 	Kd 1.0000 1.0000 1.0000
 	Ks 0.0000 0.0000 0.0000
 	Ke 0.0000 0.0000 0.0000
-	map_Ka map\CindyHeadMap_natural.jpg
-	map_Kd map\CindyHeadMap_natural.jpg
+	map_Ka tex/CindyHeadMap_natural.jpg
+	map_Kd tex/CindyHeadMap_natural.jpg
 
 newmtl Eyelashes_1
 	Ns 300.0000
@@ -222,8 +222,8 @@ newmtl Tongue_1
 	Kd 1.0000 1.0000 1.0000
 	Ks 0.0000 0.0000 0.0000
 	Ke 0.0000 0.0000 0.0000
-	map_Ka map\CindyHeadMap_natural.jpg
-	map_Kd map\CindyHeadMap_natural.jpg
+	map_Ka tex/CindyHeadMap_natural.jpg
+	map_Kd tex/CindyHeadMap_natural.jpg
 
 newmtl LCornea_1
 	Ns 1000.0000
@@ -236,8 +236,8 @@ newmtl LCornea_1
 	Kd 1.0000 1.0000 1.0000
 	Ks 0.0000 0.0000 0.0000
 	Ke 0.0000 0.0000 0.0000
-	map_Ka map\EyeLeft_darkblue.jpg
-	map_Kd map\EyeLeft_darkblue.jpg
+	map_Ka tex/EyeLeft_darkblue.jpg
+	map_Kd tex/EyeLeft_darkblue.jpg
 
 newmtl LEyewhite_1
 	Ns 650.0000
@@ -250,8 +250,8 @@ newmtl LEyewhite_1
 	Kd 1.0000 1.0000 1.0000
 	Ks 0.0000 0.0000 0.0000
 	Ke 0.0000 0.0000 0.0000
-	map_Ka map\EyeLeft_darkblue.jpg
-	map_Kd map\EyeLeft_darkblue.jpg
+	map_Ka tex/EyeLeft_darkblue.jpg
+	map_Kd tex/EyeLeft_darkblue.jpg
 
 newmtl LPupil_1
 	Ns 1000.0000
@@ -264,8 +264,8 @@ newmtl LPupil_1
 	Kd 1.0000 1.0000 1.0000
 	Ks 0.0000 0.0000 0.0000
 	Ke 0.0000 0.0000 0.0000
-	map_Ka map\EyeLeft_darkblue.jpg
-	map_Kd map\EyeLeft_darkblue.jpg
+	map_Ka tex/EyeLeft_darkblue.jpg
+	map_Kd tex/EyeLeft_darkblue.jpg
 
 newmtl LIris_1
 	Ns 1000.0000
@@ -278,8 +278,8 @@ newmtl LIris_1
 	Kd 1.0000 1.0000 1.0000
 	Ks 0.0000 0.0000 0.0000
 	Ke 0.0000 0.0000 0.0000
-	map_Ka map\EyeLeft_darkblue.jpg
-	map_Kd map\EyeLeft_darkblue.jpg
+	map_Ka tex/EyeLeft_darkblue.jpg
+	map_Kd tex/EyeLeft_darkblue.jpg
 
 newmtl RCornea_1
 	Ns 1000.0000
@@ -292,8 +292,8 @@ newmtl RCornea_1
 	Kd 1.0000 1.0000 1.0000
 	Ks 0.0000 0.0000 0.0000
 	Ke 0.0000 0.0000 0.0000
-	map_Ka map\EyeRight_darkblue.jpg
-	map_Kd map\EyeRight_darkblue.jpg
+	map_Ka tex/EyeRight_darkblue.jpg
+	map_Kd tex/EyeRight_darkblue.jpg
 
 newmtl REyewhite_1
 	Ns 650.0000
@@ -306,8 +306,8 @@ newmtl REyewhite_1
 	Kd 1.0000 1.0000 1.0000
 	Ks 0.0000 0.0000 0.0000
 	Ke 0.0000 0.0000 0.0000
-	map_Ka map\EyeRight_darkblue.jpg
-	map_Kd map\EyeRight_darkblue.jpg
+	map_Ka tex/EyeRight_darkblue.jpg
+	map_Kd tex/EyeRight_darkblue.jpg
 
 newmtl RPupil_1
 	Ns 1000.0000
@@ -320,8 +320,8 @@ newmtl RPupil_1
 	Kd 1.0000 1.0000 1.0000
 	Ks 0.0000 0.0000 0.0000
 	Ke 0.0000 0.0000 0.0000
-	map_Ka map\EyeRight_darkblue.jpg
-	map_Kd map\EyeRight_darkblue.jpg
+	map_Ka tex/EyeRight_darkblue.jpg
+	map_Kd tex/EyeRight_darkblue.jpg
 
 newmtl RIris_1
 	Ns 1000.0000
@@ -334,8 +334,8 @@ newmtl RIris_1
 	Kd 1.0000 1.0000 1.0000
 	Ks 0.0000 0.0000 0.0000
 	Ke 0.0000 0.0000 0.0000
-	map_Ka map\EyeRight_darkblue.jpg
-	map_Kd map\EyeRight_darkblue.jpg
+	map_Ka tex/EyeRight_darkblue.jpg
+	map_Kd tex/EyeRight_darkblue.jpg
 
 newmtl Nipples_1
 	Ns 300.0000
@@ -348,8 +348,8 @@ newmtl Nipples_1
 	Kd 1.0000 1.0000 1.0000
 	Ks 0.0000 0.0000 0.0000
 	Ke 0.0000 0.0000 0.0000
-	map_Ka map\CindyBodyMap_natural.jpg
-	map_Kd map\CindyBodyMap_natural.jpg
+	map_Ka tex/CindyBodyMap_natural.jpg
+	map_Kd tex/CindyBodyMap_natural.jpg
 
 newmtl SkinForearm_1
 	Ns 300.0000
@@ -362,8 +362,8 @@ newmtl SkinForearm_1
 	Kd 1.0000 1.0000 1.0000
 	Ks 0.0000 0.0000 0.0000
 	Ke 0.0000 0.0000 0.0000
-	map_Ka map\CindyBodyMap_natural.jpg
-	map_Kd map\CindyBodyMap_natural.jpg
+	map_Ka tex/CindyBodyMap_natural.jpg
+	map_Kd tex/CindyBodyMap_natural.jpg
 
 newmtl SkinArm_1
 	Ns 300.0000
@@ -376,8 +376,8 @@ newmtl SkinArm_1
 	Kd 1.0000 1.0000 1.0000
 	Ks 0.0000 0.0000 0.0000
 	Ke 0.0000 0.0000 0.0000
-	map_Ka map\CindyBodyMap_natural.jpg
-	map_Kd map\CindyBodyMap_natural.jpg
+	map_Ka tex/CindyBodyMap_natural.jpg
+	map_Kd tex/CindyBodyMap_natural.jpg
 
 newmtl SkinHand_1
 	Ns 300.0000
@@ -390,8 +390,8 @@ newmtl SkinHand_1
 	Kd 1.0000 1.0000 1.0000
 	Ks 0.0000 0.0000 0.0000
 	Ke 0.0000 0.0000 0.0000
-	map_Ka map\CindyBodyMap_natural.jpg
-	map_Kd map\CindyBodyMap_natural.jpg
+	map_Ka tex/CindyBodyMap_natural.jpg
+	map_Kd tex/CindyBodyMap_natural.jpg
 
 newmtl Fingernails_1
 	Ns 300.0000
@@ -404,8 +404,8 @@ newmtl Fingernails_1
 	Kd 1.0000 1.0000 1.0000
 	Ks 0.0000 0.0000 0.0000
 	Ke 0.0000 0.0000 0.0000
-	map_Ka map\CindyNailsMap_violetred.jpg
-	map_Kd map\CindyNailsMap_violetred.jpg
+	map_Ka tex/CindyNailsMap_violetred.jpg
+	map_Kd tex/CindyNailsMap_violetred.jpg
 
 newmtl SkinLeg_1
 	Ns 300.0000
@@ -418,8 +418,8 @@ newmtl SkinLeg_1
 	Kd 1.0000 1.0000 1.0000
 	Ks 0.0000 0.0000 0.0000
 	Ke 0.0000 0.0000 0.0000
-	map_Ka map\CindyBodyMap_natural.jpg
-	map_Kd map\CindyBodyMap_natural.jpg
+	map_Ka tex/CindyBodyMap_natural.jpg
+	map_Kd tex/CindyBodyMap_natural.jpg
 
 newmtl SkinFeet_1
 	Ns 300.0000
@@ -432,8 +432,8 @@ newmtl SkinFeet_1
 	Kd 1.0000 1.0000 1.0000
 	Ks 0.0000 0.0000 0.0000
 	Ke 0.0000 0.0000 0.0000
-	map_Ka map\CindyBodyMap_natural.jpg
-	map_Kd map\CindyBodyMap_natural.jpg
+	map_Ka tex/CindyBodyMap_natural.jpg
+	map_Kd tex/CindyBodyMap_natural.jpg
 
 newmtl Toenails_1
 	Ns 300.0000
@@ -446,8 +446,8 @@ newmtl Toenails_1
 	Kd 1.0000 1.0000 1.0000
 	Ks 0.0000 0.0000 0.0000
 	Ke 0.0000 0.0000 0.0000
-	map_Ka map\CindyNailsMap_violetred.jpg
-	map_Kd map\CindyNailsMap_violetred.jpg
+	map_Ka tex/CindyNailsMap_violetred.jpg
+	map_Kd tex/CindyNailsMap_violetred.jpg
 
 newmtl Outer_2
 	Ns 300.0000
@@ -460,8 +460,8 @@ newmtl Outer_2
 	Kd 1.0000 1.0000 1.0000
 	Ks 0.0000 0.0000 0.0000
 	Ke 0.0000 0.0000 0.0000
-	map_Ka map\ErikaHR_03.jpg
-	map_Kd map\ErikaHR_03.jpg
+	map_Ka tex/ErikaHR_03.jpg
+	map_Kd tex/ErikaHR_03.jpg
 
 newmtl OuterBangs_2
 	Ns 300.0000
@@ -474,8 +474,8 @@ newmtl OuterBangs_2
 	Kd 1.0000 1.0000 1.0000
 	Ks 0.0000 0.0000 0.0000
 	Ke 0.0000 0.0000 0.0000
-	map_Ka map\ErikaHR_03.jpg
-	map_Kd map\ErikaHR_03.jpg
+	map_Ka tex/ErikaHR_03.jpg
+	map_Kd tex/ErikaHR_03.jpg
 
 newmtl InnerBangs_2
 	Ns 300.0000
@@ -488,8 +488,8 @@ newmtl InnerBangs_2
 	Kd 1.0000 1.0000 1.0000
 	Ks 0.0000 0.0000 0.0000
 	Ke 0.0000 0.0000 0.0000
-	map_Ka map\ErikaHR_03.jpg
-	map_Kd map\ErikaHR_03.jpg
+	map_Ka tex/ErikaHR_03.jpg
+	map_Kd tex/ErikaHR_03.jpg
 
 newmtl Middle_2
 	Ns 300.0000
@@ -502,8 +502,8 @@ newmtl Middle_2
 	Kd 1.0000 1.0000 1.0000
 	Ks 0.0000 0.0000 0.0000
 	Ke 0.0000 0.0000 0.0000
-	map_Ka map\ErikaHR_03.jpg
-	map_Kd map\ErikaHR_03.jpg
+	map_Ka tex/ErikaHR_03.jpg
+	map_Kd tex/ErikaHR_03.jpg
 
 newmtl Inner_2
 	Ns 300.0000
@@ -516,8 +516,8 @@ newmtl Inner_2
 	Kd 1.0000 1.0000 1.0000
 	Ks 0.0000 0.0000 0.0000
 	Ke 0.0000 0.0000 0.0000
-	map_Ka map\ErikaHR_03.jpg
-	map_Kd map\ErikaHR_03.jpg
+	map_Ka tex/ErikaHR_03.jpg
+	map_Kd tex/ErikaHR_03.jpg
 
 newmtl Scull_2
 	Ns 300.0000
@@ -530,5 +530,5 @@ newmtl Scull_2
 	Kd 1.0000 1.0000 1.0000
 	Ks 0.0000 0.0000 0.0000
 	Ke 0.0000 0.0000 0.0000
-	map_Ka map\ErikaHR_03.jpg
-	map_Kd map\ErikaHR_03.jpg
+	map_Ka tex/ErikaHR_03.jpg
+	map_Kd tex/ErikaHR_03.jpg

@@ -59,11 +59,13 @@ typedef struct mtl{
 class Material{
 private:
     std::vector<Mtl> m_imtls;
-    
+    char *m_pchName;
     void readColor(AttribMaterial am,Mtl &mtl,char*&bundle);
 public:
     bool loadMtl(const char*filename);
     mtl* find(const char*name);
+	void setName(const char*filename);
+	bool load(const char*filename=nullptr);
 	void clear();
 	Material();
 	Material(const char *filename);

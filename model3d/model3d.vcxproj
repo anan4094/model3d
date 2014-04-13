@@ -48,10 +48,10 @@
     <ClInclude Include="tools\timer\Timer.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\resource\shader\map\shader.frag" />
-    <None Include="..\resource\shader\map\shader.vert" />
-    <None Include="..\resource\shader\normal_map\shader.frag" />
-    <None Include="..\resource\shader\normal_map\shader.vert" />
+    <None Include="..\assert\shader\map\shader.frag" />
+    <None Include="..\assert\shader\map\shader.vert" />
+    <None Include="..\assert\shader\normal_map\shader.frag" />
+    <None Include="..\assert\shader\normal_map\shader.vert" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{6A74D9E1-81B0-4402-B4DF-30444DAA68CE}</ProjectGuid>
