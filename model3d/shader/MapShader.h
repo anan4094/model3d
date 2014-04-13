@@ -6,8 +6,8 @@
 //  Copyright (c) 2014年 魏裕群. All rights reserved.
 //
 
-#ifndef __model3d__MapShader__
-#define __model3d__MapShader__
+#ifndef __model3d__map_shader__
+#define __model3d__map_shader__
 
 #include "Shader.h"
 
@@ -24,4 +24,4 @@ public:
 	void setTexture(int tid);
 };
 
-#endif /* defined(__model3d__MapShader__) */
+#endif /* defined(__model3d__map_shader__) */

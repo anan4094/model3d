@@ -48,7 +48,7 @@ private:
 	bool      m_bHasTexCoord;
     bool      m_bForceGenerateNormal;
     bool      m_bSmoothSurface;
-    
+    bool      m_bUseShader;
     Material m_iMaterial;
     std::vector<MtlInfo> m_iMaterialArray;
     Shader    *m_piShader;
@@ -73,7 +73,7 @@ public:
     inline void setForceGenerateNormal(bool fgn){m_bForceGenerateNormal = fgn;}
     //设置当自己生成法线时是否光滑表面
     inline void setSmoothSurface(bool ss){m_bSmoothSurface = ss;}
-    
+	inline void setUseShader(bool us){m_bUseShader = us;}
 	Mesh();
     Mesh(const char *name);
 	~Mesh();

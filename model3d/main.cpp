@@ -124,12 +124,13 @@ int main(int argc, char **argv)
     //pmesh->load("/Users/anan/Documents/github/model3d/assert/peri/peri.obj");
 #else
 	//pmesh->load("../assert/tails/tails.obj");
-	pmesh->load("../assert/female/female.obj");
-	//pmesh->load("../assert/peri/peri.obj");
+	//pmesh->load("../assert/female/female.obj");
+	pmesh->load("../assert/peri/peri.obj");
 
 #endif
     //
-    pmesh->initShader();
+    //pmesh->initShader();
+	pmesh->setUseShader(true);
     pmesh->setRotationAxis(0, 1, 0);
     
     //let female.obj show us
@@ -137,8 +138,8 @@ int main(int argc, char **argv)
 	pmesh->setPosition(0, -16, -20);
     
 	//let peri.obj show us
-	//pmesh->setPosition(0, -16, -20);
-	//pmesh->setScale(0.18, 0.18, 0.18);
+	pmesh->setPosition(0, -16, -20);
+	pmesh->setScale(0.18, 0.18, 0.18);
 
     //test
     //pmesh->setPosition(0, 0, -20);

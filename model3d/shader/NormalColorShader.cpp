@@ -1,22 +1,22 @@
 //
-//  NormalMapShader.cpp
+//  NormalColorShader.cpp
 //  model3d
 //
 //  Created by 魏裕群 on 14-3-30.
 //  Copyright (c) 2014年 魏裕群. All rights reserved.
 //
 
-#include "NormalMapShader.h"
+#include "NormalColorShader.h"
 
-static NormalMapShader* instance = nullptr;
+static NormalColorShader* instance = nullptr;
 
-NormalMapShader::NormalMapShader(){
+NormalColorShader::NormalColorShader(){
 }
 
- NormalMapShader* NormalMapShader::sharedInstance(){
+ NormalColorShader* NormalColorShader::sharedInstance(){
      if (instance==nullptr) {
-        instance = new NormalMapShader();
-		if(!instance->readShaderSource(SHADER_PATH "normal_map/shader")){
+        instance = new NormalColorShader();
+		if(!instance->readShaderSource(SHADER_PATH "normal_color/shader")){
 			delete instance;
 			instance = nullptr;
 		}else if (!instance->build()) {
@@ -27,27 +27,25 @@ NormalMapShader::NormalMapShader(){
     return instance;
 }
 
-void NormalMapShader::installAttrib(){
+void NormalColorShader::installAttrib(){
     // Bind attribute locations.
     // This needs to be done prior to linking.
     glBindAttribLocation(ProgramObject,attrib_position,"position");
     glBindAttribLocation(ProgramObject,attrib_normal,"normal");
-	glBindAttribLocation(ProgramObject,attrib_texcoord0,"texcoord");
 }
 
-void NormalMapShader::installUniform(){
+void NormalColorShader::installUniform(){
     m_nUniformModelViewProjectionMatrix = glGetUniformLocation(ProgramObject,"modelViewProjectionMatrix");
     m_nUniformNormalMatrix = glGetUniformLocation(ProgramObject,"normalMatrix");
-	m_nUniformSampler2D = glGetUniformLocation(ProgramObject,"tex");
+    m_nUniformDiffuseColor = glGetUniformLocation(ProgramObject,"diffuseColor");
 }
 
-void NormalMapShader::setModelViewProjectionMatrix(const float *data){
+void NormalColorShader::setModelViewProjectionMatrix(const float *data){
     glUniformMatrix4fv(m_nUniformModelViewProjectionMatrix,1,0,data);
 }
-void NormalMapShader::setNormalMatrix(const float *data){
+void NormalColorShader::setNormalMatrix(const float *data){
     glUniformMatrix4fv(m_nUniformNormalMatrix,1,0,data);
 }
-
-void NormalMapShader::setTexture(int tid){
-	glUniform1i(m_nUniformSampler2D,tid);
+void NormalColorShader::setDiffuseColor(const float *data){
+    glUniform4fv(m_nUniformDiffuseColor,1,data);
 }

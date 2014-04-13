@@ -4,6 +4,7 @@
 #include <fstream>
 #include "Timer.h"
 #include "NormalMapShader.h"
+#include "NormalColorShader.h"
 #include "MapShader.h"
 #ifdef __APPLE__
 #define GEN_VERTEX_ARRAYS glGenVertexArraysAPPLE
@@ -452,20 +453,14 @@ bool Mesh::loadObj(const char* filename){
 }
 
 int Mesh::initShader(){
-	if (m_bHasNormal&&m_bHasTexCoord){
-		m_piShader = NormalMapShader::sharedInstance();
-	}else if(!m_bHasNormal){
-		m_piShader = MapShader::sharedInstance();
-	}
-    
-    return m_piShader?1:0;
+    return 0;
 }
 
 void Mesh::draw(){
     if (!m_piScene) {
         return;
     }
-    if (!m_piShader) {
+    if (!m_bUseShader) {
         glMatrixMode(GL_MODELVIEW);
         glLoadIdentity();
         glTranslatef(x,y,z);
@@ -505,75 +500,60 @@ void Mesh::draw(){
         glDisableClientState(GL_NORMAL_ARRAY);
 		glDisableClientState(GL_TEXTURE_COORD_ARRAY);
     }else{
-        m_piShader->use();
-        NormalMapShader* pnmshader = dynamic_cast<NormalMapShader*>(m_piShader);
-		MapShader* pmshader = dynamic_cast<MapShader*>(m_piShader);
-        if (pnmshader) {
-            const Matrix4& projectionMatrix = m_piScene->getProjection();
-            
-            // Compute the model view matrix for the object rendered with GL
-            Matrix4 modelViewMatrix;
-            modelViewMatrix.identity();
-            modelViewMatrix.rotate(radian, rax, ray, raz);
-            modelViewMatrix.scale(scalex, scaley, scalez);
-            modelViewMatrix.translate(x, y, z);
-            
-            Matrix4 _normalMatrix = modelViewMatrix;
-            _normalMatrix.invert();
-            
-            Matrix4 _modelViewProjectionMatrix =  projectionMatrix * modelViewMatrix;
-            
-            pnmshader->setModelViewProjectionMatrix(_modelViewProjectionMatrix.transpose().get());
-            pnmshader->setNormalMatrix(_normalMatrix.get());
-            BIND_VERTEX_ARRAY(m_nVertexArraysID);
-			unsigned long nSize = m_iMaterialArray.size();
-            for (unsigned long i=0; i<nSize; i++) {
-                Mtl*pmtl=m_iMaterial.find(m_iMaterialArray[i].name);
-                
-                pnmshader->setDiffuseColor(pmtl->kd.d);
-                if (pmtl->map_kd){
-                    Texture *pctex=(Texture*)(pmtl->map_kd);
-                    glActiveTexture(GL_TEXTURE0);
-                    glBindTexture(GL_TEXTURE_2D,pctex->get());
-                    pnmshader->setTexture(0);
-                }else{
-					glBindTexture(GL_TEXTURE_2D,0);
-				}
-                glDrawArrays( GL_TRIANGLES,m_iMaterialArray[i].first,m_iMaterialArray[i].size);
-            }
-            BIND_VERTEX_ARRAY(0);
-            glUseProgram(0);
-        }else if (pmshader){
-			const Matrix4& projectionMatrix = m_piScene->getProjection();
+		const Matrix4& projectionMatrix = m_piScene->getProjection();
 
-			// Compute the model view matrix for the object rendered with GL
-			Matrix4 modelViewMatrix;
-			modelViewMatrix.identity();
-			modelViewMatrix.rotate(radian, rax, ray, raz);
-			modelViewMatrix.scale(scalex, scaley, scalez);
-			modelViewMatrix.translate(x, y, z);
+		// Compute the model view matrix for the object rendered with GL
+		Matrix4 modelViewMatrix;
+		modelViewMatrix.identity();
+		modelViewMatrix.rotate(radian, rax, ray, raz);
+		modelViewMatrix.scale(scalex, scaley, scalez);
+		modelViewMatrix.translate(x, y, z);
 
-			Matrix4 _modelViewProjectionMatrix =  projectionMatrix * modelViewMatrix;
+		Matrix4 _normalMatrix = modelViewMatrix;
+		_normalMatrix.invert();
 
-			pmshader->setModelViewProjectionMatrix(_modelViewProjectionMatrix.transpose().get());
-			BIND_VERTEX_ARRAY(m_nVertexArraysID);
-			unsigned long nSize = m_iMaterialArray.size();
-			for (unsigned long i=0; i<nSize; i++) {
-				Mtl*pmtl=m_iMaterial.find(m_iMaterialArray[i].name);
+		Matrix4 _modelViewProjectionMatrix =  projectionMatrix * modelViewMatrix;
+		_modelViewProjectionMatrix.transpose();
+
+		unsigned long nSize = m_iMaterialArray.size();
+		BIND_VERTEX_ARRAY(m_nVertexArraysID);
+		for (unsigned long i=0; i<nSize; i++) {
+			MtlInfo &minf = m_iMaterialArray[i];
+			Mtl*pmtl=m_iMaterial.find(minf.name);
+
+			if (m_bHasNormal){
 				if (pmtl->map_kd){
+					NormalMapShader *pinms = NormalMapShader::sharedInstance();
+					pinms->use();
+					pinms->setModelViewProjectionMatrix(_modelViewProjectionMatrix.get());
+					pinms->setNormalMatrix(_normalMatrix.get());
 					Texture *pctex=(Texture*)(pmtl->map_kd);
-					printf("use texture[%s]\n",pctex->getName());
 					glActiveTexture(GL_TEXTURE0);
 					glBindTexture(GL_TEXTURE_2D,pctex->get());
-					pmshader->setTexture(0);
+					pinms->setTexture(0);
 				}else{
-					glBindTexture(GL_TEXTURE_2D,0);
+					NormalColorShader *pincs = NormalColorShader::sharedInstance();
+					pincs->use();
+					pincs->setModelViewProjectionMatrix(_modelViewProjectionMatrix.get());
+					pincs->setNormalMatrix(_normalMatrix.get());
+					pincs->setDiffuseColor(pmtl->kd.d);
+					//glBindTexture(GL_TEXTURE_2D,0);
 				}
-				glDrawArrays( GL_TRIANGLES, m_iMaterialArray[i].first, m_iMaterialArray[i].size);
+			}else{
+				if (pmtl->map_kd){
+					MapShader *pims = MapShader::sharedInstance();
+					pims->use();
+					pims->setModelViewProjectionMatrix(_modelViewProjectionMatrix.get());
+					Texture *pctex=(Texture*)(pmtl->map_kd);
+					glActiveTexture(GL_TEXTURE0);
+					glBindTexture(GL_TEXTURE_2D,pctex->get());
+					pims->setTexture(0);
+				}
 			}
-			BIND_VERTEX_ARRAY(0);
-			glUseProgram(0);
-        }
+			glDrawArrays( GL_TRIANGLES,minf.first,minf.size);
+		}
+		BIND_VERTEX_ARRAY(0);
+		glUseProgram(0);
     }
 }
 
@@ -586,7 +566,7 @@ Mesh::Mesh():m_nVerticesID(0)
 	,m_pTexCoords(nullptr)
 	,m_piShader(nullptr)
 	,rax(0),ray(0),raz(1),x(0),y(0),z(0),scalex(1),scaley(1),scalez(1)
-	,m_bForceGenerateNormal(false),m_bSmoothSurface(false){
+	,m_bForceGenerateNormal(false),m_bSmoothSurface(false),m_bUseShader(false){
 }
 Mesh::Mesh(const char* filename):m_nVerticesID(0)
 	,m_nNormalsID(0)
@@ -597,7 +577,7 @@ Mesh::Mesh(const char* filename):m_nVerticesID(0)
 	,m_pTexCoords(nullptr)
 	,m_piShader(nullptr)
 	,rax(0),ray(0),raz(1),x(0),y(0),z(0),scalex(1),scaley(1),scalez(1)
-	,m_bForceGenerateNormal(false),m_bSmoothSurface(false){
+	,m_bForceGenerateNormal(false),m_bSmoothSurface(false),m_bUseShader(false){
     load(filename);
 }
 

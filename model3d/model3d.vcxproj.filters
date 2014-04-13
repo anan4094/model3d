@@ -41,6 +41,9 @@
     <Filter Include="资源文件\shader\map">
       <UniqueIdentifier>{3444fdb1-6764-4ec5-b567-ebd3148776b0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="资源文件\shader\normal_color">
+      <UniqueIdentifier>{03258c40-598b-44fa-b6be-6b0a360acc91}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="tools\matrix\Matrices.cpp">
@@ -87,6 +90,9 @@
     </ClCompile>
     <ClCompile Include="3d\Texture.cpp">
       <Filter>3d</Filter>
+    </ClCompile>
+    <ClCompile Include="shader\NormalColorShader.cpp">
+      <Filter>shader</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -144,6 +150,9 @@
     <ClInclude Include="3d\Texture.h">
       <Filter>3d</Filter>
     </ClInclude>
+    <ClInclude Include="shader\NormalColorShader.h">
+      <Filter>shader</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\assert\shader\map\shader.frag">
@@ -157,6 +166,12 @@
     </None>
     <None Include="..\assert\shader\normal_map\shader.vert">
       <Filter>资源文件\shader\normal_map</Filter>
+    </None>
+    <None Include="..\assert\shader\normal_color\shader.frag">
+      <Filter>资源文件\shader\normal_color</Filter>
+    </None>
+    <None Include="..\assert\shader\normal_color\shader.vert">
+      <Filter>资源文件\shader\normal_color</Filter>
     </None>
   </ItemGroup>
 </Project>
