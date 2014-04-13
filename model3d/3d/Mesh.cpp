@@ -347,6 +347,60 @@ bool Mesh::loadObj(const char* filename){
 		delete [] normal4smooth;
 		normal4smooth=nullptr;
 	}
+    
+    //test
+    /*m_pVertices[0]=-4;
+    m_pVertices[1]=-4;
+    m_pVertices[2]=0;
+    m_pVertices[3]=-4;
+    m_pVertices[4]=4;
+    m_pVertices[5]=0;
+    m_pVertices[6]=4;
+    m_pVertices[7]=4;
+    m_pVertices[8]=0;
+    
+    m_pVertices[9]=-4;
+    m_pVertices[10]=-4;
+    m_pVertices[11]=0;
+    m_pVertices[12]=4;
+    m_pVertices[13]=4;
+    m_pVertices[14]=0;
+    m_pVertices[15]=4;
+    m_pVertices[16]=-4;
+    m_pVertices[17]=0;
+    
+    m_pTexCoords[0]=-1;
+    m_pTexCoords[1]=-1;
+    m_pTexCoords[2]=-1;
+    m_pTexCoords[3]=1;
+    m_pTexCoords[4]=1;
+    m_pTexCoords[5]=1;
+    m_pTexCoords[6]=-1;
+    m_pTexCoords[7]=-1;
+    m_pTexCoords[8]=1;
+    m_pTexCoords[9]=1;
+    m_pTexCoords[10]=1;
+    m_pTexCoords[11]=-1;
+    
+    m_pNormals[0]=0;
+    m_pNormals[1]=0;
+    m_pNormals[2]=1;
+    m_pNormals[3]=0;
+    m_pNormals[4]=0;
+    m_pNormals[5]=1;
+    m_pNormals[6]=0;
+    m_pNormals[7]=0;
+    m_pNormals[8]=1;
+    m_pNormals[9]=0;
+    m_pNormals[10]=0;
+    m_pNormals[11]=1;
+    m_pNormals[12]=0;
+    m_pNormals[13]=0;
+    m_pNormals[14]=1;
+    m_pNormals[15]=0;
+    m_pNormals[16]=0;
+    m_pNormals[17]=1;*/
+    
 	GEN_VERTEX_ARRAYS(1, &m_nVertexArraysID);
 	BIND_VERTEX_ARRAY(m_nVertexArraysID);
 
@@ -429,8 +483,8 @@ void Mesh::draw(){
         glNormalPointer(GL_FLOAT, 0, 0);
 		glBindBuffer(GL_ARRAY_BUFFER, m_nTexcoordsID);
 		glTexCoordPointer(2,GL_FLOAT, 0, 0);
-		unsigned int nSize = m_iMaterialArray.size();
-		for (unsigned int i=0; i<nSize; i++) {
+		unsigned long nSize = m_iMaterialArray.size();
+		for (unsigned long i=0; i<nSize; i++) {
 			Mtl*pmtl=m_iMaterial.find(m_iMaterialArray[i].name);
 
 			if (pmtl->map_kd){
@@ -466,8 +520,8 @@ void Mesh::draw(){
             pnmshader->setModelViewProjectionMatrix(_modelViewProjectionMatrix.transpose().get());
             pnmshader->setNormalMatrix(_normalMatrix.get());
             BIND_VERTEX_ARRAY(m_nVertexArraysID);
-			unsigned int nSize = m_iMaterialArray.size();
-            for (unsigned int i=0; i<nSize; i++) {
+			unsigned long nSize = m_iMaterialArray.size();
+            for (unsigned long i=0; i<nSize; i++) {
                 Mtl*pmtl=m_iMaterial.find(m_iMaterialArray[i].name);
                 
                 pnmshader->setDiffuseColor(pmtl->kd.d);
@@ -479,7 +533,7 @@ void Mesh::draw(){
                 }else{
 					glBindTexture(GL_TEXTURE_2D,0);
 				}
-                glDrawArrays( GL_TRIANGLES, m_iMaterialArray[i].first, m_iMaterialArray[i].size);
+                glDrawArrays( GL_TRIANGLES,m_iMaterialArray[i].first,m_iMaterialArray[i].size);
             }
             BIND_VERTEX_ARRAY(0);
             glUseProgram(0);
@@ -497,8 +551,8 @@ void Mesh::draw(){
 
 			pmshader->setModelViewProjectionMatrix(_modelViewProjectionMatrix.transpose().get());
 			BIND_VERTEX_ARRAY(m_nVertexArraysID);
-			unsigned int nSize = m_iMaterialArray.size();
-			for (unsigned int i=0; i<nSize; i++) {
+			unsigned long nSize = m_iMaterialArray.size();
+			for (unsigned long i=0; i<nSize; i++) {
 				Mtl*pmtl=m_iMaterial.find(m_iMaterialArray[i].name);
 				if (pmtl->map_kd){
 					Texture *pctex=(Texture*)(pmtl->map_kd);

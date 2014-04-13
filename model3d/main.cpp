@@ -116,11 +116,12 @@ int main(int argc, char **argv)
 	init();
     pmesh=new Mesh();
     //下面两个方法要在load后加载
-    pmesh->setForceGenerateNormal(true);
+    pmesh->setForceGenerateNormal(false);
     pmesh->setSmoothSurface(true);
 #ifdef __APPLE__
     //mesh.load("/Users/anan/Documents/github/model3d/resource/female/female.obj");
     pmesh->load("/Users/anan/Documents/github/model3d/resource/tails/Tails.obj");
+    //pmesh->load("/Users/anan/Documents/github/model3d/resource/peri/peri.obj");
 #else
 	//pmesh->load("../resource/tails/Tails.obj");
 	//pmesh->load("../resource/female/female.obj");
@@ -138,10 +139,14 @@ int main(int argc, char **argv)
     //pmesh->setScale(0.02, 0.02, 0.02);
 	pmesh->setPosition(0, -16, -20);
 	pmesh->setScale(0.18, 0.18, 0.18);
+    
+    //test
+    //pmesh->setPosition(0, 0, -20);
+	//pmesh->setScale(2, 2, 2);
 
     //let tails.obj show us
-    //pmesh->setScale(2.4f, 2.4f, 2.4f);
-	//pmesh->setPosition(0, -8, -20);
+    pmesh->setScale(2.4f, 2.4f, 2.4f);
+	pmesh->setPosition(0, -8, -20);
     
     mainScene.addSubNode(pmesh);
 
