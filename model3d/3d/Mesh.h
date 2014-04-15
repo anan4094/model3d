@@ -40,6 +40,13 @@ private:
 	GLfloat   *m_pNormals;
 	GLfloat   *m_pTexCoords;
 	GLsizei   m_nVertexCount;
+
+	GLfloat   m_fMaxX;
+	GLfloat   m_fMaxY;
+	GLfloat   m_fMaxZ;
+	GLfloat   m_fMinX;
+	GLfloat   m_fMinY;
+	GLfloat   m_fMinZ;
     
     GLfloat   rax,ray,raz,radian;
     GLfloat   x,y,z;
@@ -49,7 +56,7 @@ private:
     bool      m_bForceGenerateNormal;
     bool      m_bSmoothSurface;
     bool      m_bUseShader;
-    Material m_iMaterial;
+    Material  m_iMaterial;
     std::vector<MtlInfo> m_iMaterialArray;
     Shader    *m_piShader;
 public:
@@ -74,9 +81,16 @@ public:
     //设置当自己生成法线时是否光滑表面
     inline void setSmoothSurface(bool ss){m_bSmoothSurface = ss;}
 	inline void setUseShader(bool us){m_bUseShader = us;}
+	inline GLfloat getMaxX(){return m_fMaxX;}
+	inline GLfloat getMinX(){return m_fMinX;}
+	inline GLfloat getMaxY(){return m_fMaxY;}
+	inline GLfloat getMinY(){return m_fMinY;}
+	inline GLfloat getMaxZ(){return m_fMaxZ;}
+	inline GLfloat getMinZ(){return m_fMinZ;}
 	Mesh();
     Mesh(const char *name);
 	~Mesh();
+	void clear();
 };
 void getFilePath(const char *filename,char*childfilename);
 

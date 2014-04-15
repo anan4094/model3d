@@ -89,6 +89,7 @@ bool Mesh::loadObj(const char* filename){
 	for (;*end;end++);
 	GLfloat gf[3];
 //	int repp=0,rept=0,repn=0;
+	bool bMeetVertex = false;
 	while (true){
 		if(*p=='v'){
 			p++;
@@ -155,6 +156,19 @@ bool Mesh::loadObj(const char* filename){
 				v.z=gf[2];
 				if (type==1){
 					ipositions.push_back(v);
+					if (bMeetVertex){
+						if(v.x>m_fMaxX)m_fMaxX=v.x;
+						else if(v.x<m_fMinX)m_fMinX=v.x;
+						if(v.y>m_fMaxY)m_fMaxY=v.y;
+						else if(v.y<m_fMinY)m_fMinY=v.y;
+						if(v.z>m_fMaxZ)m_fMaxZ=v.z;
+						else if(v.z<m_fMinZ)m_fMinZ=v.z;
+					}else{
+						bMeetVertex = true;
+						m_fMaxX = m_fMinX = v.x;
+						m_fMaxY = m_fMinY = v.y;
+						m_fMaxZ = m_fMinZ = v.z;
+					}
 				}else if (type==2){
 					inormals.push_back(v);
 				}else if(type==3){
@@ -527,7 +541,7 @@ void Mesh::draw(){
 					pinms->use();
 					pinms->setModelViewProjectionMatrix(_modelViewProjectionMatrix.get());
 					pinms->setNormalMatrix(_normalMatrix.get());
-					Texture *pctex=(Texture*)(pmtl->map_kd);
+					Texture *pctex=pmtl->map_kd;
 					glActiveTexture(GL_TEXTURE0);
 					glBindTexture(GL_TEXTURE_2D,pctex->get());
 					pinms->setTexture(0);
@@ -544,7 +558,7 @@ void Mesh::draw(){
 					MapShader *pims = MapShader::sharedInstance();
 					pims->use();
 					pims->setModelViewProjectionMatrix(_modelViewProjectionMatrix.get());
-					Texture *pctex=(Texture*)(pmtl->map_kd);
+					Texture *pctex=pmtl->map_kd;
 					glActiveTexture(GL_TEXTURE0);
 					glBindTexture(GL_TEXTURE_2D,pctex->get());
 					pims->setTexture(0);
@@ -582,6 +596,10 @@ Mesh::Mesh(const char* filename):m_nVerticesID(0)
 }
 
 Mesh::~Mesh(){
+	clear();
+}
+
+void Mesh::clear(){
 	if (m_pVertices){
 		delete[] m_pVertices;
 		m_pVertices = nullptr;
@@ -595,13 +613,13 @@ Mesh::~Mesh(){
 		m_pTexCoords = nullptr;
 	}
 	if (m_nVertexArraysID) {
-		//glDeleteVertexArrays(1,&m_nVertexArraysID);
+		glDeleteVertexArrays(1,&m_nVertexArraysID);
 	}
 	if (m_nVerticesID){
-		//glDeleteBuffers(1,&m_nVerticesID);
+		glDeleteBuffers(1,&m_nVerticesID);
 	}
     if (m_nNormalsID){
-		//glDeleteBuffers(1,&m_nNormalsID);
+		glDeleteBuffers(1,&m_nNormalsID);
 	}
 	m_iMaterialArray.clear();
 }

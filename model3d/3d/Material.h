@@ -10,6 +10,7 @@
 #define __model3d__Material__
 
 #include "platform.h"
+#include "Texture.h"
 
 #include <vector>
 
@@ -53,7 +54,7 @@ typedef struct mtl{
         };
         GLfloat d[3];
     }ke;
-    void* map_kd;
+    Texture* map_kd;
 }Mtl;
 
 class Material{

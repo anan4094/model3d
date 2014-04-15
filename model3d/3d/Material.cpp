@@ -153,7 +153,7 @@ bool Material::loadMtl(const char*filename){
 				name[ind]=0;
 				getFilePath(filename,name);
 				Texture *ctex = new Texture(name);
-				mtl.map_kd = (void*)ctex;
+				mtl.map_kd = ctex;
 			}
 		}else if(*p=='#'){
 			for (p++;*p!='\n'&&*p!='\r'&&p!=end;p++);
@@ -231,7 +231,7 @@ void Material::clear(){
 	for (;itr!=end;itr++){
 		Mtl &mtl = *itr;
 		if (mtl.map_kd){
-			delete (Texture*)mtl.map_kd;
+			delete mtl.map_kd;
 		}
 	}
 	m_imtls.clear();

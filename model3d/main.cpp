@@ -116,8 +116,8 @@ int main(int argc, char **argv)
 	init();
     pmesh=new Mesh();
     //下面两个方法要在load后加载
-    pmesh->setForceGenerateNormal(false);
-    pmesh->setSmoothSurface(true);
+    pmesh->setForceGenerateNormal(true);
+    pmesh->setSmoothSurface(false);
 #ifdef __APPLE__
     //mesh.load("/Users/anan/Documents/github/model3d/assert/female/female.obj");
     pmesh->load("/Users/anan/Documents/github/model3d/assert/tails/Tails.obj");
@@ -125,29 +125,20 @@ int main(int argc, char **argv)
 #else
 	//pmesh->load("../assert/tails/tails.obj");
 	//pmesh->load("../assert/female/female.obj");
-	pmesh->load("../assert/peri/peri.obj");
-
+	//pmesh->load("../assert/peri/peri.obj");
+	pmesh->load("B:/wyj.obj");
 #endif
     //
     //pmesh->initShader();
 	pmesh->setUseShader(true);
+	GLfloat hy = pmesh->getMaxY();
+	GLfloat ly = pmesh->getMinY();
     pmesh->setRotationAxis(0, 1, 0);
     
     //let female.obj show us
-    pmesh->setScale(0.02, 0.02, 0.02);
-	pmesh->setPosition(0, -16, -20);
-    
-	//let peri.obj show us
-	pmesh->setPosition(0, -16, -20);
-	pmesh->setScale(0.18, 0.18, 0.18);
-
-    //test
-    //pmesh->setPosition(0, 0, -20);
-	//pmesh->setScale(2, 2, 2);
-
-    //let tails.obj show us
-    //pmesh->setScale(2.4f, 2.4f, 2.4f);
-	//pmesh->setPosition(0, -8, -20);
+	GLfloat scale = 18/(hy-ly);
+    pmesh->setScale(scale,scale,scale);
+	pmesh->setPosition(0, -9.0f*(hy+ly)/(hy-ly), -20);
     
     mainScene.addSubNode(pmesh);
 
