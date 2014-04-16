@@ -24,6 +24,7 @@
 		27FA499218FA2C8D00BB917D /* Texture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 27FA498C18FA2C8D00BB917D /* Texture.cpp */; };
 		27FCF13418E7F4A100A390F8 /* NormalMapShader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 27FCF13218E7F4A100A390F8 /* NormalMapShader.cpp */; };
 		27FCF13D18E8077F00A390F8 /* Matrices.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 27FCF13918E8077F00A390F8 /* Matrices.cpp */; };
+		27FD195A18FE921D00330F74 /* NormalColorShader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 27FD195818FE921D00330F74 /* NormalColorShader.cpp */; };
 		27FF669518F386C5008F8626 /* Timer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 27FF669318F386C5008F8626 /* Timer.cpp */; };
 /* End PBXBuildFile section */
 
@@ -79,6 +80,10 @@
 		27FCF13918E8077F00A390F8 /* Matrices.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Matrices.cpp; sourceTree = "<group>"; };
 		27FCF13A18E8077F00A390F8 /* Matrices.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Matrices.h; sourceTree = "<group>"; };
 		27FCF13C18E8077F00A390F8 /* Vectors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Vectors.h; sourceTree = "<group>"; };
+		27FD195618FE8B8E00330F74 /* shader.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = shader.frag; sourceTree = "<group>"; };
+		27FD195718FE8B8E00330F74 /* shader.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = shader.vert; sourceTree = "<group>"; };
+		27FD195818FE921D00330F74 /* NormalColorShader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NormalColorShader.cpp; sourceTree = "<group>"; };
+		27FD195918FE921D00330F74 /* NormalColorShader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NormalColorShader.h; sourceTree = "<group>"; };
 		27FF669318F386C5008F8626 /* Timer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Timer.cpp; sourceTree = "<group>"; };
 		27FF669418F386C5008F8626 /* Timer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Timer.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -101,6 +106,8 @@
 			isa = PBXGroup;
 			children = (
 				27FCF0E818E7C11500A390F8 /* base */,
+				27FD195818FE921D00330F74 /* NormalColorShader.cpp */,
+				27FD195918FE921D00330F74 /* NormalColorShader.h */,
 				27FCF13318E7F4A100A390F8 /* NormalMapShader.h */,
 				27FCF13218E7F4A100A390F8 /* NormalMapShader.cpp */,
 				2702465718F83BCE00904E6A /* MapShader.h */,
@@ -159,6 +166,7 @@
 		278D74BB18F3A58A00324A19 /* shader */ = {
 			isa = PBXGroup;
 			children = (
+				27FD195518FE8B6000330F74 /* normal_color */,
 				27FA499318FA3CF000BB917D /* map */,
 				278D74BC18F3A5AC00324A19 /* normal_map */,
 			);
@@ -255,6 +263,15 @@
 			path = matrix;
 			sourceTree = "<group>";
 		};
+		27FD195518FE8B6000330F74 /* normal_color */ = {
+			isa = PBXGroup;
+			children = (
+				27FD195618FE8B8E00330F74 /* shader.frag */,
+				27FD195718FE8B8E00330F74 /* shader.vert */,
+			);
+			path = normal_color;
+			sourceTree = "<group>";
+		};
 		27FF669218F38503008F8626 /* tools */ = {
 			isa = PBXGroup;
 			children = (
@@ -321,6 +338,7 @@
 				2700A02018E50E8B0030CA02 /* Shader.cpp in Sources */,
 				27FCF13418E7F4A100A390F8 /* NormalMapShader.cpp in Sources */,
 				27FCF13D18E8077F00A390F8 /* Matrices.cpp in Sources */,
+				27FD195A18FE921D00330F74 /* NormalColorShader.cpp in Sources */,
 				27FA498E18FA2C8D00BB917D /* Material.cpp in Sources */,
 				27F667BD18F7C5D100CB75C5 /* stb_image_aug.c in Sources */,
 				27FA498F18FA2C8D00BB917D /* Mesh.cpp in Sources */,

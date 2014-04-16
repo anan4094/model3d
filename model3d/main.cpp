@@ -120,7 +120,7 @@ int main(int argc, char **argv)
     pmesh->setSmoothSurface(false);
 #ifdef __APPLE__
     //mesh.load("/Users/anan/Documents/github/model3d/assert/female/female.obj");
-    pmesh->load("/Users/anan/Documents/github/model3d/assert/tails/Tails.obj");
+    pmesh->load("/Users/anan/Documents/github/model3d/assert/tails/tails.obj");
     //pmesh->load("/Users/anan/Documents/github/model3d/assert/peri/peri.obj");
 #else
 	//pmesh->load("../assert/tails/tails.obj");
