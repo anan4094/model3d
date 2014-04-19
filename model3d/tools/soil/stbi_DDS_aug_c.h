@@ -86,7 +86,7 @@ static int dds_test(stbi *s)
 int      stbi_dds_test_file        (FILE *f)
 {
    stbi s;
-   int r,n = ftell(f);
+   int r,n = (int)ftell(f);
    start_file(&s,f);
    r = dds_test(&s);
    fseek(f,n,SEEK_SET);

@@ -6,13 +6,6 @@
 #include "NormalMapShader.h"
 #include "NormalColorShader.h"
 #include "MapShader.h"
-#ifdef __APPLE__
-#define GEN_VERTEX_ARRAYS glGenVertexArraysAPPLE
-#define BIND_VERTEX_ARRAY glBindVertexArrayAPPLE
-#else
-#define GEN_VERTEX_ARRAYS glGenVertexArrays
-#define BIND_VERTEX_ARRAY glBindVertexArray
-#endif
 
 #define BUFF_LEN (2048)
 #define LINE_LEN (128)
@@ -419,8 +412,8 @@ bool Mesh::loadObj(const char* filename){
     m_pNormals[16]=0;
     m_pNormals[17]=1;*/
     
-	GEN_VERTEX_ARRAYS(1, &m_nVertexArraysID);
-	BIND_VERTEX_ARRAY(m_nVertexArraysID);
+	glGenVertexArrays(1, &m_nVertexArraysID);
+	glBindVertexArray(m_nVertexArraysID);
 
 	glGenBuffers(1, &m_nVerticesID);
 	glBindBuffer(GL_ARRAY_BUFFER, m_nVerticesID);
@@ -448,7 +441,7 @@ bool Mesh::loadObj(const char* filename){
 	}
 
 	glBindBuffer(GL_ARRAY_BUFFER,0);
-	BIND_VERTEX_ARRAY(0);
+	glBindVertexArray(0);
 
 	delete []m_pVertices;
 	m_pVertices=nullptr;
@@ -530,7 +523,7 @@ void Mesh::draw(){
 		_modelViewProjectionMatrix.transpose();
 
 		unsigned long nSize = m_iMaterialArray.size();
-		BIND_VERTEX_ARRAY(m_nVertexArraysID);
+		glBindVertexArray(m_nVertexArraysID);
 		for (unsigned long i=0; i<nSize; i++) {
 			MtlInfo &minf = m_iMaterialArray[i];
 			Mtl*pmtl=m_iMaterial.find(minf.name);
@@ -566,7 +559,7 @@ void Mesh::draw(){
 			}
 			glDrawArrays( GL_TRIANGLES,minf.first,minf.size);
 		}
-		BIND_VERTEX_ARRAY(0);
+		glBindVertexArray(0);
 		glUseProgram(0);
     }
 }

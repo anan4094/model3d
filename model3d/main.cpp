@@ -19,7 +19,7 @@ void getGlVersion( int *major, int *minor )
         fprintf( stderr, "Invalid GL_VERSION format!!!\n" );
     }
 }
-void init()  
+/*void init()
 {
     glewExperimental = true;
     GLenum err = glewInit();
@@ -40,7 +40,7 @@ void init()
 	glClearColor(0.9f, 0.9f, 0.9f, 0.0f);
 	glShadeModel(GL_SMOOTH);
     glLightModeli(GL_LIGHT_MODEL_TWO_SIDE , GL_FALSE);
-}  
+}*/
 void draw_triangle()  
 {  
 	glBegin(GL_POLYGON);  
@@ -50,7 +50,7 @@ void draw_triangle()
 	glVertex3f(-4.0f, 4.0f, -20.0f);
 	glEnd();  
 }  
-void display()  
+void display(GLFWwindow*window)
 {  
 	glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
     rad+=.1f;
@@ -83,9 +83,9 @@ void display()
     pmesh->setRadian(rad);
 	mainScene.draw();
 	//draw_triangle();
-	glutSwapBuffers();
-	glutPostRedisplay();
-}  
+	glfwSwapBuffers(window);
+    glfwPollEvents();
+}
 void reshape(int w, int h)  
 {  
 	glViewport(0, 0, (GLsizei) w, (GLsizei) h);
@@ -100,33 +100,49 @@ void keyboard(unsigned char key,int x,int y){
         loop = false;
     }
 }
+static void error_callback(int error, const char* description)
+{
+    fputs(description, stderr);
+}
+
+static void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods)
+{
+    if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
+        glfwSetWindowShouldClose(window, GL_TRUE);
+}
 int main(int argc, char **argv)
 {
-    char buf[1024];
+    //char buf[1024];
     //getcwd(buf,1024);
-    glutInit(&argc, argv);
-	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB|GLUT_DEPTH);
-	glutInitWindowPosition(600, 400);  
-	glutInitWindowSize(480, 480);
-#ifdef WIN32
-	glutSetOption(GLUT_ACTION_ON_WINDOW_CLOSE,GLUT_ACTION_GLUTMAINLOOP_RETURNS);
-#endif
-	glutCreateWindow("OpenGL Hello World");
-
-	init();
+    GLFWwindow* window;
+    
+    glfwSetErrorCallback(error_callback);
+    
+    if (!glfwInit())
+        exit(EXIT_FAILURE);
+    
+    window = glfwCreateWindow(640, 480, "Simple example", NULL, NULL);
+    if (!window)
+    {
+        glfwTerminate();
+        exit(EXIT_FAILURE);
+    }
+    
+    glfwMakeContextCurrent(window);
+    
+    glfwSetKeyCallback(window, key_callback);
     pmesh=new Mesh();
     //下面两个方法要在load后加载
     pmesh->setForceGenerateNormal(true);
     pmesh->setSmoothSurface(false);
 #ifdef __APPLE__
     //mesh.load("/Users/anan/Documents/github/model3d/assert/female/female.obj");
-    pmesh->load("/Users/anan/Documents/github/model3d/assert/tails/tails.obj");
-    //pmesh->load("/Users/anan/Documents/github/model3d/assert/peri/peri.obj");
+    //pmesh->load("/Users/anan/Documents/github/model3d/assert/tails/tails.obj");
+    pmesh->load("/Users/anan/Documents/github/model3d/assert/peri/peri.obj");
 #else
 	//pmesh->load("../assert/tails/tails.obj");
 	//pmesh->load("../assert/female/female.obj");
 	//pmesh->load("../assert/peri/peri.obj");
-	pmesh->load("B:/wyj.obj");
 #endif
     //
     //pmesh->initShader();
@@ -142,17 +158,20 @@ int main(int argc, char **argv)
     
     mainScene.addSubNode(pmesh);
 
-	glColor3f(1.0f, 0.0f, 1.0f);
-	glutDisplayFunc(display);  
-	glutReshapeFunc(reshape);
-    glutKeyboardFunc(keyboard);
-	while (loop) {
-#ifdef __APPLE__
-		glutCheckLoop();
-#else
-		glutMainLoopEvent();
-#endif
+    while (!glfwWindowShouldClose(window))
+    {
+        int width, height;
+        
+        glfwGetFramebufferSize(window, &width, &height);
+        
+        reshape(width,height);
+        display(window);
     }
+    
+    glfwDestroyWindow(window);
+    
+    glfwTerminate();
+    exit(EXIT_SUCCESS);
 	delete pmesh;
 	return 0;  
-}  
+}

@@ -1574,7 +1574,7 @@ int stbi_jpeg_test_file(FILE *f)
 {
    int n,r;
    jpeg j;
-   n = ftell(f);
+   n = (int)ftell(f);
    start_file(&j.s, f);
    r = decode_jpeg_header(&j, SCAN_type);
    fseek(f,n,SEEK_SET);
@@ -2411,7 +2411,7 @@ int stbi_png_test_file(FILE *f)
 {
    png p;
    int n,r;
-   n = ftell(f);
+   n = (int)ftell(f);
    start_file(&p.s, f);
    r = parse_png_file(&p, SCAN_type,STBI_default);
    fseek(f,n,SEEK_SET);
@@ -2453,7 +2453,7 @@ static int bmp_test(stbi *s)
 int      stbi_bmp_test_file        (FILE *f)
 {
    stbi s;
-   int r,n = ftell(f);
+   int r,n = (int)ftell(f);
    start_file(&s,f);
    r = bmp_test(&s);
    fseek(f,n,SEEK_SET);
@@ -2755,7 +2755,7 @@ static int tga_test(stbi *s)
 int      stbi_tga_test_file        (FILE *f)
 {
    stbi s;
-   int r,n = ftell(f);
+   int r,n = (int)ftell(f);
    start_file(&s, f);
    r = tga_test(&s);
    fseek(f,n,SEEK_SET);
@@ -3028,7 +3028,7 @@ static int psd_test(stbi *s)
 int stbi_psd_test_file(FILE *f)
 {
    stbi s;
-   int r,n = ftell(f);
+   int r,n = (int)ftell(f);
    start_file(&s, f);
    r = psd_test(&s);
    fseek(f,n,SEEK_SET);
@@ -3254,7 +3254,7 @@ int stbi_hdr_test_memory(stbi_uc const *buffer, int len)
 int stbi_hdr_test_file(FILE *f)
 {
    stbi s;
-   int r,n = ftell(f);
+   int r,n = (int)ftell(f);
    start_file(&s, f);
    r = hdr_test(&s);
    fseek(f,n,SEEK_SET);
@@ -3345,11 +3345,11 @@ static float *hdr_load(stbi *s, int *x, int *y, int *comp, int req_comp)
    token = hdr_gettoken(s,buffer);
    if (strncmp(token, "-Y ", 3))  return epf("unsupported data layout", "Unsupported HDR format");
    token += 3;
-   height = strtol(token, &token, 10);
+   height = (int)strtol(token, &token, 10);
    while (*token == ' ') ++token;
    if (strncmp(token, "+X ", 3))  return epf("unsupported data layout", "Unsupported HDR format");
    token += 3;
-   width = strtol(token, NULL, 10);
+   width = (int)strtol(token, NULL, 10);
 
 	*x = width;
 	*y = height;
@@ -3452,11 +3452,11 @@ static stbi_uc *hdr_load_rgbe(stbi *s, int *x, int *y, int *comp, int req_comp)
    token = hdr_gettoken(s,buffer);
    if (strncmp(token, "-Y ", 3))  return epuc("unsupported data layout", "Unsupported HDR format");
    token += 3;
-   height = strtol(token, &token, 10);
+   height = (int)strtol(token, &token, 10);
    while (*token == ' ') ++token;
    if (strncmp(token, "+X ", 3))  return epuc("unsupported data layout", "Unsupported HDR format");
    token += 3;
-   width = strtol(token, NULL, 10);
+   width = (int)strtol(token, NULL, 10);
 
 	*x = width;
 	*y = height;

@@ -12,7 +12,10 @@
 		271DA60518DFC0D600BC7A8C /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 271DA60318DFC0D600BC7A8C /* main.cpp */; };
 		271DA60718DFC1BF00BC7A8C /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 271DA60618DFC1BF00BC7A8C /* OpenGL.framework */; };
 		271DA60918DFC1DF00BC7A8C /* GLUT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 271DA60818DFC1DF00BC7A8C /* GLUT.framework */; };
-		27D968CE18E2A94000E7AF37 /* libGLEW.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 27D968CD18E2A94000E7AF37 /* libGLEW.a */; };
+		27891FD819000A6A00C6C6AD /* Application.mm in Sources */ = {isa = PBXBuildFile; fileRef = 27891FD619000A6A00C6C6AD /* Application.mm */; };
+		27D5E57B190221D200D96450 /* libglfw3.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 27D5E57A190221D200D96450 /* libglfw3.a */; };
+		27D5E59A19022C6C00D96450 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27D5E59919022C6C00D96450 /* Cocoa.framework */; };
+		27D5E59E190230F200D96450 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27D5E59D190230F200D96450 /* QuartzCore.framework */; };
 		27F667BA18F7C5D100CB75C5 /* image_DXT.c in Sources */ = {isa = PBXBuildFile; fileRef = 27F667B018F7C5D100CB75C5 /* image_DXT.c */; };
 		27F667BB18F7C5D100CB75C5 /* image_helper.c in Sources */ = {isa = PBXBuildFile; fileRef = 27F667B218F7C5D100CB75C5 /* image_helper.c */; };
 		27F667BC18F7C5D100CB75C5 /* soil.c in Sources */ = {isa = PBXBuildFile; fileRef = 27F667B418F7C5D100CB75C5 /* soil.c */; };
@@ -26,6 +29,7 @@
 		27FCF13D18E8077F00A390F8 /* Matrices.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 27FCF13918E8077F00A390F8 /* Matrices.cpp */; };
 		27FD195A18FE921D00330F74 /* NormalColorShader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 27FD195818FE921D00330F74 /* NormalColorShader.cpp */; };
 		27FF669518F386C5008F8626 /* Timer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 27FF669318F386C5008F8626 /* Timer.cpp */; };
+		27FFAD5818FEDEED00C9C28D /* Dispatcher.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 27FFAD5618FEDEED00C9C28D /* Dispatcher.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -43,13 +47,19 @@
 /* Begin PBXFileReference section */
 		2700A01E18E50E8B0030CA02 /* Shader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Shader.cpp; sourceTree = "<group>"; };
 		2700A01F18E50E8B0030CA02 /* Shader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Shader.h; sourceTree = "<group>"; };
-		2701E04018DFC03500723795 /* model3d */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = model3d; sourceTree = BUILT_PRODUCTS_DIR; };
+		2701E04018DFC03500723795 /* model3d_mac */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = model3d_mac; sourceTree = BUILT_PRODUCTS_DIR; };
 		2702465618F83BCE00904E6A /* MapShader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MapShader.cpp; sourceTree = "<group>"; };
 		2702465718F83BCE00904E6A /* MapShader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapShader.h; sourceTree = "<group>"; };
 		271DA60318DFC0D600BC7A8C /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		271DA60618DFC1BF00BC7A8C /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
 		271DA60818DFC1DF00BC7A8C /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = System/Library/Frameworks/GLUT.framework; sourceTree = SDKROOT; };
-		27D968CD18E2A94000E7AF37 /* libGLEW.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libGLEW.a; path = /opt/local/lib/libGLEW.a; sourceTree = "<absolute>"; };
+		27891FD619000A6A00C6C6AD /* Application.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Application.mm; sourceTree = "<group>"; };
+		27891FD719000A6A00C6C6AD /* Application.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Application.h; sourceTree = "<group>"; };
+		27D5E57A190221D200D96450 /* libglfw3.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libglfw3.a; path = model3d/app/glfw3/prebuilt/mac/libglfw3.a; sourceTree = "<group>"; };
+		27D5E58F1902285000D96450 /* glfw3.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = glfw3.h; sourceTree = "<group>"; };
+		27D5E5901902285000D96450 /* glfw3native.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = glfw3native.h; sourceTree = "<group>"; };
+		27D5E59919022C6C00D96450 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		27D5E59D190230F200D96450 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		27F667B018F7C5D100CB75C5 /* image_DXT.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = image_DXT.c; sourceTree = "<group>"; };
 		27F667B118F7C5D100CB75C5 /* image_DXT.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = image_DXT.h; sourceTree = "<group>"; };
 		27F667B218F7C5D100CB75C5 /* image_helper.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = image_helper.c; sourceTree = "<group>"; };
@@ -86,6 +96,8 @@
 		27FD195918FE921D00330F74 /* NormalColorShader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NormalColorShader.h; sourceTree = "<group>"; };
 		27FF669318F386C5008F8626 /* Timer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Timer.cpp; sourceTree = "<group>"; };
 		27FF669418F386C5008F8626 /* Timer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Timer.h; sourceTree = "<group>"; };
+		27FFAD5618FEDEED00C9C28D /* Dispatcher.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Dispatcher.cpp; sourceTree = "<group>"; };
+		27FFAD5718FEDEED00C9C28D /* Dispatcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Dispatcher.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,7 +105,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				27D968CE18E2A94000E7AF37 /* libGLEW.a in Frameworks */,
+				27D5E57B190221D200D96450 /* libglfw3.a in Frameworks */,
+				27D5E59E190230F200D96450 /* QuartzCore.framework in Frameworks */,
+				27D5E59A19022C6C00D96450 /* Cocoa.framework in Frameworks */,
 				271DA60918DFC1DF00BC7A8C /* GLUT.framework in Frameworks */,
 				271DA60718DFC1BF00BC7A8C /* OpenGL.framework in Frameworks */,
 			);
@@ -129,7 +143,7 @@
 		2701E04118DFC03500723795 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				2701E04018DFC03500723795 /* model3d */,
+				2701E04018DFC03500723795 /* model3d_mac */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -137,6 +151,7 @@
 		2701E04218DFC03500723795 /* model3d */ = {
 			isa = PBXGroup;
 			children = (
+				27FFAD5518FEDE2600C9C28D /* event */,
 				27F667C218F7DE5C00CB75C5 /* app */,
 				27FF669218F38503008F8626 /* tools */,
 				27808DDE18EDB11200B76A2C /* 3d */,
@@ -163,6 +178,15 @@
 			path = 3d;
 			sourceTree = "<group>";
 		};
+		27891FD5190008BC00C6C6AD /* mac */ = {
+			isa = PBXGroup;
+			children = (
+				27891FD719000A6A00C6C6AD /* Application.h */,
+				27891FD619000A6A00C6C6AD /* Application.mm */,
+			);
+			path = mac;
+			sourceTree = "<group>";
+		};
 		278D74BB18F3A58A00324A19 /* shader */ = {
 			isa = PBXGroup;
 			children = (
@@ -183,10 +207,37 @@
 			path = ../../assert/shader/normal_map;
 			sourceTree = "<group>";
 		};
+		27D5E58C1902285000D96450 /* glfw3 */ = {
+			isa = PBXGroup;
+			children = (
+				27D5E58D1902285000D96450 /* include */,
+			);
+			path = glfw3;
+			sourceTree = "<group>";
+		};
+		27D5E58D1902285000D96450 /* include */ = {
+			isa = PBXGroup;
+			children = (
+				27D5E58E1902285000D96450 /* mac */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
+		27D5E58E1902285000D96450 /* mac */ = {
+			isa = PBXGroup;
+			children = (
+				27D5E58F1902285000D96450 /* glfw3.h */,
+				27D5E5901902285000D96450 /* glfw3native.h */,
+			);
+			path = mac;
+			sourceTree = "<group>";
+		};
 		27D968CF18E2CC8600E7AF37 /* framework */ = {
 			isa = PBXGroup;
 			children = (
-				27D968CD18E2A94000E7AF37 /* libGLEW.a */,
+				27D5E57A190221D200D96450 /* libglfw3.a */,
+				27D5E59D190230F200D96450 /* QuartzCore.framework */,
+				27D5E59919022C6C00D96450 /* Cocoa.framework */,
 				271DA60818DFC1DF00BC7A8C /* GLUT.framework */,
 				271DA60618DFC1BF00BC7A8C /* OpenGL.framework */,
 			);
@@ -222,6 +273,8 @@
 		27F667C218F7DE5C00CB75C5 /* app */ = {
 			isa = PBXGroup;
 			children = (
+				27D5E58C1902285000D96450 /* glfw3 */,
+				27891FD5190008BC00C6C6AD /* mac */,
 				27F667C618F7E35E00CB75C5 /* platform.h */,
 			);
 			path = app;
@@ -282,12 +335,21 @@
 			path = tools;
 			sourceTree = "<group>";
 		};
+		27FFAD5518FEDE2600C9C28D /* event */ = {
+			isa = PBXGroup;
+			children = (
+				27FFAD5618FEDEED00C9C28D /* Dispatcher.cpp */,
+				27FFAD5718FEDEED00C9C28D /* Dispatcher.h */,
+			);
+			path = event;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		2701E03F18DFC03500723795 /* model3d */ = {
+		2701E03F18DFC03500723795 /* model3d_mac */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 2701E04918DFC03500723795 /* Build configuration list for PBXNativeTarget "model3d" */;
+			buildConfigurationList = 2701E04918DFC03500723795 /* Build configuration list for PBXNativeTarget "model3d_mac" */;
 			buildPhases = (
 				2701E03C18DFC03500723795 /* Sources */,
 				2701E03D18DFC03500723795 /* Frameworks */,
@@ -297,9 +359,9 @@
 			);
 			dependencies = (
 			);
-			name = model3d;
+			name = model3d_mac;
 			productName = model3d;
-			productReference = 2701E04018DFC03500723795 /* model3d */;
+			productReference = 2701E04018DFC03500723795 /* model3d_mac */;
 			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
@@ -323,7 +385,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				2701E03F18DFC03500723795 /* model3d */,
+				2701E03F18DFC03500723795 /* model3d_mac */,
 			);
 		};
 /* End PBXProject section */
@@ -335,6 +397,7 @@
 			files = (
 				27FA499218FA2C8D00BB917D /* Texture.cpp in Sources */,
 				27F667BC18F7C5D100CB75C5 /* soil.c in Sources */,
+				27891FD819000A6A00C6C6AD /* Application.mm in Sources */,
 				2700A02018E50E8B0030CA02 /* Shader.cpp in Sources */,
 				27FCF13418E7F4A100A390F8 /* NormalMapShader.cpp in Sources */,
 				27FCF13D18E8077F00A390F8 /* Matrices.cpp in Sources */,
@@ -346,6 +409,7 @@
 				27FA499118FA2C8D00BB917D /* Scene.cpp in Sources */,
 				27F667BB18F7C5D100CB75C5 /* image_helper.c in Sources */,
 				27FA499018FA2C8D00BB917D /* Node.cpp in Sources */,
+				27FFAD5818FEDEED00C9C28D /* Dispatcher.cpp in Sources */,
 				2702465818F83BCE00904E6A /* MapShader.cpp in Sources */,
 				27F667BA18F7C5D100CB75C5 /* image_DXT.c in Sources */,
 				271DA60518DFC0D600BC7A8C /* main.cpp in Sources */,
@@ -431,11 +495,10 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
-					/opt/local/include/GL,
 				);
-				LIBRARY_SEARCH_PATHS = /opt/local/lib;
+				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/model3d/app/glfw3/prebuilt/mac";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/app $(SRCROOT)/shader $(SRCROOT)/shader/base $(SRCROOT)/3d $(SRCROOT)/tools/timer $(SRCROOT)/tools/matrix $(SRCROOT)/tools/soil";
+				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/app $(SRCROOT)/shader $(SRCROOT)/shader/base $(SRCROOT)/3d $(SRCROOT)/tools/timer $(SRCROOT)/tools/matrix $(SRCROOT)/tools/soil $(SRCROOT)/app/glfw3/include/mac";
 			};
 			name = Debug;
 		};
@@ -445,11 +508,10 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
-					/opt/local/include/GL,
 				);
-				LIBRARY_SEARCH_PATHS = /opt/local/lib;
+				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/model3d/app/glfw3/prebuilt/mac";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/app $(SRCROOT)/shader $(SRCROOT)/shader/base $(SRCROOT)/3d $(SRCROOT)/tools/timer $(SRCROOT)/tools/matrix $(SRCROOT)/tools/soil";
+				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/app $(SRCROOT)/shader $(SRCROOT)/shader/base $(SRCROOT)/3d $(SRCROOT)/tools/timer $(SRCROOT)/tools/matrix $(SRCROOT)/tools/soil $(SRCROOT)/app/glfw3/include/mac";
 			};
 			name = Release;
 		};
@@ -465,7 +527,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		2701E04918DFC03500723795 /* Build configuration list for PBXNativeTarget "model3d" */ = {
+		2701E04918DFC03500723795 /* Build configuration list for PBXNativeTarget "model3d_mac" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2701E04A18DFC03500723795 /* Debug */,
