@@ -12,7 +12,7 @@
 		271DA60518DFC0D600BC7A8C /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 271DA60318DFC0D600BC7A8C /* main.cpp */; };
 		271DA60718DFC1BF00BC7A8C /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 271DA60618DFC1BF00BC7A8C /* OpenGL.framework */; };
 		271DA60918DFC1DF00BC7A8C /* GLUT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 271DA60818DFC1DF00BC7A8C /* GLUT.framework */; };
-		27891FD819000A6A00C6C6AD /* Application.mm in Sources */ = {isa = PBXBuildFile; fileRef = 27891FD619000A6A00C6C6AD /* Application.mm */; };
+		27891FD819000A6A00C6C6AD /* Stage.mm in Sources */ = {isa = PBXBuildFile; fileRef = 27891FD619000A6A00C6C6AD /* Stage.mm */; };
 		27D5E57B190221D200D96450 /* libglfw3.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 27D5E57A190221D200D96450 /* libglfw3.a */; };
 		27D5E59A19022C6C00D96450 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27D5E59919022C6C00D96450 /* Cocoa.framework */; };
 		27D5E59E190230F200D96450 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27D5E59D190230F200D96450 /* QuartzCore.framework */; };
@@ -53,8 +53,8 @@
 		271DA60318DFC0D600BC7A8C /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		271DA60618DFC1BF00BC7A8C /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
 		271DA60818DFC1DF00BC7A8C /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = System/Library/Frameworks/GLUT.framework; sourceTree = SDKROOT; };
-		27891FD619000A6A00C6C6AD /* Application.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Application.mm; sourceTree = "<group>"; };
-		27891FD719000A6A00C6C6AD /* Application.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Application.h; sourceTree = "<group>"; };
+		27891FD619000A6A00C6C6AD /* Stage.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Stage.mm; sourceTree = "<group>"; };
+		27891FD719000A6A00C6C6AD /* Stage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Stage.h; sourceTree = "<group>"; };
 		27D5E57A190221D200D96450 /* libglfw3.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libglfw3.a; path = model3d/app/glfw3/prebuilt/mac/libglfw3.a; sourceTree = "<group>"; };
 		27D5E58F1902285000D96450 /* glfw3.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = glfw3.h; sourceTree = "<group>"; };
 		27D5E5901902285000D96450 /* glfw3native.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = glfw3native.h; sourceTree = "<group>"; };
@@ -181,8 +181,8 @@
 		27891FD5190008BC00C6C6AD /* mac */ = {
 			isa = PBXGroup;
 			children = (
-				27891FD719000A6A00C6C6AD /* Application.h */,
-				27891FD619000A6A00C6C6AD /* Application.mm */,
+				27891FD719000A6A00C6C6AD /* Stage.h */,
+				27891FD619000A6A00C6C6AD /* Stage.mm */,
 			);
 			path = mac;
 			sourceTree = "<group>";
@@ -273,6 +273,7 @@
 		27F667C218F7DE5C00CB75C5 /* app */ = {
 			isa = PBXGroup;
 			children = (
+				27FAF493190399CB00644504 /* base */,
 				27D5E58C1902285000D96450 /* glfw3 */,
 				27891FD5190008BC00C6C6AD /* mac */,
 				27F667C618F7E35E00CB75C5 /* platform.h */,
@@ -295,6 +296,13 @@
 				27FA499518FA3D0800BB917D /* shader.vert */,
 			);
 			path = map;
+			sourceTree = "<group>";
+		};
+		27FAF493190399CB00644504 /* base */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = base;
 			sourceTree = "<group>";
 		};
 		27FCF0E818E7C11500A390F8 /* base */ = {
@@ -397,7 +405,7 @@
 			files = (
 				27FA499218FA2C8D00BB917D /* Texture.cpp in Sources */,
 				27F667BC18F7C5D100CB75C5 /* soil.c in Sources */,
-				27891FD819000A6A00C6C6AD /* Application.mm in Sources */,
+				27891FD819000A6A00C6C6AD /* Stage.mm in Sources */,
 				2700A02018E50E8B0030CA02 /* Shader.cpp in Sources */,
 				27FCF13418E7F4A100A390F8 /* NormalMapShader.cpp in Sources */,
 				27FCF13D18E8077F00A390F8 /* Matrices.cpp in Sources */,
