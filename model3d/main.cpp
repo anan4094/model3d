@@ -1,7 +1,7 @@
 #define GLUT_DISABLE_ATEXIT_HACK
  
 #include "Mesh.h"
-#include "Scene.h"
+#include "Stage.h"
 #ifndef WIN32
 #include <unistd.h>
 #endif
@@ -9,38 +9,6 @@ Scene mainScene;
 Mesh *pmesh=nullptr;
 GLfloat rad=0;
 bool loop=true;
-//用来检查OpenGL版本，需要GLSL 2.0支持
-void getGlVersion( int *major, int *minor )
-{
-    const char* verstr = (const char*)glGetString( GL_VERSION );
-    if( (verstr == NULL) || (sscanf( verstr, "%d.%d", major, minor ) != 2) )
-    {
-        *major = *minor = 0;
-        fprintf( stderr, "Invalid GL_VERSION format!!!\n" );
-    }
-}
-void init()
-{
-    glewExperimental = true;
-    GLenum err = glewInit();
-    if (err != GLEW_OK ){
-        printf("Error: %s\n", glewGetErrorString(err));
-    }
-    int gl_major, gl_minor;
-    // Make sure that OpenGL 2.0 is supported by the driver
-    getGlVersion(&gl_major, &gl_minor);
-    printf("GL_VERSION major=%d minor=%d\n", gl_major, gl_minor);
-    if (gl_major < 2)
-    {
-        printf("GL_VERSION major=%d minor=%d\n", gl_major, gl_minor);
-        printf("Support for OpenGL 2.0 is required for this demo...exiting\n");
-        exit(1);
-    }
-
-	glClearColor(0.9f, 0.9f, 0.9f, 0.0f);
-	glShadeModel(GL_SMOOTH);
-    glLightModeli(GL_LIGHT_MODEL_TWO_SIDE , GL_FALSE);
-}
 void draw_triangle()  
 {  
 	glBegin(GL_POLYGON);  
@@ -100,38 +68,13 @@ void keyboard(unsigned char key,int x,int y){
         loop = false;
     }
 }
-static void error_callback(int error, const char* description)
-{
-    fputs(description, stderr);
-}
-
-static void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods)
-{
-    if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
-        glfwSetWindowShouldClose(window, GL_TRUE);
-}
 int main(int argc, char **argv)
 {
     //char buf[1024];
     //getcwd(buf,1024);
-    GLFWwindow* window;
-    
-    glfwSetErrorCallback(error_callback);
-    
-    if (!glfwInit())
-        exit(EXIT_FAILURE);
-    
-    window = glfwCreateWindow(640, 480, "Simple example", NULL, NULL);
-    if (!window)
-    {
-        glfwTerminate();
-        exit(EXIT_FAILURE);
-    }
-    
-    glfwMakeContextCurrent(window);
-    
-    glfwSetKeyCallback(window, key_callback);
-	init();
+    Stage *stage = new Stage();
+    stage->init();
+	//init();
     pmesh=new Mesh();
     //下面两个方法要在load后加载
     pmesh->setForceGenerateNormal(true);
@@ -145,34 +88,21 @@ int main(int argc, char **argv)
 	//pmesh->load("../assert/female/female.obj");
 	pmesh->load("../assert/peri/peri.obj");
 #endif
-    //
-    //pmesh->initShader();
 	pmesh->setUseShader(true);
 	GLfloat hy = pmesh->getMaxY();
 	GLfloat ly = pmesh->getMinY();
     pmesh->setRotationAxis(0, 1, 0);
     
-    //let female.obj show us
+    //let model show us
 	GLfloat scale = 18/(hy-ly);
     pmesh->setScale(scale,scale,scale);
 	pmesh->setPosition(0, -9.0f*(hy+ly)/(hy-ly), -20);
     
     mainScene.addSubNode(pmesh);
 
-    while (!glfwWindowShouldClose(window))
-    {
-        int width, height;
-        
-        glfwGetFramebufferSize(window, &width, &height);
-        
-        reshape(width,height);
-        display(window);
-    }
+    stage->run(&mainScene);
     
-    glfwDestroyWindow(window);
-    
-    glfwTerminate();
-    exit(EXIT_SUCCESS);
+    delete stage;
 	delete pmesh;
 	return 0;  
 }
