@@ -19,7 +19,7 @@ void getGlVersion( int *major, int *minor )
         fprintf( stderr, "Invalid GL_VERSION format!!!\n" );
     }
 }
-/*void init()
+void init()
 {
     glewExperimental = true;
     GLenum err = glewInit();
@@ -40,7 +40,7 @@ void getGlVersion( int *major, int *minor )
 	glClearColor(0.9f, 0.9f, 0.9f, 0.0f);
 	glShadeModel(GL_SMOOTH);
     glLightModeli(GL_LIGHT_MODEL_TWO_SIDE , GL_FALSE);
-}*/
+}
 void draw_triangle()  
 {  
 	glBegin(GL_POLYGON);  
@@ -131,6 +131,7 @@ int main(int argc, char **argv)
     glfwMakeContextCurrent(window);
     
     glfwSetKeyCallback(window, key_callback);
+	init();
     pmesh=new Mesh();
     //下面两个方法要在load后加载
     pmesh->setForceGenerateNormal(true);
@@ -142,7 +143,7 @@ int main(int argc, char **argv)
 #else
 	//pmesh->load("../assert/tails/tails.obj");
 	//pmesh->load("../assert/female/female.obj");
-	//pmesh->load("../assert/peri/peri.obj");
+	pmesh->load("../assert/peri/peri.obj");
 #endif
     //
     //pmesh->initShader();

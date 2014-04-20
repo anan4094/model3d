@@ -12,7 +12,8 @@
 #ifdef WIN32
 #include <windows.h>
 #include <GL/glew.h>
-#include <GL/freeglut.h>
+#include <GL/glut.h>
+#include "glfw3.h"
 #else
 //#include <glew.h>
 //#include <OpenGL/gl.h>
