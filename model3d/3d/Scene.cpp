@@ -7,19 +7,26 @@
 //
 
 #include "Scene.h"
+#include <vector>
+using namespace std;
 
 Matrix4 setFrustum(GLfloat l,GLfloat r,GLfloat b,GLfloat t,GLfloat n,GLfloat f);
-
-void Scene::addSubNode(Node *node){
-    node->setScene(this);
-    m_iSubNodes.push_back(node);
-}
 
 void Scene::draw(){
     vector<Node*>::iterator itr = m_iSubNodes.begin(),end = m_iSubNodes.end();
     for (; itr!=end; itr++) {
         (*itr)->draw();
     }
+}
+
+bool Scene::screenSizeChange(int width, int height){
+    reshape(width, height);
+    return true;
+}
+
+bool Scene::dispatcherTouchEvent(TouchEventType event,double x,double y){
+    printf("%d(%f,%f)\n",event,x,y);
+    return true;
 }
 
 void Scene::reshape(int w, int h){

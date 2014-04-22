@@ -14,20 +14,20 @@
 #include "Matrices.h"
 #include "Vectors.h"
 #include "Node.h"
-#include <vector>
-using namespace std;
+
 typedef struct camera{
     float x,y,z;
 }Camera;
 
-class Scene{
+class Scene:public Node{
 private:
     Camera m_sCamera;
     Matrix4 m_sProjection;
-    vector<Node*> m_iSubNodes;
-public:
-    void addSubNode(Node* node);
+    
     void reshape(int w,int h);
+public:
+    virtual bool screenSizeChange(int width,int height);
+    virtual bool dispatcherTouchEvent(TouchEventType event,double x,double y);
     void draw();
     inline const Matrix4& getProjection(){return m_sProjection;}
 };

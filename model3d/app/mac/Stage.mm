@@ -7,6 +7,7 @@
 //
 
 #import "Stage.h"
+#include "Event.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
@@ -14,6 +15,8 @@
 #include <time.h>
 #include <sys/types.h>
 
+double _x=0.0,_y=0.0;
+bool _cap = false;
 static long getCurrentMillSecond()
 {
     long lLastTime = 0;
@@ -34,11 +37,37 @@ static void key_callback(GLFWwindow* window, int key, int scancode, int action, 
     if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
         glfwSetWindowShouldClose(window, GL_TRUE);
 }
+static void cursor_pos_callback(GLFWwindow* window, double x, double y){
+    //printf("pos:(%f,%f)\n",x,y);
+    _x = x;
+    _y = y;
+    if (_cap) {
+        Stage::sharedInstance()->runningScene()->dispatcherTouchEvent(touchMove, _x, _y);
+    }
+}
+static void cursor_enter_callback(GLFWwindow* window, int x){
+    if (_cap&&!x) {
+        _cap = false;
+        Stage::sharedInstance()->runningScene()->dispatcherTouchEvent(touchEnd, _x, _y);
+    }
+}
+
+static void mouse_callback(GLFWwindow* window, int button, int action, int mods){
+    if (button == GLFW_MOUSE_BUTTON_LEFT){
+        if (action == GLFW_PRESS) {
+            _cap = true;
+            Stage::sharedInstance()->runningScene()->dispatcherTouchEvent(touchBegin, _x, _y);
+        }else if(action == GLFW_RELEASE){
+            _cap = false;
+            Stage::sharedInstance()->runningScene()->dispatcherTouchEvent(touchEnd, _x, _y);
+        }
+    }
+}
 
 Stage* Stage::sm_pSharedStage = 0;
 
 Stage::Stage():m_lAnimationInterval(1.0f/60.0f*1000.0f),m_pWindow(nullptr){
-    if (!sm_pSharedStage) {
+    if (sm_pSharedStage) {
         return;
     }
     sm_pSharedStage = this;
@@ -72,13 +101,19 @@ void Stage::init(){
     }
     
     glfwMakeContextCurrent(m_pWindow);
-    
+    glfwSetMouseButtonCallback(m_pWindow, mouse_callback);
     glfwSetKeyCallback(m_pWindow, key_callback);
+    glfwSetCursorPosCallback(m_pWindow, cursor_pos_callback);
+    glfwSetCursorEnterCallback(m_pWindow, cursor_enter_callback);
     glEnable(GL_DEPTH_TEST);
 }
 
 void Stage::addScene(Scene *scene){
     m_iScenes.push_back(scene);
+}
+
+Scene* Stage::runningScene(){
+    return m_iScenes.size()>0?m_iScenes.back():nullptr;
 }
 
 int Stage::run(){
@@ -88,11 +123,16 @@ int Stage::run(){
     if (!top_scene) {
         return 1;
     }
+    int width=0, height=0;
     while (!glfwWindowShouldClose(m_pWindow))
     {
-        int width, height;
-        glfwGetFramebufferSize(m_pWindow, &width, &height);
-        top_scene->reshape(width, height);
+        int nwidth, nheight;
+        glfwGetFramebufferSize(m_pWindow, &nwidth, &nheight);
+        if (nwidth!=width||nheight!=height) {
+            width=nwidth;
+            height=nheight;
+            top_scene->screenSizeChange(width, height);
+        }
         lastTime = getCurrentMillSecond();
         glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
         top_scene->draw();

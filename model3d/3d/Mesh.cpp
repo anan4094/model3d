@@ -1,4 +1,5 @@
 #include "Scene.h"
+#include "Stage.h"
 #include "Mesh.h"
 #include "Texture.h"
 #include <fstream>
@@ -464,9 +465,6 @@ int Mesh::initShader(){
 }
 
 void Mesh::draw(){
-    if (!m_piScene) {
-        return;
-    }
     if (!m_bUseShader) {
         glMatrixMode(GL_MODELVIEW);
         glLoadIdentity();
@@ -507,7 +505,7 @@ void Mesh::draw(){
         glDisableClientState(GL_NORMAL_ARRAY);
 		glDisableClientState(GL_TEXTURE_COORD_ARRAY);
     }else{
-		const Matrix4& projectionMatrix = m_piScene->getProjection();
+		const Matrix4& projectionMatrix = Stage::sharedInstance()->runningScene()->getProjection();
 
 		// Compute the model view matrix for the object rendered with GL
 		Matrix4 modelViewMatrix;
@@ -562,6 +560,13 @@ void Mesh::draw(){
 		glBindVertexArray(0);
 		glUseProgram(0);
     }
+}
+
+bool Mesh::screenSizeChange(int width, int height){
+    return false;
+}
+bool Mesh::dispatcherTouchEvent(TouchEventType event, double x, double y){
+    return false;
 }
 
 Mesh::Mesh():m_nVerticesID(0)

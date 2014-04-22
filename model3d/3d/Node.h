@@ -8,15 +8,20 @@
 
 #ifndef __model3d__Node__
 #define __model3d__Node__
+#include "Event.h"
+#include <vector>
+using namespace std;
 
 class Scene;
 
 class Node{
 protected:
-    Scene    *m_piScene;
+    vector<Node*> m_iSubNodes;
 public:
-    inline void setScene(Scene*scene){m_piScene = scene;}
+    void addSubNode(Node* node);
     virtual void draw() = 0;
+    virtual bool screenSizeChange(int width,int height)=0;
+    virtual bool dispatcherTouchEvent(TouchEventType event,double x,double y)=0;
 };
 
 #endif /* defined(__model3d__Node__) */

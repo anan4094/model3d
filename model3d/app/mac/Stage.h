@@ -16,6 +16,7 @@ public:
     virtual ~Stage();
     void init();
     void addScene(Scene*scene);
+    Scene *runningScene();
     int run(Scene*scene);
     int run();
     static Stage* sharedInstance();
