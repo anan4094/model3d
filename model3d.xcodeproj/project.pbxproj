@@ -12,8 +12,8 @@
 		271DA60518DFC0D600BC7A8C /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 271DA60318DFC0D600BC7A8C /* main.cpp */; };
 		271DA60718DFC1BF00BC7A8C /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 271DA60618DFC1BF00BC7A8C /* OpenGL.framework */; };
 		271DA60918DFC1DF00BC7A8C /* GLUT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 271DA60818DFC1DF00BC7A8C /* GLUT.framework */; };
+		2764A341190816340068A967 /* Stage.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2764A340190816340068A967 /* Stage.mm */; };
 		277EA4E919056C2E0065C78B /* TestScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 277EA4E719056C2E0065C78B /* TestScene.cpp */; };
-		27891FD819000A6A00C6C6AD /* Stage.mm in Sources */ = {isa = PBXBuildFile; fileRef = 27891FD619000A6A00C6C6AD /* Stage.mm */; };
 		27D5E57B190221D200D96450 /* libglfw3.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 27D5E57A190221D200D96450 /* libglfw3.a */; };
 		27D5E59A19022C6C00D96450 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27D5E59919022C6C00D96450 /* Cocoa.framework */; };
 		27D5E59E190230F200D96450 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27D5E59D190230F200D96450 /* QuartzCore.framework */; };
@@ -54,11 +54,11 @@
 		271DA60318DFC0D600BC7A8C /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		271DA60618DFC1BF00BC7A8C /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
 		271DA60818DFC1DF00BC7A8C /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = System/Library/Frameworks/GLUT.framework; sourceTree = SDKROOT; };
+		2764A33F190816270068A967 /* Stage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Stage.h; path = stage/Stage.h; sourceTree = "<group>"; };
+		2764A340190816340068A967 /* Stage.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = Stage.mm; path = stage/mac/Stage.mm; sourceTree = "<group>"; };
 		277EA4E519055ABA0065C78B /* Event.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Event.h; sourceTree = "<group>"; };
 		277EA4E719056C2E0065C78B /* TestScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TestScene.cpp; sourceTree = "<group>"; };
 		277EA4E819056C2E0065C78B /* TestScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestScene.h; sourceTree = "<group>"; };
-		27891FD619000A6A00C6C6AD /* Stage.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Stage.mm; sourceTree = "<group>"; };
-		27891FD719000A6A00C6C6AD /* Stage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Stage.h; sourceTree = "<group>"; };
 		27D5E57A190221D200D96450 /* libglfw3.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libglfw3.a; path = model3d/app/glfw3/prebuilt/mac/libglfw3.a; sourceTree = "<group>"; };
 		27D5E58F1902285000D96450 /* glfw3.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = glfw3.h; sourceTree = "<group>"; };
 		27D5E5901902285000D96450 /* glfw3native.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = glfw3native.h; sourceTree = "<group>"; };
@@ -184,13 +184,13 @@
 			path = 3d;
 			sourceTree = "<group>";
 		};
-		27891FD5190008BC00C6C6AD /* mac */ = {
+		27891FD5190008BC00C6C6AD /* platform */ = {
 			isa = PBXGroup;
 			children = (
-				27891FD719000A6A00C6C6AD /* Stage.h */,
-				27891FD619000A6A00C6C6AD /* Stage.mm */,
+				2764A33F190816270068A967 /* Stage.h */,
+				2764A340190816340068A967 /* Stage.mm */,
 			);
-			path = mac;
+			path = platform;
 			sourceTree = "<group>";
 		};
 		278D74BB18F3A58A00324A19 /* shader */ = {
@@ -281,7 +281,7 @@
 			children = (
 				27FAF493190399CB00644504 /* base */,
 				27D5E58C1902285000D96450 /* glfw3 */,
-				27891FD5190008BC00C6C6AD /* mac */,
+				27891FD5190008BC00C6C6AD /* platform */,
 				27F667C618F7E35E00CB75C5 /* platform.h */,
 			);
 			path = app;
@@ -412,7 +412,7 @@
 			files = (
 				27FA499218FA2C8D00BB917D /* Texture.cpp in Sources */,
 				27F667BC18F7C5D100CB75C5 /* soil.c in Sources */,
-				27891FD819000A6A00C6C6AD /* Stage.mm in Sources */,
+				2764A341190816340068A967 /* Stage.mm in Sources */,
 				2700A02018E50E8B0030CA02 /* Shader.cpp in Sources */,
 				27FCF13418E7F4A100A390F8 /* NormalMapShader.cpp in Sources */,
 				27FCF13D18E8077F00A390F8 /* Matrices.cpp in Sources */,
