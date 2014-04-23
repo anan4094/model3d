@@ -577,7 +577,7 @@ Mesh::Mesh():m_nVerticesID(0)
 	,m_pNormals(nullptr)
 	,m_pTexCoords(nullptr)
 	,m_piShader(nullptr)
-	,rax(0),ray(0),raz(1),x(0),y(0),z(0),scalex(1),scaley(1),scalez(1)
+	,rax(0),ray(0),raz(1),radian(0),x(0),y(0),z(0),scalex(1),scaley(1),scalez(1)
 	,m_bForceGenerateNormal(false),m_bSmoothSurface(false),m_bUseShader(false){
 }
 Mesh::Mesh(const char* filename):m_nVerticesID(0)
@@ -588,7 +588,7 @@ Mesh::Mesh(const char* filename):m_nVerticesID(0)
 	,m_pNormals(nullptr)
 	,m_pTexCoords(nullptr)
 	,m_piShader(nullptr)
-	,rax(0),ray(0),raz(1),x(0),y(0),z(0),scalex(1),scaley(1),scalez(1)
+	,rax(0),ray(0),raz(1),radian(0),x(0),y(0),z(0),scalex(1),scaley(1),scalez(1)
 	,m_bForceGenerateNormal(false),m_bSmoothSurface(false),m_bUseShader(false){
     load(filename);
 }

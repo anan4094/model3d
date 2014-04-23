@@ -16,6 +16,8 @@
     <ClCompile Include="3d\Node.cpp" />
     <ClCompile Include="3d\Scene.cpp" />
     <ClCompile Include="3d\Texture.cpp" />
+    <ClCompile Include="app\platform\stage\win32\Stage.cpp" />
+    <ClCompile Include="event\Dispatcher.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="shader\base\Shader.cpp" />
     <ClCompile Include="shader\MapShader.cpp" />
@@ -35,6 +37,9 @@
     <ClInclude Include="3d\Scene.h" />
     <ClInclude Include="3d\Texture.h" />
     <ClInclude Include="app\platform.h" />
+    <ClInclude Include="app\platform\stage\Stage.h" />
+    <ClInclude Include="event\Dispatcher.h" />
+    <ClInclude Include="event\Event.h" />
     <ClInclude Include="shader\base\Shader.h" />
     <ClInclude Include="shader\MapShader.h" />
     <ClInclude Include="shader\NormalColorShader.h" />
@@ -98,7 +103,7 @@
       <AdditionalOptions>/D "_CRT_SECURE_NO_DEPRECATE" %(AdditionalOptions)</AdditionalOptions>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PreprocessorDefinitions>WIN32;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(SolutionDir)\model3d\shader\base;$(SolutionDir)\model3d\shader;$(SolutionDir)\model3d\3d;$(SolutionDir)\model3d\tools\timer;$(SolutionDir)\model3d\tools\soil;$(SolutionDir)\model3d\tools\matrix;$(SolutionDir)\model3d\app;$(SolutionDir)\model3d\app\glfw3\include\win32;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\model3d\shader\base;$(SolutionDir)\model3d\shader;$(SolutionDir)\model3d\3d;$(SolutionDir)\model3d\tools\timer;$(SolutionDir)\model3d\tools\soil;$(SolutionDir)\model3d\tools\matrix;$(SolutionDir)\model3d\app;$(SolutionDir)\model3d\app\glfw3\include\win32;$(SolutionDir)\model3d\event;$(SolutionDir)\model3d\app\platform\stage\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>

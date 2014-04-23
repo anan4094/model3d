@@ -30,6 +30,7 @@ bool Scene::dispatcherTouchEvent(TouchEventType event,double x,double y){
 }
 
 void Scene::reshape(int w, int h){
+	glViewport(0,0,w,h);
     m_sProjection = setFrustum(-1.0f, 1.0f, -1.0f*h/w, 1.0f*h/w,2.0f, 40.0f);
 }
 

@@ -44,6 +44,12 @@
     <Filter Include="资源文件\shader\normal_color">
       <UniqueIdentifier>{03258c40-598b-44fa-b6be-6b0a360acc91}</UniqueIdentifier>
     </Filter>
+    <Filter Include="event">
+      <UniqueIdentifier>{d7bf348c-c1da-4ed8-9fff-0b674004761f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="app\stage">
+      <UniqueIdentifier>{95229b59-c664-48df-bf80-82a7cfd3fa87}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="tools\matrix\Matrices.cpp">
@@ -93,6 +99,12 @@
     </ClCompile>
     <ClCompile Include="shader\NormalColorShader.cpp">
       <Filter>shader</Filter>
+    </ClCompile>
+    <ClCompile Include="event\Dispatcher.cpp">
+      <Filter>event</Filter>
+    </ClCompile>
+    <ClCompile Include="app\platform\stage\win32\Stage.cpp">
+      <Filter>app\stage</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -152,6 +164,15 @@
     </ClInclude>
     <ClInclude Include="shader\NormalColorShader.h">
       <Filter>shader</Filter>
+    </ClInclude>
+    <ClInclude Include="event\Dispatcher.h">
+      <Filter>event</Filter>
+    </ClInclude>
+    <ClInclude Include="event\Event.h">
+      <Filter>event</Filter>
+    </ClInclude>
+    <ClInclude Include="app\platform\stage\Stage.h">
+      <Filter>app\stage</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

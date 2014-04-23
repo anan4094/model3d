@@ -6,14 +6,13 @@
 //  Copyright (c) 2014年 魏裕群. All rights reserved.
 //
 
-#import "Stage.h"
+#include "Stage.h"
 #include <stdio.h>
 #include <stdlib.h>
-#include <unistd.h>
-#include <sys/time.h>
-#include <time.h>
-#include <sys/types.h>
+#include <algorithm>
 
+double _x=0.0,_y=0.0;
+bool _cap = false;
 //用来检查OpenGL版本，需要GLSL 2.0支持
 static void getGlVersion( int *major, int *minor )
 {
@@ -24,7 +23,7 @@ static void getGlVersion( int *major, int *minor )
         fprintf( stderr, "Invalid GL_VERSION format!!!\n" );
     }
 }
-static void init()
+static void __init__()
 {
     glewExperimental = true;
     GLenum err = glewInit();
@@ -46,15 +45,6 @@ static void init()
 	glShadeModel(GL_SMOOTH);
     glLightModeli(GL_LIGHT_MODEL_TWO_SIDE , GL_FALSE);
 }
-static long getCurrentMillSecond()
-{
-    long lLastTime = 0;
-    struct timeval stCurrentTime;
-    
-    gettimeofday(&stCurrentTime,NULL);
-    lLastTime = stCurrentTime.tv_sec*1000+stCurrentTime.tv_usec*0.001; //millseconds
-    return lLastTime;
-}
 
 static void error_callback(int error, const char* description)
 {
@@ -66,11 +56,36 @@ static void key_callback(GLFWwindow* window, int key, int scancode, int action, 
     if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
         glfwSetWindowShouldClose(window, GL_TRUE);
 }
+static void cursor_pos_callback(GLFWwindow* window, double x, double y){
+	//printf("pos:(%f,%f)\n",x,y);
+	_x = x;
+	_y = y;
+	if (_cap) {
+		Stage::sharedInstance()->runningScene()->dispatcherTouchEvent(touchMove, _x, _y);
+	}
+}
+static void cursor_enter_callback(GLFWwindow* window, int x){
+	if (_cap&&!x) {
+		_cap = false;
+		Stage::sharedInstance()->runningScene()->dispatcherTouchEvent(touchEnd, _x, _y);
+	}
+}
 
+static void mouse_callback(GLFWwindow* window, int button, int action, int mods){
+	if (button == GLFW_MOUSE_BUTTON_LEFT){
+		if (action == GLFW_PRESS) {
+			_cap = true;
+			Stage::sharedInstance()->runningScene()->dispatcherTouchEvent(touchBegin, _x, _y);
+		}else if(action == GLFW_RELEASE){
+			_cap = false;
+			Stage::sharedInstance()->runningScene()->dispatcherTouchEvent(touchEnd, _x, _y);
+		}
+	}
+}
 Stage* Stage::sm_pSharedStage = 0;
 
 Stage::Stage():m_lAnimationInterval(1.0f/60.0f*1000.0f),m_pWindow(nullptr){
-    if (!sm_pSharedStage) {
+    if (sm_pSharedStage) {
         return;
     }
     sm_pSharedStage = this;
@@ -104,42 +119,58 @@ void Stage::init(){
     }
     
     glfwMakeContextCurrent(m_pWindow);
-    
-    glfwSetKeyCallback(m_pWindow, key_callback);
+	glfwSetMouseButtonCallback(m_pWindow, mouse_callback);
+	glfwSetKeyCallback(m_pWindow, key_callback);
+	glfwSetCursorPosCallback(m_pWindow, cursor_pos_callback);
+	glfwSetCursorEnterCallback(m_pWindow, cursor_enter_callback);
     glEnable(GL_DEPTH_TEST);
-    init();
+    __init__();
 }
 
 void Stage::addScene(Scene *scene){
     m_iScenes.push_back(scene);
 }
 
+Scene* Stage::runningScene(){
+	return m_iScenes.size()>0?m_iScenes.back():nullptr;
+}
+
 int Stage::run(){
-    long lastTime = 0L;
-    long curTime = 0L;
+    LARGE_INTEGER nFreq;
+	LARGE_INTEGER nLast;
+	LARGE_INTEGER nNow;
+
+	QueryPerformanceFrequency(&nFreq);
+	
     Scene *top_scene = m_iScenes.size()>0?m_iScenes.back():nullptr;
     if (!top_scene) {
         return 1;
     }
+	int width=0, height=0;
     while (!glfwWindowShouldClose(m_pWindow))
     {
-        int width, height;
-        glfwGetFramebufferSize(m_pWindow, &width, &height);
-        top_scene->reshape(width, height);
-        lastTime = getCurrentMillSecond();
+		int nwidth, nheight;
+		glfwGetFramebufferSize(m_pWindow, &nwidth, &nheight);
+		if (nwidth!=width||nheight!=height) {
+			width=nwidth;
+			height=nheight;
+			top_scene->screenSizeChange(width, height);
+		}
+		QueryPerformanceCounter(&nLast);
         glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
         top_scene->draw();
         glfwSwapBuffers(m_pWindow);
         glfwPollEvents();
-        curTime = getCurrentMillSecond();
-        if (curTime - lastTime < m_lAnimationInterval){
-            usleep(static_cast<useconds_t>((m_lAnimationInterval - curTime + lastTime)*1000));
+		QueryPerformanceCounter(&nNow);
+        if (nNow.QuadPart - nLast.QuadPart < m_lAnimationInterval){
+            Sleep((m_lAnimationInterval - (nNow.QuadPart - nLast.QuadPart)/nFreq.QuadPart)*1000);
         }
     }
     
     glfwDestroyWindow(m_pWindow);
     
-    glfwTerminate();    return 0;
+    glfwTerminate();
+	return 0;
 }
 
 int Stage::run(Scene *scene){
