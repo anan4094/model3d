@@ -21,7 +21,8 @@ public:
     void addSubNode(Node* node);
     virtual void draw() = 0;
     virtual bool screenSizeChange(int width,int height)=0;
-    virtual bool dispatcherTouchEvent(TouchEventType event,double x,double y)=0;
+    bool dispatcherTouchEvent(MotionEvent &event);
+	virtual bool onTouchEvent(MotionEvent &event);
 };
 
 #endif /* defined(__model3d__Node__) */

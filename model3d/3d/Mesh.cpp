@@ -565,9 +565,6 @@ void Mesh::draw(){
 bool Mesh::screenSizeChange(int width, int height){
     return false;
 }
-bool Mesh::dispatcherTouchEvent(TouchEventType event, double x, double y){
-    return false;
-}
 
 Mesh::Mesh():m_nVerticesID(0)
 	,m_nNormalsID(0)

@@ -21,7 +21,7 @@ public:
     int run();
     static Stage* sharedInstance();
 protected:
-    long m_lAnimationInterval;  //micro second
+    double m_lAnimationInterval;  //micro second
     GLFWwindow *m_pWindow;
     std::vector<Scene*> m_iScenes;
     static Stage * sm_pSharedStage;

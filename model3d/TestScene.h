@@ -10,7 +10,16 @@
 #define __model3d__TestScene__
 
 #include "Scene.h"
+#include "Mesh.h"
 class TestScene:public Scene{
+private:
+	Mesh *m_pmesh;
+	float deg;
+	float start_x;
+public:
+	inline TestScene():deg(0){}
+	void initRes();
+	virtual bool onTouchEvent(MotionEvent &event);
 };
 
 #endif /* defined(__model3d__TestScene__) */

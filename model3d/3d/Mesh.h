@@ -70,8 +70,6 @@ public:
     //绘制模型
 	virtual void draw();
     virtual bool screenSizeChange(int width,int height);
-    virtual bool dispatcherTouchEvent(TouchEventType event,double x,double y);
-    
     
     inline void setRotationAxis(GLfloat rx,GLfloat ry,GLfloat rz){GLfloat len=sqrt(rx*rx+ry*ry+rz*rz); rax=rx/len;ray=ry/len;raz=rz/len;}
     inline void setRadian(GLfloat rad){radian=rad;}

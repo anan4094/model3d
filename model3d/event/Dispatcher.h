@@ -8,8 +8,15 @@
 
 #ifndef __model3d__Dispatcher__
 #define __model3d__Dispatcher__
+#include "Event.h"
 
 class Dispatcher{
+private:
+	static Dispatcher* sm_pSharedDispatcher;
+	Dispatcher();
+public:
+	bool dispatcherTouchEvent(MotionEvent &event);
+	static Dispatcher* sharedInstance();
 };
 
 #endif /* defined(__model3d__Dispatcher__) */

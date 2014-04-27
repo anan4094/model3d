@@ -23,6 +23,7 @@
     <ClCompile Include="shader\MapShader.cpp" />
     <ClCompile Include="shader\NormalColorShader.cpp" />
     <ClCompile Include="shader\NormalMapShader.cpp" />
+    <ClCompile Include="TestScene.cpp" />
     <ClCompile Include="tools\matrix\Matrices.cpp" />
     <ClCompile Include="tools\soil\image_DXT.c" />
     <ClCompile Include="tools\soil\image_helper.c" />
@@ -44,6 +45,7 @@
     <ClInclude Include="shader\MapShader.h" />
     <ClInclude Include="shader\NormalColorShader.h" />
     <ClInclude Include="shader\NormalMapShader.h" />
+    <ClInclude Include="TestScene.h" />
     <ClInclude Include="tools\matrix\Matrices.h" />
     <ClInclude Include="tools\matrix\Vectors.h" />
     <ClInclude Include="tools\soil\image_DXT.h" />

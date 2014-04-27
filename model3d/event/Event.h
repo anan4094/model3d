@@ -9,10 +9,21 @@
 #ifndef model3d_Event_h
 #define model3d_Event_h
 
-typedef enum touchEventType{
-    touchBegin,
-    touchMove,
-    touchEnd
-}TouchEventType;
+class Node;
+
+typedef enum _MotionAction{
+    MotionDown
+    ,MotionMove
+    ,MotionCancel
+	,MotionUp
+}MotionAction;
+
+typedef struct _MotionEvent{
+	MotionAction action;
+	double x;
+	double y;
+	void *userData;
+	Node *target;
+}MotionEvent ;
 
 #endif

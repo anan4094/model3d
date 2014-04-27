@@ -7,12 +7,14 @@
 //
 
 #include "Stage.h"
+#include "Dispatcher.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <algorithm>
 
 double _x=0.0,_y=0.0;
 bool _cap = false;
+MotionEvent motionEvent;
 //用来检查OpenGL版本，需要GLSL 2.0支持
 static void getGlVersion( int *major, int *minor )
 {
@@ -61,30 +63,39 @@ static void cursor_pos_callback(GLFWwindow* window, double x, double y){
 	_x = x;
 	_y = y;
 	if (_cap) {
-		Stage::sharedInstance()->runningScene()->dispatcherTouchEvent(touchMove, _x, _y);
+		motionEvent.x = _x;
+		motionEvent.y = _y;
+		motionEvent.action = MotionMove;
+		Dispatcher::sharedInstance()->dispatcherTouchEvent(motionEvent);
 	}
 }
 static void cursor_enter_callback(GLFWwindow* window, int x){
 	if (_cap&&!x) {
 		_cap = false;
-		Stage::sharedInstance()->runningScene()->dispatcherTouchEvent(touchEnd, _x, _y);
+		motionEvent.x = _x;
+		motionEvent.y = _y;
+		motionEvent.action = MotionCancel;
+		Dispatcher::sharedInstance()->dispatcherTouchEvent(motionEvent);
 	}
 }
 
 static void mouse_callback(GLFWwindow* window, int button, int action, int mods){
+	motionEvent.x = _x;
+	motionEvent.y = _y;
 	if (button == GLFW_MOUSE_BUTTON_LEFT){
 		if (action == GLFW_PRESS) {
 			_cap = true;
-			Stage::sharedInstance()->runningScene()->dispatcherTouchEvent(touchBegin, _x, _y);
+			motionEvent.action=MotionDown;
 		}else if(action == GLFW_RELEASE){
 			_cap = false;
-			Stage::sharedInstance()->runningScene()->dispatcherTouchEvent(touchEnd, _x, _y);
+			motionEvent.action=MotionUp;
 		}
+		Dispatcher::sharedInstance()->dispatcherTouchEvent(motionEvent);
 	}
 }
 Stage* Stage::sm_pSharedStage = 0;
 
-Stage::Stage():m_lAnimationInterval(1.0f/60.0f*1000.0f),m_pWindow(nullptr){
+Stage::Stage():m_lAnimationInterval(1.0f/60.0f),m_pWindow(nullptr){
     if (sm_pSharedStage) {
         return;
     }
@@ -147,6 +158,7 @@ int Stage::run(){
         return 1;
     }
 	int width=0, height=0;
+
     while (!glfwWindowShouldClose(m_pWindow))
     {
 		int nwidth, nheight;
@@ -162,8 +174,10 @@ int Stage::run(){
         glfwSwapBuffers(m_pWindow);
         glfwPollEvents();
 		QueryPerformanceCounter(&nNow);
-        if (nNow.QuadPart - nLast.QuadPart < m_lAnimationInterval){
-            Sleep((m_lAnimationInterval - (nNow.QuadPart - nLast.QuadPart)/nFreq.QuadPart)*1000);
+		double dfMinus = (double)nNow.QuadPart - nLast.QuadPart;
+		dfMinus/=nFreq.QuadPart;
+        if(dfMinus < m_lAnimationInterval){
+            Sleep((m_lAnimationInterval - dfMinus)*1000);
         }
     }
     

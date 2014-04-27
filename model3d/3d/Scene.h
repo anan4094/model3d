@@ -27,7 +27,6 @@ private:
     void reshape(int w,int h);
 public:
     virtual bool screenSizeChange(int width,int height);
-    virtual bool dispatcherTouchEvent(TouchEventType event,double x,double y);
     void draw();
     inline const Matrix4& getProjection(){return m_sProjection;}
 };
