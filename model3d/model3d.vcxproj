@@ -102,7 +102,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalOptions>/D "_CRT_SECURE_NO_DEPRECATE" %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>/D "_CRT_SECURE_NO_DEPRECATE" /wd4819 /wd4018 /wd4244 %(AdditionalOptions)</AdditionalOptions>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PreprocessorDefinitions>WIN32;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>$(SolutionDir)\model3d\shader\base;$(SolutionDir)\model3d\shader;$(SolutionDir)\model3d\3d;$(SolutionDir)\model3d\tools\timer;$(SolutionDir)\model3d\tools\soil;$(SolutionDir)\model3d\tools\matrix;$(SolutionDir)\model3d\app;$(SolutionDir)\model3d\app\glfw3\include\win32;$(SolutionDir)\model3d\event;$(SolutionDir)\model3d\app\platform\stage\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
