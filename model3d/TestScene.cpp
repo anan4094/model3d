@@ -14,9 +14,9 @@ void TestScene::initRes(){
 	m_pmesh->setForceGenerateNormal(true);
 	m_pmesh->setSmoothSurface(false);
 #ifdef __APPLE__
-	m_pmesh->load("/Users/anan/Documents/github/model3d/assert/peri/peri.obj");
+	m_pmesh->load("/Users/anan/Documents/github/model3d/assets/peri/peri.obj");
 #else
-	m_pmesh->load("../assert/peri/peri.obj");
+	m_pmesh->load("../assets/peri/peri.obj");
 #endif
 	m_pmesh->setUseShader(true);
 	GLfloat hy = m_pmesh->getMaxY();

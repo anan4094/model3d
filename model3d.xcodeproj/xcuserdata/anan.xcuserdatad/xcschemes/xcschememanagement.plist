@@ -4,11 +4,6 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>glsltest.xcscheme</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>1</integer>
-		</dict>
 		<key>model3d.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -18,6 +13,11 @@
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
 		<key>2701E03F18DFC03500723795</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>27180EB8190EA89B00CD490D</key>
 		<dict>
 			<key>primary</key>
 			<true/>

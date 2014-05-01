@@ -13,6 +13,7 @@
 		271DA60718DFC1BF00BC7A8C /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 271DA60618DFC1BF00BC7A8C /* OpenGL.framework */; };
 		271DA60918DFC1DF00BC7A8C /* GLUT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 271DA60818DFC1DF00BC7A8C /* GLUT.framework */; };
 		2764A341190816340068A967 /* Stage.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2764A340190816340068A967 /* Stage.mm */; };
+		277D917219129687002B88D1 /* VaryShader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 277D917019129687002B88D1 /* VaryShader.cpp */; };
 		277EA4E919056C2E0065C78B /* TestScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 277EA4E719056C2E0065C78B /* TestScene.cpp */; };
 		27D5E57B190221D200D96450 /* libglfw3.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 27D5E57A190221D200D96450 /* libglfw3.a */; };
 		27D5E59A19022C6C00D96450 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27D5E59919022C6C00D96450 /* Cocoa.framework */; };
@@ -37,8 +38,8 @@
 		2701E03E18DFC03500723795 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
-			dstPath = /usr/share/man/man1/;
-			dstSubfolderSpec = 0;
+			dstPath = "";
+			dstSubfolderSpec = 16;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 1;
@@ -56,6 +57,10 @@
 		271DA60818DFC1DF00BC7A8C /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = System/Library/Frameworks/GLUT.framework; sourceTree = SDKROOT; };
 		2764A33F190816270068A967 /* Stage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Stage.h; path = stage/Stage.h; sourceTree = "<group>"; };
 		2764A340190816340068A967 /* Stage.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = Stage.mm; path = stage/mac/Stage.mm; sourceTree = "<group>"; };
+		277D916E1912956F002B88D1 /* shader.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = shader.frag; sourceTree = "<group>"; };
+		277D916F1912957F002B88D1 /* shader.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = shader.vert; sourceTree = "<group>"; };
+		277D917019129687002B88D1 /* VaryShader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = VaryShader.cpp; sourceTree = "<group>"; };
+		277D917119129687002B88D1 /* VaryShader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VaryShader.h; sourceTree = "<group>"; };
 		277EA4E519055ABA0065C78B /* Event.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Event.h; sourceTree = "<group>"; };
 		277EA4E719056C2E0065C78B /* TestScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TestScene.cpp; sourceTree = "<group>"; };
 		277EA4E819056C2E0065C78B /* TestScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestScene.h; sourceTree = "<group>"; };
@@ -130,6 +135,8 @@
 				27FCF13218E7F4A100A390F8 /* NormalMapShader.cpp */,
 				2702465718F83BCE00904E6A /* MapShader.h */,
 				2702465618F83BCE00904E6A /* MapShader.cpp */,
+				277D917119129687002B88D1 /* VaryShader.h */,
+				277D917019129687002B88D1 /* VaryShader.cpp */,
 			);
 			path = shader;
 			sourceTree = "<group>";
@@ -138,7 +145,7 @@
 			isa = PBXGroup;
 			children = (
 				2701E04218DFC03500723795 /* model3d */,
-				27F8CD3518E1693B00FBAC17 /* assert */,
+				27F8CD3518E1693B00FBAC17 /* assets */,
 				27D968CF18E2CC8600E7AF37 /* framework */,
 				2701E04118DFC03500723795 /* Products */,
 			);
@@ -165,6 +172,15 @@
 				277EA4E719056C2E0065C78B /* TestScene.cpp */,
 			);
 			path = model3d;
+			sourceTree = "<group>";
+		};
+		277D916D1912954A002B88D1 /* vary */ = {
+			isa = PBXGroup;
+			children = (
+				277D916E1912956F002B88D1 /* shader.frag */,
+				277D916F1912957F002B88D1 /* shader.vert */,
+			);
+			path = vary;
 			sourceTree = "<group>";
 		};
 		27808DDE18EDB11200B76A2C /* 3d */ = {
@@ -196,6 +212,7 @@
 		278D74BB18F3A58A00324A19 /* shader */ = {
 			isa = PBXGroup;
 			children = (
+				277D916D1912954A002B88D1 /* vary */,
 				27FD195518FE8B6000330F74 /* normal_color */,
 				27FA499318FA3CF000BB917D /* map */,
 				278D74BC18F3A5AC00324A19 /* normal_map */,
@@ -209,8 +226,7 @@
 				27FCF13618E7FD8F00A390F8 /* shader.vert */,
 				27FCF13718E7FDAA00A390F8 /* shader.frag */,
 			);
-			name = normal_map;
-			path = ../../assert/shader/normal_map;
+			path = normal_map;
 			sourceTree = "<group>";
 		};
 		27D5E58C1902285000D96450 /* glfw3 */ = {
@@ -287,12 +303,12 @@
 			path = app;
 			sourceTree = "<group>";
 		};
-		27F8CD3518E1693B00FBAC17 /* assert */ = {
+		27F8CD3518E1693B00FBAC17 /* assets */ = {
 			isa = PBXGroup;
 			children = (
 				278D74BB18F3A58A00324A19 /* shader */,
 			);
-			path = assert;
+			path = assets;
 			sourceTree = "<group>";
 		};
 		27FA499318FA3CF000BB917D /* map */ = {
@@ -410,6 +426,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				277D917219129687002B88D1 /* VaryShader.cpp in Sources */,
 				27FA499218FA2C8D00BB917D /* Texture.cpp in Sources */,
 				27F667BC18F7C5D100CB75C5 /* soil.c in Sources */,
 				2764A341190816340068A967 /* Stage.mm in Sources */,

@@ -12,9 +12,9 @@
 #include "platform.h"
 
 #ifdef WIN32
-#define SHADER_PATH "../assert/shader/"
+#define SHADER_PATH "../assets/shader/"
 #else
-#define SHADER_PATH "/Users/anan/Documents/github/model3d/assert/shader/"
+#define SHADER_PATH "/Users/anan/Documents/github/model3d/assets/shader/"
 #endif
 
 typedef enum{

@@ -7,7 +7,7 @@
 //
 
 #import "Stage.h"
-#include "Event.h"
+#include "Dispatcher.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
@@ -15,8 +15,9 @@
 #include <time.h>
 #include <sys/types.h>
 
-double _x=0.0,_y=0.0;
-bool _cap = false;
+static double _x=0.0,_y=0.0;
+static bool _cap = false;
+MotionEvent motionEvent;
 static long getCurrentMillSecond()
 {
     long lLastTime = 0;
@@ -42,25 +43,34 @@ static void cursor_pos_callback(GLFWwindow* window, double x, double y){
     _x = x;
     _y = y;
     if (_cap) {
-        Stage::sharedInstance()->runningScene()->dispatcherTouchEvent(touchMove, _x, _y);
+        motionEvent.x = _x;
+		motionEvent.y = _y;
+		motionEvent.action = MotionMove;
+		Dispatcher::sharedInstance()->dispatcherTouchEvent(motionEvent);
     }
 }
 static void cursor_enter_callback(GLFWwindow* window, int x){
     if (_cap&&!x) {
         _cap = false;
-        Stage::sharedInstance()->runningScene()->dispatcherTouchEvent(touchEnd, _x, _y);
+        motionEvent.x = _x;
+		motionEvent.y = _y;
+		motionEvent.action = MotionCancel;
+		Dispatcher::sharedInstance()->dispatcherTouchEvent(motionEvent);
     }
 }
 
 static void mouse_callback(GLFWwindow* window, int button, int action, int mods){
+    motionEvent.x = _x;
+	motionEvent.y = _y;
     if (button == GLFW_MOUSE_BUTTON_LEFT){
         if (action == GLFW_PRESS) {
-            _cap = true;
-            Stage::sharedInstance()->runningScene()->dispatcherTouchEvent(touchBegin, _x, _y);
-        }else if(action == GLFW_RELEASE){
-            _cap = false;
-            Stage::sharedInstance()->runningScene()->dispatcherTouchEvent(touchEnd, _x, _y);
-        }
+			_cap = true;
+			motionEvent.action=MotionDown;
+		}else if(action == GLFW_RELEASE){
+			_cap = false;
+			motionEvent.action=MotionUp;
+		}
+		Dispatcher::sharedInstance()->dispatcherTouchEvent(motionEvent);
     }
 }
 

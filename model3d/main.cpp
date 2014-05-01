@@ -6,7 +6,6 @@
 #ifndef WIN32
 #include <unistd.h>
 #endif
-Scene mainScene;
 Mesh *pmesh=nullptr;
 
 int main(int argc, char **argv)
