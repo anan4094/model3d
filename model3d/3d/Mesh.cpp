@@ -7,6 +7,7 @@
 #include "NormalMapShader.h"
 #include "NormalColorShader.h"
 #include "MapShader.h"
+#include "VaryShader.h"
 
 #define BUFF_LEN (2048)
 #define LINE_LEN (128)
@@ -519,6 +520,7 @@ void Mesh::draw(){
 
 		Matrix4 _modelViewProjectionMatrix =  projectionMatrix * modelViewMatrix;
 		_modelViewProjectionMatrix.transpose();
+		modelViewMatrix.transpose();
 
 		unsigned long nSize = m_iMaterialArray.size();
 		glBindVertexArray(m_nVertexArraysID);
@@ -528,9 +530,10 @@ void Mesh::draw(){
 
 			if (m_bHasNormal){
 				if (pmtl->map_kd){
-					NormalMapShader *pinms = NormalMapShader::sharedInstance();
+					VaryShader *pinms = VaryShader::sharedInstance();
 					pinms->use();
 					pinms->setModelViewProjectionMatrix(_modelViewProjectionMatrix.get());
+					pinms->setModelViewMatrix(modelViewMatrix.get());
 					pinms->setNormalMatrix(_normalMatrix.get());
 					Texture *pctex=pmtl->map_kd;
 					glActiveTexture(GL_TEXTURE0);

@@ -16,7 +16,7 @@ void TestScene::initRes(){
 #ifdef __APPLE__
 	m_pmesh->load("/Users/anan/Documents/github/model3d/assets/peri/peri.obj");
 #else
-	m_pmesh->load("../assets/peri/peri.obj");
+	m_pmesh->load("../assets/tails/tails.obj");
 #endif
 	m_pmesh->setUseShader(true);
 	GLfloat hy = m_pmesh->getMaxY();

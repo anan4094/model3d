@@ -36,12 +36,16 @@ void VaryShader::installAttrib(){
 
 void VaryShader::installUniform(){
     m_nUniformModelViewProjectionMatrix = glGetUniformLocation(ProgramObject,"modelViewProjectionMatrix");
+	m_nUniformModelViewMatrix = glGetUniformLocation(ProgramObject,"modelViewMatrix");
     m_nUniformNormalMatrix = glGetUniformLocation(ProgramObject,"normalMatrix");
 	m_nUniformSampler2D = glGetUniformLocation(ProgramObject,"tex");
 }
 
 void VaryShader::setModelViewProjectionMatrix(const float *data){
     glUniformMatrix4fv(m_nUniformModelViewProjectionMatrix,1,0,data);
+}
+void VaryShader::setModelViewMatrix(const float *data){
+	glUniformMatrix4fv(m_nUniformModelViewMatrix,1,0,data);
 }
 void VaryShader::setNormalMatrix(const float *data){
     glUniformMatrix4fv(m_nUniformNormalMatrix,1,0,data);

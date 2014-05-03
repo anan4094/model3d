@@ -50,6 +50,9 @@
     <Filter Include="app\stage">
       <UniqueIdentifier>{95229b59-c664-48df-bf80-82a7cfd3fa87}</UniqueIdentifier>
     </Filter>
+    <Filter Include="资源文件\shader\vary">
+      <UniqueIdentifier>{2c475de2-6e2c-4a5e-8370-9e00fa374418}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="tools\matrix\Matrices.cpp">
@@ -108,6 +111,9 @@
     </ClCompile>
     <ClCompile Include="TestScene.cpp">
       <Filter>main</Filter>
+    </ClCompile>
+    <ClCompile Include="shader\VaryShader.cpp">
+      <Filter>shader</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -180,25 +186,34 @@
     <ClInclude Include="TestScene.h">
       <Filter>main</Filter>
     </ClInclude>
+    <ClInclude Include="shader\VaryShader.h">
+      <Filter>shader</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\assert\shader\map\shader.frag">
+    <None Include="..\assets\shader\map\shader.frag">
       <Filter>资源文件\shader\map</Filter>
     </None>
-    <None Include="..\assert\shader\map\shader.vert">
+    <None Include="..\assets\shader\map\shader.vert">
       <Filter>资源文件\shader\map</Filter>
     </None>
-    <None Include="..\assert\shader\normal_map\shader.frag">
-      <Filter>资源文件\shader\normal_map</Filter>
-    </None>
-    <None Include="..\assert\shader\normal_map\shader.vert">
-      <Filter>资源文件\shader\normal_map</Filter>
-    </None>
-    <None Include="..\assert\shader\normal_color\shader.frag">
+    <None Include="..\assets\shader\normal_color\shader.frag">
       <Filter>资源文件\shader\normal_color</Filter>
     </None>
-    <None Include="..\assert\shader\normal_color\shader.vert">
+    <None Include="..\assets\shader\normal_color\shader.vert">
       <Filter>资源文件\shader\normal_color</Filter>
+    </None>
+    <None Include="..\assets\shader\normal_map\shader.frag">
+      <Filter>资源文件\shader\normal_map</Filter>
+    </None>
+    <None Include="..\assets\shader\normal_map\shader.vert">
+      <Filter>资源文件\shader\normal_map</Filter>
+    </None>
+    <None Include="..\assets\shader\vary\shader.frag">
+      <Filter>资源文件\shader\vary</Filter>
+    </None>
+    <None Include="..\assets\shader\vary\shader.vert">
+      <Filter>资源文件\shader\vary</Filter>
     </None>
   </ItemGroup>
 </Project>

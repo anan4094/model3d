@@ -14,6 +14,7 @@
 class VaryShader:public Shader{
 private:
     GLint m_nUniformModelViewProjectionMatrix;
+	GLint m_nUniformModelViewMatrix;
     GLint m_nUniformNormalMatrix;
 	GLint m_nUniformSampler2D;
     VaryShader();
@@ -22,6 +23,7 @@ public:
     virtual void installAttrib()override;
     virtual void installUniform()override;
     void setModelViewProjectionMatrix(const float *data);
+	void setModelViewMatrix(const float *data);
     void setNormalMatrix(const float *data);
 	void setTexture(int tid);
 };

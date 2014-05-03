@@ -26,7 +26,7 @@ bool Scene::screenSizeChange(int width, int height){
 
 void Scene::reshape(int w, int h){
 	glViewport(0,0,w,h);
-    m_sProjection = setFrustum(-1.0f, 1.0f, -1.0f*h/w, 1.0f*h/w,2.0f, 40.0f);
+    m_sProjection = setFrustum(-1.0f*w/h, 1.0f*w/h, -1.0f, 1.0f,2.0f, 40.0f);
 }
 
 ///////////////////////////////////////////////////////////////////////////////

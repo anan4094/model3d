@@ -9,13 +9,14 @@ attribute vec4 normal;
 attribute vec3 texcoord;
 
 uniform mat4 modelViewProjectionMatrix;
+uniform mat4 modelViewMatrix;
 uniform mat4 normalMatrix;
 void main(void)
 {
-    vec4 pos4 = modelViewProjectionMatrix * position;
+    vec4 pos4 = modelViewMatrix * position;
     v = vec3(pos4.xyz);
     vec4 nor = normalMatrix*normal;
     N = normalize(nor.xyz);
     texCoordVarying = texcoord;
-    gl_Position = pos4;
+    gl_Position = modelViewProjectionMatrix * position;
 }

@@ -23,6 +23,7 @@
     <ClCompile Include="shader\MapShader.cpp" />
     <ClCompile Include="shader\NormalColorShader.cpp" />
     <ClCompile Include="shader\NormalMapShader.cpp" />
+    <ClCompile Include="shader\VaryShader.cpp" />
     <ClCompile Include="TestScene.cpp" />
     <ClCompile Include="tools\matrix\Matrices.cpp" />
     <ClCompile Include="tools\soil\image_DXT.c" />
@@ -45,6 +46,7 @@
     <ClInclude Include="shader\MapShader.h" />
     <ClInclude Include="shader\NormalColorShader.h" />
     <ClInclude Include="shader\NormalMapShader.h" />
+    <ClInclude Include="shader\VaryShader.h" />
     <ClInclude Include="TestScene.h" />
     <ClInclude Include="tools\matrix\Matrices.h" />
     <ClInclude Include="tools\matrix\Vectors.h" />
@@ -57,12 +59,14 @@
     <ClInclude Include="tools\timer\Timer.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\assert\shader\map\shader.frag" />
-    <None Include="..\assert\shader\map\shader.vert" />
-    <None Include="..\assert\shader\normal_color\shader.frag" />
-    <None Include="..\assert\shader\normal_color\shader.vert" />
-    <None Include="..\assert\shader\normal_map\shader.frag" />
-    <None Include="..\assert\shader\normal_map\shader.vert" />
+    <None Include="..\assets\shader\map\shader.frag" />
+    <None Include="..\assets\shader\map\shader.vert" />
+    <None Include="..\assets\shader\normal_color\shader.frag" />
+    <None Include="..\assets\shader\normal_color\shader.vert" />
+    <None Include="..\assets\shader\normal_map\shader.frag" />
+    <None Include="..\assets\shader\normal_map\shader.vert" />
+    <None Include="..\assets\shader\vary\shader.frag" />
+    <None Include="..\assets\shader\vary\shader.vert" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{6A74D9E1-81B0-4402-B4DF-30444DAA68CE}</ProjectGuid>
