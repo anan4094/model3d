@@ -42,6 +42,8 @@ void MapShader::setModelViewProjectionMatrix(const float *data){
 	glUniformMatrix4fv(m_nUniformModelViewProjectionMatrix,1,0,data);
 }
 
-void MapShader::setTexture(int tid){
-	glUniform1i(m_nUniformSampler2D,tid);
+void MapShader::setTexture(Texture* texture){
+	glActiveTexture(GL_TEXTURE0);
+	glBindTexture(GL_TEXTURE_2D,texture->get());
+	glUniform1i(m_nUniformSampler2D,0);
 }

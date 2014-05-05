@@ -9,6 +9,7 @@
 #ifndef __model3d__normal_map_shader__
 #define __model3d__normal_map_shader__
 #include "Shader.h"
+#include "Texture.h"
 
 class NormalMapShader:public Shader{
 private:
@@ -22,7 +23,7 @@ public:
     virtual void installUniform()override;
     void setModelViewProjectionMatrix(const float *data);
     void setNormalMatrix(const float *data);
-	void setTexture(int tid);
+	void setTexture(Texture *texture);
 };
 
 #endif /* defined(__model3d__normal_map_shader__) */

@@ -10,6 +10,7 @@
 #define __model3d__map_shader__
 
 #include "Shader.h"
+#include "Texture.h"
 
 class MapShader:public Shader{
 private:
@@ -21,7 +22,7 @@ public:
 	virtual void installAttrib()override;
 	virtual void installUniform()override;
 	void setModelViewProjectionMatrix(const float *data);
-	void setTexture(int tid);
+	void setTexture(Texture*texture);
 };
 
 #endif /* defined(__model3d__map_shader__) */

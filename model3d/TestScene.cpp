@@ -18,7 +18,7 @@ void TestScene::initRes(){
 #else
 	m_pmesh->load("../assets/peri/peri.obj");
 #endif
-	m_pmesh->setUseShader(true);
+	//m_pmesh->setUseShader(true);
 	GLfloat hy = m_pmesh->getMaxY();
 	GLfloat ly = m_pmesh->getMinY();
 	m_pmesh->setRotationAxis(0, 1, 0);

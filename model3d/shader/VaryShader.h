@@ -10,6 +10,7 @@
 #define __model3d__VaryShader__
 
 #include "Shader.h"
+#include "Texture.h"
 
 class VaryShader:public Shader{
 private:
@@ -25,7 +26,7 @@ public:
     void setModelViewProjectionMatrix(const float *data);
 	void setModelViewMatrix(const float *data);
     void setNormalMatrix(const float *data);
-	void setTexture(int tid);
+	void setTexture(Texture *texture);
 };
 
 

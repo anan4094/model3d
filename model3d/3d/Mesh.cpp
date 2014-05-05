@@ -486,9 +486,7 @@ void Mesh::draw(){
 					pinms->setModelViewMatrix(modelViewMatrix.get());
 					pinms->setNormalMatrix(_normalMatrix.get());
 					Texture *pctex=pmtl->map_kd;
-					glActiveTexture(GL_TEXTURE0);
-					glBindTexture(GL_TEXTURE_2D,pctex->get());
-					pinms->setTexture(0);
+					pinms->setTexture(pctex);
 				}else{
 					NormalColorShader *pincs = NormalColorShader::sharedInstance();
 					pincs->use();
@@ -503,9 +501,7 @@ void Mesh::draw(){
 					pims->use();
 					pims->setModelViewProjectionMatrix(_modelViewProjectionMatrix.get());
 					Texture *pctex=pmtl->map_kd;
-					glActiveTexture(GL_TEXTURE0);
-					glBindTexture(GL_TEXTURE_2D,pctex->get());
-					pims->setTexture(0);
+					pims->setTexture(pctex);
 				}
 			}
 			glDrawArrays( GL_TRIANGLES,minf.first,minf.size);
