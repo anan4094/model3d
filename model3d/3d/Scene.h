@@ -15,13 +15,8 @@
 #include "Vectors.h"
 #include "Node.h"
 
-typedef struct camera{
-    float x,y,z;
-}Camera;
-
 class Scene:public Node{
 private:
-    Camera m_sCamera;
     Matrix4 m_sProjection;
     
     void reshape(int w,int h);
