@@ -10,20 +10,15 @@
 #define __model3d__Scene__
 
 #include "platform.h"
-
-#include "Matrices.h"
-#include "Vectors.h"
 #include "Node.h"
+#include "Camera.h"
 
 class Scene:public Node{
 private:
-    Matrix4 m_sProjection;
-    
     void reshape(int w,int h);
 public:
     virtual bool screenSizeChange(int width,int height);
     void draw();
-    inline const Matrix4& getProjection(){return m_sProjection;}
 };
 
 #endif /* defined(__model3d__Scene__) */

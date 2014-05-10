@@ -95,7 +95,7 @@ static void mouse_callback(GLFWwindow* window, int button, int action, int mods)
 }
 Stage* Stage::sm_pSharedStage = 0;
 
-Stage::Stage():m_lAnimationInterval(1.0f/60.0f),m_pWindow(nullptr){
+Stage::Stage():m_lAnimationInterval(1.0f/60.0f),m_pWindow(nullptr),m_pCamera(nullptr){
     if (sm_pSharedStage) {
         return;
     }

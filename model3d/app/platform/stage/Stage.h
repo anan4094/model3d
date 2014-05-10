@@ -17,13 +17,16 @@ public:
     void init();
     void addScene(Scene*scene);
     Scene *runningScene();
+	inline Camera *currentCamera(){return m_pCamera;}
+	inline void setCamera(Camera *pCamera){m_pCamera=pCamera;}
     int run(Scene*scene);
     int run();
     static Stage* sharedInstance();
 protected:
     double m_lAnimationInterval;  //micro second
-    GLFWwindow *m_pWindow;
-    std::vector<Scene*> m_iScenes;
-    static Stage * sm_pSharedStage;
+    GLFWwindow                 *m_pWindow;
+    std::vector<Scene*>        m_iScenes;
+	Camera                     *m_pCamera;
+    static Stage               *sm_pSharedStage;
 };
 #endif /* defined(__model3d__Stage_mac__) */

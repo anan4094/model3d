@@ -456,7 +456,7 @@ void Mesh::draw(){
         glDisableClientState(GL_NORMAL_ARRAY);
 		glDisableClientState(GL_TEXTURE_COORD_ARRAY);
     }else{
-		const Matrix4& projectionMatrix = Stage::sharedInstance()->runningScene()->getProjection();
+		const Matrix4& projectionMatrix = Stage::sharedInstance()->currentCamera()->get();
 
 		// Compute the model view matrix for the object rendered with GL
 		Matrix4 modelViewMatrix;

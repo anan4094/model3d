@@ -13,8 +13,9 @@ int main(int argc, char **argv)
     //char buf[1024];
     //getcwd(buf,1024);
     Stage *stage = new Stage();
+	Camera *camera = new Camera();
+	stage->setCamera(camera);
     stage->init();
-	//init();
     TestScene *mainScene = new TestScene();
 	mainScene->initRes();
 
