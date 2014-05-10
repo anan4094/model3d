@@ -12,12 +12,15 @@
 #include "platform.h"
 #include "Node.h"
 #include "Camera.h"
-
+#include "Light.h"
 class Scene:public Node{
+protected:
+    vector<Light*> m_iLights;
 private:
     void reshape(int w,int h);
 public:
     virtual bool screenSizeChange(int width,int height);
+    void addLight(Light* light);
     void draw();
 };
 

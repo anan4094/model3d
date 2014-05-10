@@ -29,3 +29,7 @@ void Scene::reshape(int w, int h){
 	glViewport(0,0,w,h);
     Stage::sharedInstance()->currentCamera()->frustum(-1.0f*w/h, 1.0f*w/h, -1.0f, 1.0f,2.0f, 40.0f);
 }
+
+void Scene::addLight(Light *light){
+    m_iLights.push_back(light);
+}
