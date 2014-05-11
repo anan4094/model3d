@@ -9,6 +9,31 @@
 #include "TestScene.h"
 
 void TestScene::initRes(){
+	m_plight = new Light();
+	m_plight->position[0]=1;
+	m_plight->position[1]=0;
+	m_plight->position[2]=0;
+	m_plight->position[3]=0;
+
+	m_plight->ambient[0]=.35f;
+	m_plight->ambient[1]=.35f;
+	m_plight->ambient[2]=.35f;
+	m_plight->ambient[3]=1;
+
+	m_plight->diffuse[0]=1;
+	m_plight->diffuse[1]=1;
+	m_plight->diffuse[2]=1;
+	m_plight->diffuse[3]=1;
+
+	m_plight->specular[0]=1;
+	m_plight->specular[1]=1;
+	m_plight->specular[2]=1;
+	m_plight->specular[3]=0;
+
+	m_plight->enabled=true;
+
+	addLight(m_plight);
+
 	m_pmesh=new Mesh();
 	//下面两个方法要在load后加载
 	m_pmesh->setForceGenerateNormal(true);

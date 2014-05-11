@@ -11,6 +11,23 @@
 
 #include "Shader.h"
 #include "Texture.h"
+#include "Light.h"
+
+#define LIGHT_MAX_NUM 36
+
+struct lightUniform{
+	GLint enabled;
+	GLint position;
+	GLint ambient;
+	GLint diffuse;
+	GLint specular;
+	GLint spotDirection;
+	GLint spotCutoff;
+	GLint spotExponent;
+	GLint constantAttenuation;
+	GLint linearAttenuation;
+	GLint quadraticAttenuation;
+};
 
 class VaryShader:public Shader{
 private:
@@ -18,6 +35,7 @@ private:
 	GLint m_nUniformModelViewMatrix;
     GLint m_nUniformNormalMatrix;
 	GLint m_nUniformSampler2D;
+	struct lightUniform m_pLightsUniform[LIGHT_MAX_NUM];
     VaryShader();
 public:
     static VaryShader* sharedInstance();
@@ -27,6 +45,7 @@ public:
 	void setModelViewMatrix(const float *data);
     void setNormalMatrix(const float *data);
 	void setTexture(Texture *texture);
+	void setLight(int index,Light*light);
 };
 
 

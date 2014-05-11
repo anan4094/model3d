@@ -14,6 +14,7 @@
 class TestScene:public Scene{
 private:
 	Mesh *m_pmesh;
+	Light *m_plight;
 	float deg;
 	float start_x;
 public:

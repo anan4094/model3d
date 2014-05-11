@@ -485,6 +485,7 @@ void Mesh::draw(){
 					pinms->setModelViewProjectionMatrix(_modelViewProjectionMatrix.get());
 					pinms->setModelViewMatrix(modelViewMatrix.get());
 					pinms->setNormalMatrix(_normalMatrix.get());
+					pinms->setLight(0,Stage::sharedInstance()->runningScene()->getLight(0));
 					Texture *pctex=pmtl->map_kd;
 					pinms->setTexture(pctex);
 				}else{

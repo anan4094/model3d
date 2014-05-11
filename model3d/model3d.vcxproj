@@ -12,6 +12,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="3d\Camera.cpp" />
+    <ClCompile Include="3d\Light.cpp" />
     <ClCompile Include="3d\Material.cpp" />
     <ClCompile Include="3d\Mesh.cpp" />
     <ClCompile Include="3d\Node.cpp" />
@@ -35,6 +36,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="3d\Camera.h" />
+    <ClInclude Include="3d\Light.h" />
     <ClInclude Include="3d\Material.h" />
     <ClInclude Include="3d\Mesh.h" />
     <ClInclude Include="3d\Node.h" />

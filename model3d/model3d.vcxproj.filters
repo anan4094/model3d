@@ -118,6 +118,9 @@
     <ClCompile Include="3d\Camera.cpp">
       <Filter>3d</Filter>
     </ClCompile>
+    <ClCompile Include="3d\Light.cpp">
+      <Filter>3d</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="tools\matrix\Matrices.h">
@@ -193,6 +196,9 @@
       <Filter>shader</Filter>
     </ClInclude>
     <ClInclude Include="3d\Camera.h">
+      <Filter>3d</Filter>
+    </ClInclude>
+    <ClInclude Include="3d\Light.h">
       <Filter>3d</Filter>
     </ClInclude>
   </ItemGroup>

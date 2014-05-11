@@ -13,16 +13,17 @@
 
 class Light{
 public:
-    float position[4];
-    float ambient[4];
-    float diffuse[4];
-    float specular[4];
-    float spotDirection[3];
-    float spotCutoff;
-    float spotExponent;
-    float constantAttenuation;
-    float linearAttenuation;
-    float quadraticAttenuation;
+	bool enabled;
+    GLfloat position[4];
+    GLfloat ambient[4];
+    GLfloat diffuse[4];
+    GLfloat specular[4];
+    GLfloat spotDirection[3];
+    GLfloat spotCutoff;
+    GLfloat spotExponent;
+    GLfloat constantAttenuation;
+    GLfloat linearAttenuation;
+    GLfloat quadraticAttenuation;
     
     void directionalLight(float x,float y,float z);
     void pointLight(float x,float y,float z);
