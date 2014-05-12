@@ -40,7 +40,8 @@ void VaryShader::installUniform(){
 	m_nUniformModelViewMatrix = glGetUniformLocation(ProgramObject,"modelViewMatrix");
     m_nUniformNormalMatrix = glGetUniformLocation(ProgramObject,"normalMatrix");
 	m_nUniformSampler2D = glGetUniformLocation(ProgramObject,"tex");
-	//GLint m_nUniformLights = glGetUniformBlockIndex(ProgramObject,"light");
+	m_nUniformHasmap = glGetUniformLocation(ProgramObject,"hasmap");
+	m_sMaterialUniform.kd = glGetUniformLocation(ProgramObject,"mat.kd");
 
 	char *name=new char[40],*p=name+6,*q;
 	strcpy(name,"light[");
@@ -94,9 +95,20 @@ void VaryShader::setNormalMatrix(const float *data){
 }
 
 void VaryShader::setTexture(Texture* texture){
-	glActiveTexture(GL_TEXTURE0);
-	glBindTexture(GL_TEXTURE_2D,texture->get());
-	glUniform1i(m_nUniformSampler2D,0);
+	if(texture){
+		glActiveTexture(GL_TEXTURE0);
+		glBindTexture(GL_TEXTURE_2D,texture->get());
+		glUniform1i(m_nUniformSampler2D,0);
+		glUniform1i(m_nUniformHasmap,true);
+	}else{
+		glUniform1i(m_nUniformHasmap,false);
+	}
+}
+
+void VaryShader::setMaterial(mtl *material){
+	Texture *pctex=material->map_kd;
+	setTexture(pctex);
+	glUniform4fv(m_sMaterialUniform.kd,1,material->kd.d);
 }
 
 void VaryShader::setLight(int index,Light*light){

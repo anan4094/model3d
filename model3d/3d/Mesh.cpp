@@ -479,23 +479,13 @@ void Mesh::draw(){
 			Mtl*pmtl=m_iMaterial.find(minf.name);
 
 			if (m_bHasNormal){
-				if (pmtl->map_kd){
-					VaryShader *pinms = VaryShader::sharedInstance();
-					pinms->use();
-					pinms->setModelViewProjectionMatrix(_modelViewProjectionMatrix.get());
-					pinms->setModelViewMatrix(modelViewMatrix.get());
-					pinms->setNormalMatrix(_normalMatrix.get());
-					pinms->setLight(0,Stage::sharedInstance()->runningScene()->getLight(0));
-					Texture *pctex=pmtl->map_kd;
-					pinms->setTexture(pctex);
-				}else{
-					NormalColorShader *pincs = NormalColorShader::sharedInstance();
-					pincs->use();
-					pincs->setModelViewProjectionMatrix(_modelViewProjectionMatrix.get());
-					pincs->setNormalMatrix(_normalMatrix.get());
-					pincs->setDiffuseColor(pmtl->kd.d);
-					//glBindTexture(GL_TEXTURE_2D,0);
-				}
+				VaryShader *pinms = VaryShader::sharedInstance();
+				pinms->use();
+				pinms->setModelViewProjectionMatrix(_modelViewProjectionMatrix.get());
+				pinms->setModelViewMatrix(modelViewMatrix.get());
+				pinms->setNormalMatrix(_normalMatrix.get());
+				pinms->setLight(0,Stage::sharedInstance()->runningScene()->getLight(0));
+				pinms->setMaterial(pmtl);
 			}else{
 				if (pmtl->map_kd){
 					MapShader *pims = MapShader::sharedInstance();

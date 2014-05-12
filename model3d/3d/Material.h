@@ -26,33 +26,33 @@ typedef struct mtl{
     GLfloat tr;
     union{
         struct{
-            GLfloat r,g,b;
+            GLfloat r,g,b,a;
         };
-        GLfloat d[3];
+        GLfloat d[4];
     }tf;
     union{
         struct{
-            GLfloat r,g,b;
+            GLfloat r,g,b,a;
         };
-        GLfloat d[3];
+        GLfloat d[4];
     }ka;
     union{
         struct{
-            GLfloat r,g,b;
+            GLfloat r,g,b,a;
         };
-        GLfloat d[3];
+        GLfloat d[4];
     }kd;
     union{
         struct{
-            GLfloat r,g,b;
+            GLfloat r,g,b,a;
         };
-        GLfloat d[3];
+        GLfloat d[4];
     }ks;
     union{
         struct{
-            GLfloat r,g,b;
+            GLfloat r,g,b,a;
         };
-        GLfloat d[3];
+        GLfloat d[4];
     }ke;
     Texture* map_kd;
 }Mtl;

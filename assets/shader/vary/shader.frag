@@ -13,7 +13,14 @@ struct lightParams{
     float quadraticAttenuation;
 };
 
+struct materialParams{
+    vec4 ka;
+	vec4 kd;
+};
+
 uniform sampler2D tex;
+uniform bool hasmap;
+uniform materialParams mat;
 varying vec3 texCoordVarying;
 varying vec3 enor;
 varying vec3 epos;
@@ -59,6 +66,7 @@ void main (void)
 	vec4 amb = vec4(0);
     vec4 diff = vec4(0);
     vec4 spec = vec4(0);
+	vec4 sceneColor = vec4(0);
 
     vec3 eye = -normalize(epos);
 
@@ -74,8 +82,10 @@ void main (void)
             //SpotLight(i, eye, epos, normal, amb, diff, spec);
         }
     }
-    
-	vec4 sceneColor = texture2D(tex,texCoordVarying.st);
+    if(hasmap)
+	    sceneColor = texture2D(tex,texCoordVarying.st);
+    else
+	    sceneColor = mat.kd;
 
     // write Total Color:
     gl_FragColor = sceneColor*(amb + diff)+ spec;

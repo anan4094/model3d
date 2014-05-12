@@ -214,6 +214,9 @@ void Material::readColor(AttribMaterial am,Mtl &mtl,char* &p){
         }
 		p++;
     }while (true);
+	if (am==KD) {
+		mtl.kd.d[3]=1;
+	}
 }
 
 Mtl* Material::find(const char* name){
