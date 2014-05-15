@@ -41,6 +41,7 @@ private:
     GLint m_nUniformNormalMatrix;
 	GLint m_nUniformSampler2D;
 	GLint m_nUniformHasmap;
+	int   m_nLightCount;
 	struct lightUniform m_pLightsUniform[LIGHT_MAX_NUM];
 	struct materialUniform m_sMaterialUniform;
     VaryShader();
@@ -54,6 +55,8 @@ public:
 	void setTexture(Texture *texture);
 	void setMaterial(mtl *material);
 	void setLight(int index,Light*light);
+	void addLight(Light*light);
+	void lightReset();
 };
 
 

@@ -484,7 +484,11 @@ void Mesh::draw(){
 				pinms->setModelViewProjectionMatrix(_modelViewProjectionMatrix.get());
 				pinms->setModelViewMatrix(modelViewMatrix.get());
 				pinms->setNormalMatrix(_normalMatrix.get());
-				pinms->setLight(0,Stage::sharedInstance()->runningScene()->getLight(0));
+				int lc = Stage::sharedInstance()->runningScene()->lightCount();
+				pinms->lightReset();
+				while(lc--){
+					pinms->addLight(Stage::sharedInstance()->runningScene()->getLight(lc));
+				}
 				pinms->setMaterial(pmtl);
 			}else{
 				if (pmtl->map_kd){

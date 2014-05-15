@@ -22,6 +22,7 @@ public:
     virtual bool screenSizeChange(int width,int height);
     void addLight(Light* light);
 	Light* getLight(int index){return m_iLights.size()>index?m_iLights[index]:nullptr;}
+	int lightCount(){return m_iLights.size();}
     void draw();
 };
 

@@ -10,7 +10,7 @@
 #include <stdio.h>
 static VaryShader* instance = nullptr;
 
-VaryShader::VaryShader(){
+VaryShader::VaryShader():m_nLightCount(0){
 }
 
 VaryShader* VaryShader::sharedInstance(){
@@ -111,6 +111,10 @@ void VaryShader::setMaterial(mtl *material){
 	glUniform4fv(m_sMaterialUniform.kd,1,material->kd.d);
 }
 
+void VaryShader::lightReset(){
+	m_nLightCount=0;
+}
+
 void VaryShader::setLight(int index,Light*light){
 	if (index<0||index>=LIGHT_MAX_NUM){
 		return;
@@ -126,4 +130,11 @@ void VaryShader::setLight(int index,Light*light){
 	glUniform1f(m_pLightsUniform[index].constantAttenuation,light->constantAttenuation);
 	glUniform1f(m_pLightsUniform[index].linearAttenuation,light->linearAttenuation);
 	glUniform1f(m_pLightsUniform[index].quadraticAttenuation,light->quadraticAttenuation);
+}
+
+void VaryShader::addLight(Light*light){
+	if (m_nLightCount<LIGHT_MAX_NUM){
+		setLight(m_nLightCount,light);
+		m_nLightCount++;
+	}
 }

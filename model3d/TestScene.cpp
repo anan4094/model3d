@@ -55,7 +55,31 @@ void TestScene::initRes(){
 
 	m_plight->enabled=true;
 
+	m_plight1 = new Light();
+	m_plight1->position[0]=1;
+	m_plight1->position[1]=0;
+	m_plight1->position[2]=0;
+	m_plight1->position[3]=0;
+
+	m_plight1->ambient[0]=.35f;
+	m_plight1->ambient[1]=.35f;
+	m_plight1->ambient[2]=.35f;
+	m_plight1->ambient[3]=1;
+
+	m_plight1->diffuse[0]=1;
+	m_plight1->diffuse[1]=1;
+	m_plight1->diffuse[2]=1;
+	m_plight1->diffuse[3]=1;
+
+	m_plight1->specular[0]=1;
+	m_plight1->specular[1]=1;
+	m_plight1->specular[2]=1;
+	m_plight1->specular[3]=0;
+
+	m_plight1->enabled=true;
+
 	addLight(m_plight);
+	addLight(m_plight1);
 
 	m_pmesh=new Mesh();
 	//下面两个方法要在load后加载
@@ -64,7 +88,7 @@ void TestScene::initRes(){
 #ifdef __APPLE__
 	m_pmesh->load("/Users/anan/Documents/github/model3d/assets/peri/peri.obj");
 #else
-	m_pmesh->load("../assets/peri/peri.obj");
+	m_pmesh->load("../assets/cube.obj");
 #endif
 	m_pmesh->setUseShader(true);
 	GLfloat hy = m_pmesh->getMaxY();
@@ -73,6 +97,7 @@ void TestScene::initRes(){
 
 	//let model show us
 	GLfloat scale = 18/(hy-ly);
+	scale*=.5;
 	m_pmesh->setScale(scale,scale,scale);
 	m_pmesh->setPosition(0, -9.0f*(hy+ly)/(hy-ly), -20);
 
