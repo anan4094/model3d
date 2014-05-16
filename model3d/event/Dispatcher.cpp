@@ -33,6 +33,28 @@ bool Dispatcher::dispatcherTouchEvent(MotionEvent &event){
 	}
 	return true;
 }
+
+bool Dispatcher::dispatcherKeyEvent(KeyEvent &event){
+	Node *_list[10];
+	int count = 0;
+	Node *node=Stage::sharedInstance()->runningScene();
+	if (!node){
+		return false;
+	}
+	bool ret=false;
+	do {
+		_list[count++]=node;
+		ret = node->dispatcherKeyEvent(event);
+		node=event.target;
+	} while (ret);
+	while (count--){
+		ret = _list[count]->onKeyEvent(event);
+		if (!ret){
+			break;
+		}
+	}
+	return true;
+}
 Dispatcher* Dispatcher::sm_pSharedDispatcher = nullptr;
 Dispatcher* Dispatcher::sharedInstance(){
 	if (!sm_pSharedDispatcher){

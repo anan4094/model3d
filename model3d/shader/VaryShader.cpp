@@ -113,6 +113,9 @@ void VaryShader::setMaterial(mtl *material){
 
 void VaryShader::lightReset(){
 	m_nLightCount=0;
+	for (int i=0;i<LIGHT_MAX_NUM;i++){
+		glUniform1i(m_pLightsUniform[i].enabled,false);
+	}
 }
 
 void VaryShader::setLight(int index,Light*light){

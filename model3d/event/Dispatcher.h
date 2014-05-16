@@ -16,6 +16,7 @@ private:
 	Dispatcher();
 public:
 	bool dispatcherTouchEvent(MotionEvent &event);
+	bool dispatcherKeyEvent(KeyEvent &event);
 	static Dispatcher* sharedInstance();
 };
 

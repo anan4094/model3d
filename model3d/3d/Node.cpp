@@ -18,3 +18,11 @@ bool Node::dispatcherTouchEvent(MotionEvent &event){
 bool Node::onTouchEvent(MotionEvent &event){
 	return false;
 }
+
+bool Node::dispatcherKeyEvent(KeyEvent &event){
+	return false;
+}
+
+bool Node::onKeyEvent(KeyEvent &event){
+	return false;
+}

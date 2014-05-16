@@ -22,7 +22,9 @@ public:
     virtual void draw() = 0;
     virtual bool screenSizeChange(int width,int height)=0;
     bool dispatcherTouchEvent(MotionEvent &event);
+	bool dispatcherKeyEvent(KeyEvent &event);
 	virtual bool onTouchEvent(MotionEvent &event);
+	virtual bool onKeyEvent(KeyEvent &event);
 };
 
 #endif /* defined(__model3d__Node__) */

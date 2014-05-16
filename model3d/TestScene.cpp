@@ -30,7 +30,7 @@ void TestScene::initRes(){
 	m_plight->specular[2]=1;
 	m_plight->specular[3]=0;*/
 	m_plight->position[0]=20;
-	m_plight->position[1]=20;
+	m_plight->position[1]=0;
 	m_plight->position[2]=-20;
 	m_plight->position[3]=1;
 	m_plight->spotCutoff=180.0f;
@@ -88,7 +88,7 @@ void TestScene::initRes(){
 #ifdef __APPLE__
 	m_pmesh->load("/Users/anan/Documents/github/model3d/assets/peri/peri.obj");
 #else
-	m_pmesh->load("../assets/cube.obj");
+	m_pmesh->load("../assets/peri/peri.obj");
 #endif
 	m_pmesh->setUseShader(true);
 	GLfloat hy = m_pmesh->getMaxY();
@@ -97,7 +97,7 @@ void TestScene::initRes(){
 
 	//let model show us
 	GLfloat scale = 18/(hy-ly);
-	scale*=.5;
+	scale*=.95;
 	m_pmesh->setScale(scale,scale,scale);
 	m_pmesh->setPosition(0, -9.0f*(hy+ly)/(hy-ly), -20);
 
@@ -119,6 +119,34 @@ bool TestScene::onTouchEvent(MotionEvent &event){
 		deg=deg+10*(event.x-start_x);
 	default:
 		break;
+	}
+	return false;
+}
+bool TestScene::onKeyEvent(KeyEvent &event){
+	//printf("key:%c\n",event.key);
+	if (event.action==GLFW_PRESS){
+		switch (event.key){
+		case '1':
+			m_plight->enabled=!m_plight->enabled;
+			break;
+		case '2':
+			m_plight1->enabled=!m_plight1->enabled;
+			break;
+		case '3':
+			m_plight->specular[0]=1-m_plight->specular[0];
+			m_plight->specular[1]=1-m_plight->specular[1];
+			m_plight->specular[2]=1-m_plight->specular[2];
+			m_plight->specular[3]=0;
+			break;
+		case '4':
+			m_plight1->specular[0]=1-m_plight1->specular[0];
+			m_plight1->specular[1]=1-m_plight1->specular[1];
+			m_plight1->specular[2]=1-m_plight1->specular[2];
+			m_plight1->specular[3]=0;
+			break;
+		default:
+			break;
+		}
 	}
 	return false;
 }

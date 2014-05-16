@@ -26,4 +26,13 @@ typedef struct _MotionEvent{
 	Node *target;
 }MotionEvent ;
 
+typedef struct _KeyEvent{
+	int key;
+	int scancode;
+	int action;
+	int mods;
+	void *userData;
+	Node *target;
+}KeyEvent;
+
 #endif

@@ -15,6 +15,7 @@
 double _x=0.0,_y=0.0;
 bool _cap = false;
 MotionEvent motionEvent;
+KeyEvent keyEvent;
 //用来检查OpenGL版本，需要GLSL 2.0支持
 static void getGlVersion( int *major, int *minor )
 {
@@ -55,8 +56,14 @@ static void error_callback(int error, const char* description)
 
 static void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods)
 {
-    if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
+    if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS){
         glfwSetWindowShouldClose(window, GL_TRUE);
+	}
+	keyEvent.key=key;
+	keyEvent.scancode=scancode;
+	keyEvent.action=action;
+	keyEvent.mods=mods;
+	Dispatcher::sharedInstance()->dispatcherKeyEvent(keyEvent);
 }
 static void cursor_pos_callback(GLFWwindow* window, double x, double y){
 	//printf("pos:(%f,%f)\n",x,y);
