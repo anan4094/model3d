@@ -139,6 +139,9 @@ bool Material::loadMtl(const char*filename){
 			if (*p=='d'){
 				p++;
 				readColor(KD,mtl,p);
+			}if (*p=='s'){
+				p++;
+				readColor(KS,mtl,p);
 			}else{
 				for (p++;*p!='\n'&&*p!='\r'&&p!=end;p++);
 			}
@@ -204,6 +207,8 @@ void Material::readColor(AttribMaterial am,Mtl &mtl,char* &p){
             if (flag==1||flag==2) {
                 if (am==KD) {
                     mtl.kd.d[channel]=tmp;
+                }else if (am==KS){
+					mtl.ks.d[channel]=tmp;
                 }
                 channel++;
             }
@@ -216,6 +221,8 @@ void Material::readColor(AttribMaterial am,Mtl &mtl,char* &p){
     }while (true);
 	if (am==KD) {
 		mtl.kd.d[3]=1;
+	}else if (am==KS){
+		mtl.ks.d[3]=1;
 	}
 }
 

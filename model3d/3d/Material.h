@@ -16,6 +16,7 @@
 
 typedef enum attrib_material{
     KD
+	,KS
 }AttribMaterial;
 
 typedef struct mtl{

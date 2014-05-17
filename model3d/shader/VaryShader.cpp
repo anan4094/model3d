@@ -42,6 +42,8 @@ void VaryShader::installUniform(){
 	m_nUniformSampler2D = glGetUniformLocation(ProgramObject,"tex");
 	m_nUniformHasmap = glGetUniformLocation(ProgramObject,"hasmap");
 	m_sMaterialUniform.kd = glGetUniformLocation(ProgramObject,"mat.kd");
+	m_sMaterialUniform.ks = glGetUniformLocation(ProgramObject,"mat.ks");
+	m_sMaterialUniform.shininess = glGetUniformLocation(ProgramObject,"mat.shininess");
 
 	char *name=new char[40],*p=name+6,*q;
 	strcpy(name,"light[");
@@ -109,6 +111,8 @@ void VaryShader::setMaterial(mtl *material){
 	Texture *pctex=material->map_kd;
 	setTexture(pctex);
 	glUniform4fv(m_sMaterialUniform.kd,1,material->kd.d);
+	glUniform4fv(m_sMaterialUniform.ks,1,material->ks.d);
+	glUniform1f(m_sMaterialUniform.shininess,material->ns/1000*255);
 }
 
 void VaryShader::lightReset(){

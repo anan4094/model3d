@@ -32,6 +32,8 @@ struct lightUniform{
 struct materialUniform{
 	GLint ka;
 	GLint kd;
+	GLint ks;
+	GLfloat shininess;
 };
 
 class VaryShader:public Shader{

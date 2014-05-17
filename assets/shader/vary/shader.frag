@@ -16,6 +16,8 @@ struct lightParams{
 struct materialParams{
     vec4 ka;
 	vec4 kd;
+	vec4 ks;
+	float shininess;
 };
 
 uniform sampler2D tex;
@@ -28,10 +30,6 @@ varying vec3 epos;
 const int maxLightCount = 32;
 uniform lightParams light[maxLightCount];
 
-float shininess = 32;
-
-vec4 specular = vec4(.35,.35,.35,1);
-
 void DirectionalLight(int i, vec3 eye, vec3 epos, vec3 normal,
                       inout vec4 amb, inout vec4 diff, inout vec4 spec){
     float dotVP = max(0, dot(normal, normalize(vec3(light[i].position))));
@@ -39,7 +37,7 @@ void DirectionalLight(int i, vec3 eye, vec3 epos, vec3 normal,
     
     amb += light[i].ambient;
     diff += light[i].diffuse * dotVP;
-    spec += light[i].specular * pow(dotHV, shininess);
+    spec += light[i].specular * pow(dotHV, mat.shininess);
 }
 
 void PointLight(int i, vec3 eye, vec3 epos, vec3 normal, 
@@ -58,7 +56,7 @@ void PointLight(int i, vec3 eye, vec3 epos, vec3 normal,
     
     amb += light[i].ambient * att;
     diff += light[i].diffuse * dotVP * att;
-    spec += light[i].specular * pow(dotHV,shininess) * att;
+    spec += light[i].specular * pow(dotHV,mat.shininess) * att;
 }
 
 void main (void)
@@ -88,5 +86,5 @@ void main (void)
 	    sceneColor = mat.kd;
 
     // write Total Color:
-    gl_FragColor = sceneColor*(amb + diff)+ spec;
+    gl_FragColor = sceneColor*(amb + diff)+ spec*mat.ks;
 }
