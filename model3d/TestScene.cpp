@@ -10,11 +10,13 @@
 
 void TestScene::initRes(){
 	m_plight = new PointLight(20,0,-20);
-	m_plight1 = new DirectionalLight(1,0,0);
-
+	//m_plight1 = new DirectionalLight(1,0,0);
+	m_plight1 = new SpotLight(20);
+	m_plight1->setPosition(20,4.5,-20);
+	m_plight1->setDirection(-1,0,0);
 	addLight(m_plight);
 	addLight(m_plight1);
-
+	
 	m_pmesh=new Mesh();
 	//下面两个方法要在load后加载
 	m_pmesh->setForceGenerateNormal(true);

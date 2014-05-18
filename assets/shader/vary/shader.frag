@@ -30,8 +30,7 @@ varying vec3 epos;
 const int maxLightCount = 32;
 uniform lightParams light[maxLightCount];
 
-void DirectionalLight(int i, vec3 eye, vec3 epos, vec3 normal,
-                      inout vec4 amb, inout vec4 diff, inout vec4 spec){
+void DirectionalLight(int i, vec3 eye, vec3 epos, vec3 normal,inout vec4 amb, inout vec4 diff, inout vec4 spec){
     float dotVP = max(0, dot(normal, normalize(vec3(light[i].position))));
     float dotHV = max(0, dot(normal, normalize(eye+normalize(vec3(light[i].position)))));
     
@@ -40,8 +39,7 @@ void DirectionalLight(int i, vec3 eye, vec3 epos, vec3 normal,
     spec += light[i].specular * pow(dotHV, mat.shininess);
 }
 
-void PointLight(int i, vec3 eye, vec3 epos, vec3 normal, 
-                inout vec4 amb, inout vec4 diff, inout vec4 spec){
+void PointLight(int i, vec3 eye, vec3 epos, vec3 normal,inout vec4 amb, inout vec4 diff, inout vec4 spec){
     vec3 VP = vec3(light[i].position) - epos;
     float d = length(VP);
     VP = normalize(VP);
@@ -57,6 +55,28 @@ void PointLight(int i, vec3 eye, vec3 epos, vec3 normal,
     amb += light[i].ambient * att;
     diff += light[i].diffuse * dotVP * att;
     spec += light[i].specular * pow(dotHV,mat.shininess) * att;
+}
+void SpotLight(int i, vec3 eye, vec3 epos, vec3 normal,inout vec4 amb, inout vec4 diff, inout vec4 spec){
+    vec3 VP = vec3(light[i].position) - epos;
+    float d = length(VP);
+
+    VP = normalize(VP);
+    float att = 1.0/(light[i].constantAttenuation + light[i].linearAttenuation*d + light[i].quadraticAttenuation*d*d);
+    float dotSpot = dot(-VP, normalize(light[i].spotDirection));
+    float cosCutoff = cos(light[i].spotCutoff*3.1415926/180.0);
+    float spotAtt = 0;
+    if (dotSpot < cosCutoff)
+        spotAtt = 0;
+    else
+        spotAtt = pow(dotSpot, light[i].spotExponent);
+    att *= spotAtt;
+    vec3 h = normalize(VP+eye);
+    float dotVP = max(0, dot(normal, VP));
+    float dotHV = max(0, dot(normal, h));
+
+    amb += light[i].ambient * att;
+    diff += light[i].diffuse * dotVP * att;
+    spec += light[i].specular * pow(dotHV, mat.shininess) * att;
 }
 
 void main (void)
@@ -77,7 +97,7 @@ void main (void)
         }else if (light[i].spotCutoff == 180.0){
             PointLight(i, eye, epos, enor, amb, diff, spec);
         }else{
-            //SpotLight(i, eye, epos, normal, amb, diff, spec);
+            SpotLight(i, eye, epos, enor, amb, diff, spec);
         }
     }
     if(hasmap)

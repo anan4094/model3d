@@ -20,6 +20,7 @@ protected:
 public:
     void addSubNode(Node* node);
     virtual void draw() = 0;
+	virtual void clear() = 0;
     virtual bool screenSizeChange(int width,int height)=0;
     bool dispatcherTouchEvent(MotionEvent &event);
 	bool dispatcherKeyEvent(KeyEvent &event);

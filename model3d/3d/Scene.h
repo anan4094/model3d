@@ -23,7 +23,8 @@ public:
     void addLight(Light* light);
 	Light* getLight(int index){return m_iLights.size()>index?m_iLights[index]:nullptr;}
 	int lightCount(){return m_iLights.size();}
-    void draw();
+    virtual void draw();
+	virtual void clear();
 };
 
 #endif /* defined(__model3d__Scene__) */

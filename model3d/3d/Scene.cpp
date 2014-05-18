@@ -20,6 +20,9 @@ void Scene::draw(){
     }
 }
 
+void Scene::clear(){
+}
+
 bool Scene::screenSizeChange(int width, int height){
     reshape(width, height);
     return true;

@@ -9,6 +9,13 @@
 #ifndef __model3d__SpotLight__
 #define __model3d__SpotLight__
 
-#include <iostream>
+#include "BaseLight.h"
+
+class SpotLight:public Light{
+public:
+	SpotLight(GLfloat cutoff);
+	virtual void setPosition(GLfloat x,GLfloat y,GLfloat z);
+	virtual void setDirection(GLfloat x,GLfloat y,GLfloat z);
+};
 
 #endif /* defined(__model3d__SpotLight__) */

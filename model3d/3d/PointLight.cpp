@@ -26,5 +26,5 @@ void PointLight::setPosition(GLfloat x,GLfloat y,GLfloat z){
     position[2]=z;
 }
 void PointLight::setDirection(GLfloat x,GLfloat y,GLfloat z){
-    printf("ponit light can't set direction\n");
+    printf("point light can't set direction\n");
 }

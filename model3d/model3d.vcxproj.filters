@@ -53,6 +53,9 @@
     <Filter Include="资源文件\shader\vary">
       <UniqueIdentifier>{2c475de2-6e2c-4a5e-8370-9e00fa374418}</UniqueIdentifier>
     </Filter>
+    <Filter Include="3d\light">
+      <UniqueIdentifier>{0873e770-aab8-4912-a9db-0421d5ca21e7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="tools\matrix\Matrices.cpp">
@@ -118,8 +121,20 @@
     <ClCompile Include="3d\Camera.cpp">
       <Filter>3d</Filter>
     </ClCompile>
-    <ClCompile Include="3d\Light.cpp">
+    <ClCompile Include="3d\DirectionalLight.cpp">
       <Filter>3d</Filter>
+    </ClCompile>
+    <ClCompile Include="3d\Drawable.cpp">
+      <Filter>3d</Filter>
+    </ClCompile>
+    <ClCompile Include="3d\BaseLight.cpp">
+      <Filter>3d\light</Filter>
+    </ClCompile>
+    <ClCompile Include="3d\SpotLight.cpp">
+      <Filter>3d\light</Filter>
+    </ClCompile>
+    <ClCompile Include="3d\PointLight.cpp">
+      <Filter>3d\light</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -198,8 +213,23 @@
     <ClInclude Include="3d\Camera.h">
       <Filter>3d</Filter>
     </ClInclude>
-    <ClInclude Include="3d\Light.h">
+    <ClInclude Include="3d\DirectionalLight.h">
       <Filter>3d</Filter>
+    </ClInclude>
+    <ClInclude Include="3d\Drawable.h">
+      <Filter>3d</Filter>
+    </ClInclude>
+    <ClInclude Include="3d\BaseLight.h">
+      <Filter>3d\light</Filter>
+    </ClInclude>
+    <ClInclude Include="3d\Light.h">
+      <Filter>3d\light</Filter>
+    </ClInclude>
+    <ClInclude Include="3d\SpotLight.h">
+      <Filter>3d\light</Filter>
+    </ClInclude>
+    <ClInclude Include="3d\PointLight.h">
+      <Filter>3d\light</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
