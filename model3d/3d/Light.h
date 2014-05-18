@@ -9,25 +9,8 @@
 #ifndef __model3d__Light__
 #define __model3d__Light__
 
-#include "platform.h"
-
-class Light{
-public:
-	bool enabled;
-    GLfloat position[4];
-    GLfloat ambient[4];
-    GLfloat diffuse[4];
-    GLfloat specular[4];
-    GLfloat spotDirection[3];
-    GLfloat spotCutoff;
-    GLfloat spotExponent;
-    GLfloat constantAttenuation;
-    GLfloat linearAttenuation;
-    GLfloat quadraticAttenuation;
-    
-    void directionalLight(float x,float y,float z);
-    void pointLight(float x,float y,float z);
-    void spotLight(float x,float y,float z);
-};
+#include "PointLight.h"
+#include "DirectionalLight.h"
+#include "SpotLight.h"
 
 #endif /* defined(__model3d__Light__) */

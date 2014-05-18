@@ -23,7 +23,7 @@ public:
 	inline TestScene():deg(0),l1(0){}
 	void initRes();
 	virtual bool onTouchEvent(MotionEvent &event);
-	virtual bool TestScene::onKeyEvent(KeyEvent &event);
+	virtual bool onKeyEvent(KeyEvent &event);
 };
 
 #endif /* defined(__model3d__TestScene__) */

@@ -15,9 +15,13 @@
 		2764A341190816340068A967 /* Stage.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2764A340190816340068A967 /* Stage.mm */; };
 		277D917219129687002B88D1 /* VaryShader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 277D917019129687002B88D1 /* VaryShader.cpp */; };
 		277EA4E919056C2E0065C78B /* TestScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 277EA4E719056C2E0065C78B /* TestScene.cpp */; };
+		279C5AEF19286B7000962E1F /* libglfw3.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 279C5AEE19286B7000962E1F /* libglfw3.a */; };
+		279C5AF319286C4D00962E1F /* DirectionalLight.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 279C5AF119286C4D00962E1F /* DirectionalLight.cpp */; };
+		279C5AF61928B30A00962E1F /* PointLight.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 279C5AF41928B30A00962E1F /* PointLight.cpp */; };
+		279C5AF91928B4D200962E1F /* SpotLight.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 279C5AF71928B4D200962E1F /* SpotLight.cpp */; };
+		279C5AFC1928B52500962E1F /* Drawable.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 279C5AFA1928B52500962E1F /* Drawable.cpp */; };
 		27B18B651917DFC800168E81 /* Camera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 27B18B631917DFC800168E81 /* Camera.cpp */; };
-		27D4D6B8191E4B0F0017D1A0 /* Light.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 27D4D6B6191E4B0F0017D1A0 /* Light.cpp */; };
-		27D5E57B190221D200D96450 /* libglfw3.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 27D5E57A190221D200D96450 /* libglfw3.a */; };
+		27D4D6B8191E4B0F0017D1A0 /* BaseLight.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 27D4D6B6191E4B0F0017D1A0 /* BaseLight.cpp */; };
 		27D5E59A19022C6C00D96450 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27D5E59919022C6C00D96450 /* Cocoa.framework */; };
 		27D5E59E190230F200D96450 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27D5E59D190230F200D96450 /* QuartzCore.framework */; };
 		27F667BA18F7C5D100CB75C5 /* image_DXT.c in Sources */ = {isa = PBXBuildFile; fileRef = 27F667B018F7C5D100CB75C5 /* image_DXT.c */; };
@@ -66,11 +70,20 @@
 		277EA4E519055ABA0065C78B /* Event.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Event.h; sourceTree = "<group>"; };
 		277EA4E719056C2E0065C78B /* TestScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TestScene.cpp; sourceTree = "<group>"; };
 		277EA4E819056C2E0065C78B /* TestScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestScene.h; sourceTree = "<group>"; };
+		279C5AEE19286B7000962E1F /* libglfw3.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libglfw3.a; path = ../model3d/app/glfw3/prebuilt/mac/libglfw3.a; sourceTree = "<group>"; };
+		279C5AF119286C4D00962E1F /* DirectionalLight.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DirectionalLight.cpp; sourceTree = "<group>"; };
+		279C5AF219286C4D00962E1F /* DirectionalLight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DirectionalLight.h; sourceTree = "<group>"; };
+		279C5AF41928B30A00962E1F /* PointLight.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PointLight.cpp; sourceTree = "<group>"; };
+		279C5AF51928B30A00962E1F /* PointLight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PointLight.h; sourceTree = "<group>"; };
+		279C5AF71928B4D200962E1F /* SpotLight.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SpotLight.cpp; sourceTree = "<group>"; };
+		279C5AF81928B4D200962E1F /* SpotLight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpotLight.h; sourceTree = "<group>"; };
+		279C5AFA1928B52500962E1F /* Drawable.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Drawable.cpp; sourceTree = "<group>"; };
+		279C5AFB1928B52500962E1F /* Drawable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Drawable.h; sourceTree = "<group>"; };
+		279C5AFD1928BE4F00962E1F /* BaseLight.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseLight.h; sourceTree = "<group>"; };
 		27B18B631917DFC800168E81 /* Camera.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Camera.cpp; sourceTree = "<group>"; };
 		27B18B641917DFC800168E81 /* Camera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Camera.h; sourceTree = "<group>"; };
-		27D4D6B6191E4B0F0017D1A0 /* Light.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Light.cpp; sourceTree = "<group>"; };
+		27D4D6B6191E4B0F0017D1A0 /* BaseLight.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BaseLight.cpp; sourceTree = "<group>"; };
 		27D4D6B7191E4B0F0017D1A0 /* Light.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Light.h; sourceTree = "<group>"; };
-		27D5E57A190221D200D96450 /* libglfw3.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libglfw3.a; path = model3d/app/glfw3/prebuilt/mac/libglfw3.a; sourceTree = "<group>"; };
 		27D5E58F1902285000D96450 /* glfw3.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = glfw3.h; sourceTree = "<group>"; };
 		27D5E5901902285000D96450 /* glfw3native.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = glfw3native.h; sourceTree = "<group>"; };
 		27D5E59919022C6C00D96450 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
@@ -120,7 +133,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				27D5E57B190221D200D96450 /* libglfw3.a in Frameworks */,
+				279C5AEF19286B7000962E1F /* libglfw3.a in Frameworks */,
 				27D5E59E190230F200D96450 /* QuartzCore.framework in Frameworks */,
 				27D5E59A19022C6C00D96450 /* Cocoa.framework in Frameworks */,
 				271DA60918DFC1DF00BC7A8C /* GLUT.framework in Frameworks */,
@@ -177,7 +190,8 @@
 				277EA4E819056C2E0065C78B /* TestScene.h */,
 				277EA4E719056C2E0065C78B /* TestScene.cpp */,
 			);
-			path = model3d;
+			name = model3d;
+			path = ../model3d;
 			sourceTree = "<group>";
 		};
 		277D916D1912954A002B88D1 /* vary */ = {
@@ -192,6 +206,7 @@
 		27808DDE18EDB11200B76A2C /* 3d */ = {
 			isa = PBXGroup;
 			children = (
+				279C5AF019286BE000962E1F /* light */,
 				27FA498518FA2C8D00BB917D /* Material.h */,
 				27FA498418FA2C8D00BB917D /* Material.cpp */,
 				27FA498718FA2C8D00BB917D /* Mesh.h */,
@@ -204,8 +219,8 @@
 				27FA498C18FA2C8D00BB917D /* Texture.cpp */,
 				27B18B641917DFC800168E81 /* Camera.h */,
 				27B18B631917DFC800168E81 /* Camera.cpp */,
-				27D4D6B7191E4B0F0017D1A0 /* Light.h */,
-				27D4D6B6191E4B0F0017D1A0 /* Light.cpp */,
+				279C5AFA1928B52500962E1F /* Drawable.cpp */,
+				279C5AFB1928B52500962E1F /* Drawable.h */,
 			);
 			path = 3d;
 			sourceTree = "<group>";
@@ -239,6 +254,22 @@
 			path = normal_map;
 			sourceTree = "<group>";
 		};
+		279C5AF019286BE000962E1F /* light */ = {
+			isa = PBXGroup;
+			children = (
+				27D4D6B7191E4B0F0017D1A0 /* Light.h */,
+				279C5AF219286C4D00962E1F /* DirectionalLight.h */,
+				279C5AF119286C4D00962E1F /* DirectionalLight.cpp */,
+				279C5AF51928B30A00962E1F /* PointLight.h */,
+				279C5AF41928B30A00962E1F /* PointLight.cpp */,
+				279C5AF81928B4D200962E1F /* SpotLight.h */,
+				279C5AF71928B4D200962E1F /* SpotLight.cpp */,
+				279C5AFD1928BE4F00962E1F /* BaseLight.h */,
+				27D4D6B6191E4B0F0017D1A0 /* BaseLight.cpp */,
+			);
+			name = light;
+			sourceTree = "<group>";
+		};
 		27D5E58C1902285000D96450 /* glfw3 */ = {
 			isa = PBXGroup;
 			children = (
@@ -267,7 +298,7 @@
 		27D968CF18E2CC8600E7AF37 /* framework */ = {
 			isa = PBXGroup;
 			children = (
-				27D5E57A190221D200D96450 /* libglfw3.a */,
+				279C5AEE19286B7000962E1F /* libglfw3.a */,
 				27D5E59D190230F200D96450 /* QuartzCore.framework */,
 				27D5E59919022C6C00D96450 /* Cocoa.framework */,
 				271DA60818DFC1DF00BC7A8C /* GLUT.framework */,
@@ -318,7 +349,8 @@
 			children = (
 				278D74BB18F3A58A00324A19 /* shader */,
 			);
-			path = assets;
+			name = assets;
+			path = ../assets;
 			sourceTree = "<group>";
 		};
 		27FA499318FA3CF000BB917D /* map */ = {
@@ -436,22 +468,26 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				27D4D6B8191E4B0F0017D1A0 /* Light.cpp in Sources */,
+				27D4D6B8191E4B0F0017D1A0 /* BaseLight.cpp in Sources */,
 				277D917219129687002B88D1 /* VaryShader.cpp in Sources */,
 				27FA499218FA2C8D00BB917D /* Texture.cpp in Sources */,
+				279C5AF319286C4D00962E1F /* DirectionalLight.cpp in Sources */,
 				27F667BC18F7C5D100CB75C5 /* soil.c in Sources */,
 				2764A341190816340068A967 /* Stage.mm in Sources */,
 				2700A02018E50E8B0030CA02 /* Shader.cpp in Sources */,
 				27FCF13418E7F4A100A390F8 /* NormalMapShader.cpp in Sources */,
 				27FCF13D18E8077F00A390F8 /* Matrices.cpp in Sources */,
+				279C5AF61928B30A00962E1F /* PointLight.cpp in Sources */,
 				27B18B651917DFC800168E81 /* Camera.cpp in Sources */,
 				27FD195A18FE921D00330F74 /* NormalColorShader.cpp in Sources */,
 				27FA498E18FA2C8D00BB917D /* Material.cpp in Sources */,
 				27F667BD18F7C5D100CB75C5 /* stb_image_aug.c in Sources */,
 				27FA498F18FA2C8D00BB917D /* Mesh.cpp in Sources */,
+				279C5AF91928B4D200962E1F /* SpotLight.cpp in Sources */,
 				27FF669518F386C5008F8626 /* Timer.cpp in Sources */,
 				27FA499118FA2C8D00BB917D /* Scene.cpp in Sources */,
 				27F667BB18F7C5D100CB75C5 /* image_helper.c in Sources */,
+				279C5AFC1928B52500962E1F /* Drawable.cpp in Sources */,
 				27FA499018FA2C8D00BB917D /* Node.cpp in Sources */,
 				27FFAD5818FEDEED00C9C28D /* Dispatcher.cpp in Sources */,
 				2702465818F83BCE00904E6A /* MapShader.cpp in Sources */,
@@ -541,7 +577,10 @@
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 				);
-				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/model3d/app/glfw3/prebuilt/mac";
+				LIBRARY_SEARCH_PATHS = (
+					"$(PROJECT_DIR)/model3d/app/glfw3/prebuilt/mac",
+					/Users/anan/Documents/github/model3d/model3d/app/glfw3/prebuilt/mac,
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/app $(SRCROOT)/shader $(SRCROOT)/shader/base $(SRCROOT)/3d $(SRCROOT)/tools/timer $(SRCROOT)/tools/matrix $(SRCROOT)/tools/soil $(SRCROOT)/app/glfw3/include/mac $(SRCROOT)/event";
 			};
@@ -554,7 +593,10 @@
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 				);
-				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/model3d/app/glfw3/prebuilt/mac";
+				LIBRARY_SEARCH_PATHS = (
+					"$(PROJECT_DIR)/model3d/app/glfw3/prebuilt/mac",
+					/Users/anan/Documents/github/model3d/model3d/app/glfw3/prebuilt/mac,
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/app $(SRCROOT)/shader $(SRCROOT)/shader/base $(SRCROOT)/3d $(SRCROOT)/tools/timer $(SRCROOT)/tools/matrix $(SRCROOT)/tools/soil $(SRCROOT)/app/glfw3/include/mac $(SRCROOT)/event";
 			};
