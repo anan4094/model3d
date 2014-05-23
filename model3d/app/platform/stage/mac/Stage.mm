@@ -152,6 +152,7 @@ int Stage::run(){
             top_scene->screenSizeChange(width, height);
         }
         lastTime = getCurrentMillSecond();
+        sm_nCurrentTime=lastTime;
         glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
         top_scene->draw();
         glfwSwapBuffers(m_pWindow);

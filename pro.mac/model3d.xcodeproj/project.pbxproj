@@ -33,6 +33,8 @@
 		27FA499018FA2C8D00BB917D /* Node.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 27FA498818FA2C8D00BB917D /* Node.cpp */; };
 		27FA499118FA2C8D00BB917D /* Scene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 27FA498A18FA2C8D00BB917D /* Scene.cpp */; };
 		27FA499218FA2C8D00BB917D /* Texture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 27FA498C18FA2C8D00BB917D /* Texture.cpp */; };
+		27FAF388192F90FA009380E1 /* BaseAnimation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 27FAF386192F90FA009380E1 /* BaseAnimation.cpp */; };
+		27FAF38B192F943F009380E1 /* TranslateAnimation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 27FAF389192F943F009380E1 /* TranslateAnimation.cpp */; };
 		27FCF13418E7F4A100A390F8 /* NormalMapShader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 27FCF13218E7F4A100A390F8 /* NormalMapShader.cpp */; };
 		27FCF13D18E8077F00A390F8 /* Matrices.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 27FCF13918E8077F00A390F8 /* Matrices.cpp */; };
 		27FD195A18FE921D00330F74 /* NormalColorShader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 27FD195818FE921D00330F74 /* NormalColorShader.cpp */; };
@@ -111,6 +113,10 @@
 		27FA498D18FA2C8D00BB917D /* Texture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Texture.h; sourceTree = "<group>"; };
 		27FA499418FA3D0800BB917D /* shader.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = shader.frag; sourceTree = "<group>"; };
 		27FA499518FA3D0800BB917D /* shader.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = shader.vert; sourceTree = "<group>"; };
+		27FAF386192F90FA009380E1 /* BaseAnimation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BaseAnimation.cpp; sourceTree = "<group>"; };
+		27FAF387192F90FA009380E1 /* BaseAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseAnimation.h; sourceTree = "<group>"; };
+		27FAF389192F943F009380E1 /* TranslateAnimation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TranslateAnimation.cpp; sourceTree = "<group>"; };
+		27FAF38A192F943F009380E1 /* TranslateAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TranslateAnimation.h; sourceTree = "<group>"; };
 		27FCF13218E7F4A100A390F8 /* NormalMapShader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NormalMapShader.cpp; sourceTree = "<group>"; };
 		27FCF13318E7F4A100A390F8 /* NormalMapShader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NormalMapShader.h; sourceTree = "<group>"; };
 		27FCF13618E7FD8F00A390F8 /* shader.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = shader.vert; sourceTree = "<group>"; };
@@ -181,6 +187,7 @@
 		2701E04218DFC03500723795 /* model3d */ = {
 			isa = PBXGroup;
 			children = (
+				27FAF385192F90AA009380E1 /* anim */,
 				27FFAD5518FEDE2600C9C28D /* event */,
 				27F667C218F7DE5C00CB75C5 /* app */,
 				27FF669218F38503008F8626 /* tools */,
@@ -362,6 +369,17 @@
 			path = map;
 			sourceTree = "<group>";
 		};
+		27FAF385192F90AA009380E1 /* anim */ = {
+			isa = PBXGroup;
+			children = (
+				27FAF386192F90FA009380E1 /* BaseAnimation.cpp */,
+				27FAF387192F90FA009380E1 /* BaseAnimation.h */,
+				27FAF389192F943F009380E1 /* TranslateAnimation.cpp */,
+				27FAF38A192F943F009380E1 /* TranslateAnimation.h */,
+			);
+			path = anim;
+			sourceTree = "<group>";
+		};
 		27FAF493190399CB00644504 /* base */ = {
 			isa = PBXGroup;
 			children = (
@@ -479,6 +497,7 @@
 				27FCF13D18E8077F00A390F8 /* Matrices.cpp in Sources */,
 				279C5AF61928B30A00962E1F /* PointLight.cpp in Sources */,
 				27B18B651917DFC800168E81 /* Camera.cpp in Sources */,
+				27FAF388192F90FA009380E1 /* BaseAnimation.cpp in Sources */,
 				27FD195A18FE921D00330F74 /* NormalColorShader.cpp in Sources */,
 				27FA498E18FA2C8D00BB917D /* Material.cpp in Sources */,
 				27F667BD18F7C5D100CB75C5 /* stb_image_aug.c in Sources */,
@@ -492,6 +511,7 @@
 				27FFAD5818FEDEED00C9C28D /* Dispatcher.cpp in Sources */,
 				2702465818F83BCE00904E6A /* MapShader.cpp in Sources */,
 				277EA4E919056C2E0065C78B /* TestScene.cpp in Sources */,
+				27FAF38B192F943F009380E1 /* TranslateAnimation.cpp in Sources */,
 				27F667BA18F7C5D100CB75C5 /* image_DXT.c in Sources */,
 				271DA60518DFC0D600BC7A8C /* main.cpp in Sources */,
 			);
@@ -577,10 +597,7 @@
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 				);
-				LIBRARY_SEARCH_PATHS = (
-					"$(PROJECT_DIR)/model3d/app/glfw3/prebuilt/mac",
-					/Users/anan/Documents/github/model3d/model3d/app/glfw3/prebuilt/mac,
-				);
+				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/../model3d/app/glfw3/prebuilt/mac";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/app $(SRCROOT)/shader $(SRCROOT)/shader/base $(SRCROOT)/3d $(SRCROOT)/tools/timer $(SRCROOT)/tools/matrix $(SRCROOT)/tools/soil $(SRCROOT)/app/glfw3/include/mac $(SRCROOT)/event";
 			};
@@ -593,10 +610,7 @@
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 				);
-				LIBRARY_SEARCH_PATHS = (
-					"$(PROJECT_DIR)/model3d/app/glfw3/prebuilt/mac",
-					/Users/anan/Documents/github/model3d/model3d/app/glfw3/prebuilt/mac,
-				);
+				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/../model3d/app/glfw3/prebuilt/mac";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/app $(SRCROOT)/shader $(SRCROOT)/shader/base $(SRCROOT)/3d $(SRCROOT)/tools/timer $(SRCROOT)/tools/matrix $(SRCROOT)/tools/soil $(SRCROOT)/app/glfw3/include/mac $(SRCROOT)/event";
 			};

@@ -22,11 +22,13 @@ public:
     int run(Scene*scene);
     int run();
     static Stage* sharedInstance();
+    static long                sm_nCurrentTime;
 protected:
     double m_lAnimationInterval;  //micro second
     GLFWwindow                 *m_pWindow;
     std::vector<Scene*>        m_iScenes;
 	Camera                     *m_pCamera;
     static Stage               *sm_pSharedStage;
+    
 };
 #endif /* defined(__model3d__Stage_mac__) */
