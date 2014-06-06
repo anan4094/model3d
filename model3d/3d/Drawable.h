@@ -37,6 +37,10 @@ public:
 	~Drawable();
 	virtual void draw();
 	virtual void clear();
+    
+    GLfloat   rax,ray,raz,radian;
+	GLfloat   x,y,z;
+	GLfloat   scalex,scaley,scalez;
 protected:
 	GLuint    m_nVerticesID;
 	GLuint    m_nNormalsID;
@@ -51,10 +55,6 @@ protected:
 	GLfloat   *m_pNormals;
 	GLfloat   *m_pTexCoords;
 	GLsizei   m_nVertexCount;
-
-	GLfloat   rax,ray,raz,radian;
-	GLfloat   x,y,z;
-	GLfloat   scalex,scaley,scalez;
 
 	Material  m_iMaterial;
 	std::vector<MtlInfo> m_iMaterialArray;

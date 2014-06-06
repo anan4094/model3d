@@ -7,6 +7,7 @@
 //
 
 #import "Stage.h"
+#include "BaseAnimation.h"
 #include "Dispatcher.h"
 #include <stdio.h>
 #include <stdlib.h>
@@ -19,6 +20,8 @@ static double _x=0.0,_y=0.0;
 static bool _cap = false;
 MotionEvent motionEvent;
 KeyEvent keyEvent;
+
+long Stage::sm_iCurrentTime=0;
 
 static long getCurrentMillSecond()
 {
@@ -152,12 +155,15 @@ int Stage::run(){
             top_scene->screenSizeChange(width, height);
         }
         lastTime = getCurrentMillSecond();
-        sm_nCurrentTime=lastTime;
+        sm_iCurrentTime=lastTime;
         glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
         top_scene->draw();
         glfwSwapBuffers(m_pWindow);
         glfwPollEvents();
         curTime = getCurrentMillSecond();
+        for (int i=0; i<Animation::sm_nAnims.size(); i++) {
+            Animation::sm_nAnims[i]->update();
+        }
         if (curTime - lastTime < m_lAnimationInterval){
             usleep(static_cast<useconds_t>((m_lAnimationInterval - curTime + lastTime)*1000));
         }

@@ -9,13 +9,20 @@
 #include "BaseAnimation.h"
 #include "Stage.h"
 
-Animation* Animation::add(Node *node,Animation *anim){
+vector<Animation*> Animation::sm_nAnims = vector<Animation*>();
+
+Animation* Animation::add(Drawable *node,Animation *anim){
+    anim->m_nNode=node;
     return anim;
 }
 
 Animation* Animation::start(){
-    m_nStartTime=Stage::sm_nCurrentTime;
+    m_iStartTime=Stage::sm_iCurrentTime;
+    m_bIsRunning=true;
     return this;
+}
+Animation::Animation(){
+    Animation::sm_nAnims.push_back(this);
 }
 
 

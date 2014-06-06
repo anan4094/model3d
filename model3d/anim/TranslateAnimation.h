@@ -13,6 +13,16 @@
 class TranslateAnimation:public Animation{
 private:
     float m_fStartTime;
+    float m_fOriX;
+    float m_fOriY;
+    float m_fOriZ;
+    float m_fTarX;
+    float m_fTarY;
+    float m_fTarZ;
+public:
+    virtual void update();
+    virtual Animation* start();
+    TranslateAnimation(float x,float y,float z,long delay);
 };
 
 #endif /* defined(__model3d__TranslateAnimation__) */
