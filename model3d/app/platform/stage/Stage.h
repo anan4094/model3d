@@ -22,7 +22,7 @@ public:
     int run(Scene*scene);
     int run();
     static Stage* sharedInstance();
-    static long                sm_nCurrentTime;
+    static long                sm_iCurrentTime;
 protected:
     double m_lAnimationInterval;  //micro second
     GLFWwindow                 *m_pWindow;

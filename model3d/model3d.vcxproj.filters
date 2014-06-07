@@ -56,6 +56,9 @@
     <Filter Include="3d\light">
       <UniqueIdentifier>{0873e770-aab8-4912-a9db-0421d5ca21e7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="anim">
+      <UniqueIdentifier>{d0653534-d2e0-493f-b29f-6d115db18acf}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="tools\matrix\Matrices.cpp">
@@ -135,6 +138,12 @@
     </ClCompile>
     <ClCompile Include="3d\PointLight.cpp">
       <Filter>3d\light</Filter>
+    </ClCompile>
+    <ClCompile Include="anim\BaseAnimation.cpp">
+      <Filter>anim</Filter>
+    </ClCompile>
+    <ClCompile Include="anim\TranslateAnimation.cpp">
+      <Filter>anim</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -230,6 +239,12 @@
     </ClInclude>
     <ClInclude Include="3d\PointLight.h">
       <Filter>3d\light</Filter>
+    </ClInclude>
+    <ClInclude Include="anim\BaseAnimation.h">
+      <Filter>anim</Filter>
+    </ClInclude>
+    <ClInclude Include="anim\TranslateAnimation.h">
+      <Filter>anim</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

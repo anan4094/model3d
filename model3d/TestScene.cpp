@@ -7,6 +7,8 @@
 //
 
 #include "TestScene.h"
+#include "BaseAnimation.h"
+#include "TranslateAnimation.h"
 
 void TestScene::initRes(){
 	m_plight = new PointLight(20,0,-20);
@@ -22,7 +24,7 @@ void TestScene::initRes(){
 	m_pmesh->setForceGenerateNormal(true);
 	m_pmesh->setSmoothSurface(false);
 #ifdef __APPLE__
-	m_pmesh->load("/Users/anan/Documents/github/model3d/assets/peri/peri.obj");
+	m_pmesh->load("/Users/anan/Documents/github/model3d/assets/cube.obj");
 #else
 	m_pmesh->load("../assets/cube.obj");
 #endif
@@ -80,6 +82,14 @@ bool TestScene::onKeyEvent(KeyEvent &event){
 			m_plight1->specular[2]=1-m_plight1->specular[2];
 			m_plight1->specular[3]=0;
 			break;
+		case '5':{
+			Animation::add(m_pmesh, new TranslateAnimation(m_pmesh->x+10,m_pmesh->y,m_pmesh->z,1000))->start();
+				 }
+				 break;
+		case '6':{
+			Animation::add(m_pmesh, new TranslateAnimation(m_pmesh->x-10,m_pmesh->y,m_pmesh->z,1000))->start();
+				 }
+				 break;
 		default:
 			break;
 		}

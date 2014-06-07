@@ -8,6 +8,7 @@
 
 #include "Stage.h"
 #include "Dispatcher.h"
+#include "BaseAnimation.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <algorithm>
@@ -16,6 +17,8 @@ double _x=0.0,_y=0.0;
 bool _cap = false;
 MotionEvent motionEvent;
 KeyEvent keyEvent;
+
+long Stage::sm_iCurrentTime = 0;
 //用来检查OpenGL版本，需要GLSL 2.0支持
 static void getGlVersion( int *major, int *minor )
 {
@@ -183,6 +186,10 @@ int Stage::run(){
 		QueryPerformanceCounter(&nNow);
 		double dfMinus = (double)nNow.QuadPart - nLast.QuadPart;
 		dfMinus/=nFreq.QuadPart;
+		sm_iCurrentTime = (((float)nNow.QuadPart)/nFreq.QuadPart)*1000;
+		for (int i=0; i<Animation::sm_nAnims.size(); i++) {
+			Animation::sm_nAnims[i]->update();
+		}
         if(dfMinus < m_lAnimationInterval){
             Sleep((m_lAnimationInterval - dfMinus)*1000);
         }

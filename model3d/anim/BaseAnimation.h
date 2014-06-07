@@ -9,15 +9,30 @@
 #ifndef __model3d__Animation__
 #define __model3d__Animation__
 
-#include "Node.h"
+#include "Drawable.h"
+
+typedef float (*easeFunc)(float);
+
+namespace ease{
+	float linear(float r);
+	float quadInOut(float r);
+}
 
 class Animation{
-private:
-    long m_nStartTime;
+protected:
+    long m_iStartTime;
+    long m_iDelay;
+    Drawable *m_nNode;
+    bool m_bIsRunning;
+	easeFunc func;
 public:
-    static Animation* add(Node *node,Animation *anim);
+    static Animation* add(Drawable *node,Animation *anim);
+    static vector<Animation*>sm_nAnims;
+    
     virtual Animation* start();
-    virtual void update()=0;
+    void update();
+	virtual void updateByWeight(float r);
+    Animation();
 };
 
 #endif /* defined(__model3d__Animation__) */
