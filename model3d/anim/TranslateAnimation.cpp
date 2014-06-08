@@ -9,11 +9,11 @@
 #include "TranslateAnimation.h"
 #include "Stage.h"
 
-TranslateAnimation::TranslateAnimation(float x,float y,float z,long delay){
+TranslateAnimation::TranslateAnimation(float x,float y,float z,long duration){
     m_fTarX = x;
     m_fTarY = y;
     m_fTarZ = z;
-    m_iDelay = delay;
+    m_iDuration = duration;
 }
 
 void TranslateAnimation::updateByWeight(float rate){

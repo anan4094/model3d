@@ -107,19 +107,33 @@ Animation* Animation::start(){
     m_bIsRunning=true;
     return this;
 }
-Animation::Animation():func(ease::quadInOut){
+Animation::Animation():func(ease::quadInOut),m_nListener(nullptr),m_fStart(nullptr),m_fUpdate(nullptr),m_fComplete(nullptr){
     Animation::sm_nAnims.push_back(this);
 }
 
 void Animation::update(){
 	if (m_bIsRunning) {
 		long interval=Stage::sm_iCurrentTime-m_iStartTime;
-		float rate = ((float)interval/m_iDelay);
+		float rate = ((float)interval/m_iDuration);
 		if (rate>1) {
-            
+            if (m_nListener&&m_fComplete) {
+                (m_nListener->*m_fComplete)(m_nNode, nullptr);
+            }
+            vector<Animation*>::iterator itr = Animation::sm_nAnims.begin(),end=Animation::sm_nAnims.end();
+            while (itr != end){
+                if (*itr == this)Animation::sm_nAnims.erase(itr);
+                break;
+                ++itr; 
+            }
 			return;
 		}
-		rate=func(rate);
+        rate=func(rate);
+        if (rate==0&&m_nListener&&m_fStart){
+            (m_nListener->*m_fStart)(m_nNode, nullptr);
+        }
+        if (m_nListener&&m_fUpdate) {
+            (m_nListener->*m_fUpdate)(m_nNode, rate, nullptr);
+        }
 		updateByWeight(rate);
 	}
 }

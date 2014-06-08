@@ -22,7 +22,7 @@ private:
 public:
     virtual void updateByWeight(float r);
     virtual Animation* start();
-    TranslateAnimation(float x,float y,float z,long delay);
+    TranslateAnimation(float x,float y,float z,long duration);
 };
 
 #endif /* defined(__model3d__TranslateAnimation__) */

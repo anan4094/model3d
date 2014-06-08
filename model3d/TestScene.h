@@ -22,6 +22,8 @@ private:
 public:
 	inline TestScene():deg(0),l1(0){}
 	void initRes();
+    void complete(Drawable* node,void* data);
+    void update(Drawable* node,float r,void* data);
 	virtual bool onTouchEvent(MotionEvent &event);
 	virtual bool onKeyEvent(KeyEvent &event);
 };

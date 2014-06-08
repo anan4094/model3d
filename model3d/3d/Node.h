@@ -9,12 +9,13 @@
 #ifndef __model3d__Node__
 #define __model3d__Node__
 #include "Event.h"
+#include "Object.h"
 #include <vector>
 using namespace std;
 
 class Scene;
 
-class Node{
+class Node:public Object{
 protected:
     vector<Node*> m_iSubNodes;
 public:

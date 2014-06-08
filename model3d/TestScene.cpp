@@ -61,6 +61,12 @@ bool TestScene::onTouchEvent(MotionEvent &event){
 	}
 	return false;
 }
+void TestScene::complete(Drawable *node, void *data){
+    printf("mesh finish amin\n");
+}
+void TestScene::update(Drawable *node, float r, void *data){
+    m_pmesh->setRadian(90*r);
+}
 bool TestScene::onKeyEvent(KeyEvent &event){
 	//printf("key:%c\n",event.key);
 	if (event.action==GLFW_PRESS){
@@ -84,7 +90,9 @@ bool TestScene::onKeyEvent(KeyEvent &event){
 			m_plight1->specular[3]=0;
 			break;
 		case '5':{
-			Animation::add(m_pmesh, new TranslateAnimation(m_pmesh->x+10,m_pmesh->y,m_pmesh->z,1000))->start();
+			Animation::add(m_pmesh, new TranslateAnimation(m_pmesh->x+10,m_pmesh->y,m_pmesh->z,1000))
+            ->setListener(this)->setCompleteFunction((animComplete)&TestScene::complete)
+            ->setUpdateFunction((animUpdate)&TestScene::update)->start();
 				 }
 				 break;
 		case '6':{

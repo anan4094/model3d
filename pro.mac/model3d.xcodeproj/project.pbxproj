@@ -35,6 +35,7 @@
 		27FA499218FA2C8D00BB917D /* Texture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 27FA498C18FA2C8D00BB917D /* Texture.cpp */; };
 		27FAF388192F90FA009380E1 /* BaseAnimation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 27FAF386192F90FA009380E1 /* BaseAnimation.cpp */; };
 		27FAF38B192F943F009380E1 /* TranslateAnimation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 27FAF389192F943F009380E1 /* TranslateAnimation.cpp */; };
+		27FC604D19448DB300BBE76E /* Object.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 27FC604B19448DB300BBE76E /* Object.cpp */; };
 		27FCF13418E7F4A100A390F8 /* NormalMapShader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 27FCF13218E7F4A100A390F8 /* NormalMapShader.cpp */; };
 		27FCF13D18E8077F00A390F8 /* Matrices.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 27FCF13918E8077F00A390F8 /* Matrices.cpp */; };
 		27FD195A18FE921D00330F74 /* NormalColorShader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 27FD195818FE921D00330F74 /* NormalColorShader.cpp */; };
@@ -117,6 +118,8 @@
 		27FAF387192F90FA009380E1 /* BaseAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseAnimation.h; sourceTree = "<group>"; };
 		27FAF389192F943F009380E1 /* TranslateAnimation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TranslateAnimation.cpp; sourceTree = "<group>"; };
 		27FAF38A192F943F009380E1 /* TranslateAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TranslateAnimation.h; sourceTree = "<group>"; };
+		27FC604B19448DB300BBE76E /* Object.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Object.cpp; sourceTree = "<group>"; };
+		27FC604C19448DB300BBE76E /* Object.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Object.h; sourceTree = "<group>"; };
 		27FCF13218E7F4A100A390F8 /* NormalMapShader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NormalMapShader.cpp; sourceTree = "<group>"; };
 		27FCF13318E7F4A100A390F8 /* NormalMapShader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NormalMapShader.h; sourceTree = "<group>"; };
 		27FCF13618E7FD8F00A390F8 /* shader.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = shader.vert; sourceTree = "<group>"; };
@@ -383,6 +386,8 @@
 		27FAF493190399CB00644504 /* base */ = {
 			isa = PBXGroup;
 			children = (
+				27FC604B19448DB300BBE76E /* Object.cpp */,
+				27FC604C19448DB300BBE76E /* Object.h */,
 			);
 			path = base;
 			sourceTree = "<group>";
@@ -499,6 +504,7 @@
 				27B18B651917DFC800168E81 /* Camera.cpp in Sources */,
 				27FAF388192F90FA009380E1 /* BaseAnimation.cpp in Sources */,
 				27FD195A18FE921D00330F74 /* NormalColorShader.cpp in Sources */,
+				27FC604D19448DB300BBE76E /* Object.cpp in Sources */,
 				27FA498E18FA2C8D00BB917D /* Material.cpp in Sources */,
 				27F667BD18F7C5D100CB75C5 /* stb_image_aug.c in Sources */,
 				27FA498F18FA2C8D00BB917D /* Mesh.cpp in Sources */,

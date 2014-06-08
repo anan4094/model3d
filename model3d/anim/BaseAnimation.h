@@ -32,15 +32,22 @@ namespace ease{
     float sineInOut(float r);
 }
 
+typedef void (Object::*animStart)(Drawable* node,void* data);
+typedef void (Object::*animComplete)(Drawable* node,void* data);
+typedef void (Object::*animUpdate)(Drawable* node,float r,void* data);
 
 
 class Animation{
 protected:
     long m_iStartTime;
-    long m_iDelay;
+    long m_iDuration;
     Drawable *m_nNode;
     bool m_bIsRunning;
 	easeFunc func;
+    Object *m_nListener;
+    animStart m_fStart;
+    animComplete m_fComplete;
+    animUpdate m_fUpdate;
 public:
     static Animation* add(Drawable *node,Animation *anim);
     static vector<Animation*>sm_nAnims;
@@ -48,6 +55,10 @@ public:
     virtual Animation* start();
     void update();
 	virtual void updateByWeight(float r);
+    Animation* setListener(Object *listener){m_nListener=listener;return this;};
+    Animation* setStartFunction(animStart func){m_fStart=func;return this;};
+    Animation* setCompleteFunction(animComplete func){m_fComplete=func;return this;};
+    Animation* setUpdateFunction(animUpdate func){m_fUpdate=func;return this;};
     Animation();
 };
 
