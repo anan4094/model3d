@@ -16,7 +16,23 @@ typedef float (*easeFunc)(float);
 namespace ease{
 	float linear(float r);
 	float quadInOut(float r);
+    float quadIn(float r);
+    float quadOut(float r);
+    float cubicInOut(float r);
+    float cubicIn(float r);
+    float cubicOut(float r);
+    float quartInOut(float r);
+    float quartIn(float r);
+    float quartOut(float r);
+    float quintInOut(float r);
+    float quintIn(float r);
+    float quintOut(float r);
+    float sineIn(float r);
+    float sineOut(float r);
+    float sineInOut(float r);
 }
+
+
 
 class Animation{
 protected:

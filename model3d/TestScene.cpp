@@ -23,8 +23,9 @@ void TestScene::initRes(){
 	//下面两个方法要在load后加载
 	m_pmesh->setForceGenerateNormal(true);
 	m_pmesh->setSmoothSurface(false);
+    bool (Mesh::*func)(const char*)=&Mesh::load;
 #ifdef __APPLE__
-	m_pmesh->load("/Users/anan/Documents/github/model3d/assets/cube.obj");
+	(m_pmesh->*func)("/Users/anan/Documents/github/model3d/assets/cube.obj");
 #else
 	m_pmesh->load("../assets/cube.obj");
 #endif
