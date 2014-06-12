@@ -107,7 +107,7 @@ Animation* Animation::start(){
     m_bIsRunning=true;
     return this;
 }
-Animation::Animation():func(ease::quadInOut),m_nListener(nullptr),m_fStart(nullptr),m_fUpdate(nullptr),m_fComplete(nullptr){
+Animation::Animation():func(ease::quadInOut),m_fStart(nullptr),m_fUpdate(nullptr),m_fComplete(nullptr){
     Animation::sm_nAnims.push_back(this);
 }
 
@@ -116,8 +116,8 @@ void Animation::update(){
 		long interval=Stage::sm_iCurrentTime-m_iStartTime;
 		float rate = ((float)interval/m_iDuration);
 		if (rate>1) {
-            if (m_nListener&&m_fComplete) {
-                (m_nListener->*m_fComplete)(m_nNode, nullptr);
+            if (m_fComplete!=nullptr) {
+                m_fComplete();
             }
             vector<Animation*>::iterator itr = Animation::sm_nAnims.begin(),end=Animation::sm_nAnims.end();
             while (itr != end){
@@ -128,18 +128,21 @@ void Animation::update(){
 			return;
 		}
         rate=func(rate);
-        if (rate==0&&m_nListener&&m_fStart){
-            (m_nListener->*m_fStart)(m_nNode, nullptr);
+        if (rate==0&&m_fStart){
+            m_fStart();
         }
-        if (m_nListener&&m_fUpdate) {
-            (m_nListener->*m_fUpdate)(m_nNode, rate, nullptr);
+        if (m_fUpdate) {
+            m_fUpdate(rate);
         }
 		updateByWeight(rate);
 	}
 }
 
 void Animation::updateByWeight(float r){
-
 }
 
+Animation* Animation::setUpdateFunction(std::function<void (float r)>func){
+	m_fUpdate=func;
+	return this;
+}
 

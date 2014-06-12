@@ -24,6 +24,7 @@
     <ClCompile Include="3d\Texture.cpp" />
     <ClCompile Include="anim\BaseAnimation.cpp" />
     <ClCompile Include="anim\TranslateAnimation.cpp" />
+    <ClCompile Include="app\base\Object.cpp" />
     <ClCompile Include="app\platform\stage\win32\Stage.cpp" />
     <ClCompile Include="event\Dispatcher.cpp" />
     <ClCompile Include="main.cpp" />
@@ -55,6 +56,7 @@
     <ClInclude Include="3d\Texture.h" />
     <ClInclude Include="anim\BaseAnimation.h" />
     <ClInclude Include="anim\TranslateAnimation.h" />
+    <ClInclude Include="app\base\Object.h" />
     <ClInclude Include="app\platform.h" />
     <ClInclude Include="app\platform\stage\Stage.h" />
     <ClInclude Include="event\Dispatcher.h" />
@@ -123,10 +125,10 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalOptions>/D "_CRT_SECURE_NO_DEPRECATE" /wd4819 /wd4018 /wd4244 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>/D "_CRT_SECURE_NO_DEPRECATE" /wd4819 /wd4018 /wd4244 /wd4407 %(AdditionalOptions)</AdditionalOptions>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PreprocessorDefinitions>WIN32;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(SolutionDir)\model3d\shader\base;$(SolutionDir)\model3d\shader;$(SolutionDir)\model3d\anim;$(SolutionDir)\model3d\3d;$(SolutionDir)\model3d\tools\timer;$(SolutionDir)\model3d\tools\soil;$(SolutionDir)\model3d\tools\matrix;$(SolutionDir)\model3d\app;$(SolutionDir)\model3d\app\glfw3\include\win32;$(SolutionDir)\model3d\event;$(SolutionDir)\model3d\app\platform\stage\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\model3d\shader\base;$(SolutionDir)\model3d\shader;$(SolutionDir)\model3d\anim;$(SolutionDir)\model3d\3d;$(SolutionDir)\model3d\tools\timer;$(SolutionDir)\model3d\tools\soil;$(SolutionDir)\model3d\tools\matrix;$(SolutionDir)\model3d\app\base;$(SolutionDir)\model3d\app;$(SolutionDir)\model3d\app\glfw3\include\win32;$(SolutionDir)\model3d\event;$(SolutionDir)\model3d\app\platform\stage\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>

@@ -59,6 +59,9 @@
     <Filter Include="anim">
       <UniqueIdentifier>{d0653534-d2e0-493f-b29f-6d115db18acf}</UniqueIdentifier>
     </Filter>
+    <Filter Include="app\base">
+      <UniqueIdentifier>{2ef7d3e3-260c-4279-a1d4-c9e6c8765eca}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="tools\matrix\Matrices.cpp">
@@ -144,6 +147,9 @@
     </ClCompile>
     <ClCompile Include="anim\TranslateAnimation.cpp">
       <Filter>anim</Filter>
+    </ClCompile>
+    <ClCompile Include="app\base\Object.cpp">
+      <Filter>app\base</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -245,6 +251,9 @@
     </ClInclude>
     <ClInclude Include="anim\TranslateAnimation.h">
       <Filter>anim</Filter>
+    </ClInclude>
+    <ClInclude Include="app\base\Object.h">
+      <Filter>app\base</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

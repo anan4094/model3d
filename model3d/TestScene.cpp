@@ -61,11 +61,11 @@ bool TestScene::onTouchEvent(MotionEvent &event){
 	}
 	return false;
 }
-void TestScene::complete(Drawable *node, void *data){
-    printf("mesh finish amin\n");
+void TestScene::complete(Drawable *node){
+    printf("mesh finish %p\n",this);
 }
-void TestScene::update(Drawable *node, float r, void *data){
-    m_pmesh->setRadian(90*r);
+void TestScene::update(Drawable *node, float r){
+    m_pmesh->radian=90*r;
 }
 bool TestScene::onKeyEvent(KeyEvent &event){
 	//printf("key:%c\n",event.key);
@@ -91,8 +91,12 @@ bool TestScene::onKeyEvent(KeyEvent &event){
 			break;
 		case '5':{
 			Animation::add(m_pmesh, new TranslateAnimation(m_pmesh->x+10,m_pmesh->y,m_pmesh->z,1000))
-            ->setListener(this)->setCompleteFunction((animComplete)&TestScene::complete)
-            ->setUpdateFunction((animUpdate)&TestScene::update)->start();
+            ->setCompleteFunction<TestScene>(this,&TestScene::complete)
+            ->setUpdateFunction<TestScene>(this,&TestScene::update)->start();
+			/*->setUpdateFunction([&](float r){
+				m_pmesh->radian=180*r;
+			})->start();*/
+
 				 }
 				 break;
 		case '6':{

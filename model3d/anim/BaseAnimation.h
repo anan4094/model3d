@@ -10,6 +10,7 @@
 #define __model3d__Animation__
 
 #include "Drawable.h"
+#include <functional>
 
 typedef float (*easeFunc)(float);
 
@@ -32,10 +33,6 @@ namespace ease{
     float sineInOut(float r);
 }
 
-typedef void (Object::*animStart)(Drawable* node,void* data);
-typedef void (Object::*animComplete)(Drawable* node,void* data);
-typedef void (Object::*animUpdate)(Drawable* node,float r,void* data);
-
 
 class Animation{
 protected:
@@ -44,10 +41,9 @@ protected:
     Drawable *m_nNode;
     bool m_bIsRunning;
 	easeFunc func;
-    Object *m_nListener;
-    animStart m_fStart;
-    animComplete m_fComplete;
-    animUpdate m_fUpdate;
+    std::function< void()> m_fStart;
+    std::function< void()> m_fComplete;
+    std::function< void(float r)> m_fUpdate;
 public:
     static Animation* add(Drawable *node,Animation *anim);
     static vector<Animation*>sm_nAnims;
@@ -55,10 +51,23 @@ public:
     virtual Animation* start();
     void update();
 	virtual void updateByWeight(float r);
-    Animation* setListener(Object *listener){m_nListener=listener;return this;};
-    Animation* setStartFunction(animStart func){m_fStart=func;return this;};
-    Animation* setCompleteFunction(animComplete func){m_fComplete=func;return this;};
-    Animation* setUpdateFunction(animUpdate func){m_fUpdate=func;return this;};
+	template<typename T>
+	Animation* setStartFunction(T *listener,void (T::*func)(Drawable *node)){
+		m_fStart = std::bind(func, listener, m_nNode);
+		return this;
+	}
+	template<typename T>
+	Animation* setCompleteFunction(T *listener,void (T::*func)(Drawable *node)){
+		m_fComplete = std::bind(func, listener, m_nNode);
+		return this;
+	}
+	template<typename T>
+	Animation* setUpdateFunction(T *listener,void (T::*func)(Drawable *node,float r)){
+		m_fUpdate = std::bind(func, listener, m_nNode, std::placeholders::_1);
+		return this;
+	}
+
+	Animation* setUpdateFunction(std::function<void (float)>);
     Animation();
 };
 
