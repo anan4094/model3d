@@ -13,18 +13,18 @@ TranslateAnimation::TranslateAnimation(float x,float y,float z,long duration){
     m_fTarX = x;
     m_fTarY = y;
     m_fTarZ = z;
-    m_iDuration = duration;
+    m_nDuration = duration;
 }
 
 void TranslateAnimation::updateByWeight(float rate){
-    m_nNode->x=m_fOriX+(m_fTarX-m_fOriX)*rate;
-    m_nNode->y=m_fOriY+(m_fTarY-m_fOriY)*rate;
-    m_nNode->z=m_fOriZ+(m_fTarZ-m_fOriZ)*rate;
+    m_iNode->x=m_fOriX+(m_fTarX-m_fOriX)*rate;
+    m_iNode->y=m_fOriY+(m_fTarY-m_fOriY)*rate;
+    m_iNode->z=m_fOriZ+(m_fTarZ-m_fOriZ)*rate;
 }
 
 Animation* TranslateAnimation::start(){
-    m_fOriX = m_nNode->x;
-    m_fOriY = m_nNode->y;
-    m_fOriZ = m_nNode->z;
+    m_fOriX = m_iNode->x;
+    m_fOriY = m_iNode->y;
+    m_fOriZ = m_iNode->z;
     return Animation::start();
 }

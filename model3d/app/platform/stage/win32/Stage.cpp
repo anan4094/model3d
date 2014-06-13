@@ -187,8 +187,8 @@ int Stage::run(){
 		double dfMinus = (double)nNow.QuadPart - nLast.QuadPart;
 		dfMinus/=nFreq.QuadPart;
 		sm_iCurrentTime = (((float)nNow.QuadPart)/nFreq.QuadPart)*1000;
-		for (int i=0; i<Animation::sm_nAnims.size(); i++) {
-			Animation::sm_nAnims[i]->update();
+		for (int i=0; i<Animation::sm_gAnims.size(); i++) {
+			Animation::sm_gAnims[i]->update();
 		}
         if(dfMinus < m_lAnimationInterval){
             Sleep((m_lAnimationInterval - dfMinus)*1000);

@@ -95,44 +95,52 @@ float ease::sineInOut(float r){
     return -0.5*(cos(M_PI*r) - 1);
 }
 
-vector<Animation*> Animation::sm_nAnims = vector<Animation*>();
+vector<Animation*> Animation::sm_gAnims = vector<Animation*>();
 
 Animation* Animation::add(Drawable *node,Animation *anim){
-    anim->m_nNode=node;
+    anim->m_iNode=node;
     return anim;
 }
 
 Animation* Animation::start(){
-    m_iStartTime=Stage::sm_iCurrentTime;
-    m_bIsRunning=true;
+    m_nStatus=1;
     return this;
 }
-Animation::Animation():func(ease::quadInOut),m_fStart(nullptr),m_fUpdate(nullptr),m_fComplete(nullptr){
-    Animation::sm_nAnims.push_back(this);
+Animation::Animation():m_pfnEase(ease::quadInOut),m_pfnStart(nullptr),m_pfnUpdate(nullptr),m_pfnComplete(nullptr),m_nStatus(0){
+    Animation::sm_gAnims.push_back(this);
 }
 
 void Animation::update(){
-	if (m_bIsRunning) {
-		long interval=Stage::sm_iCurrentTime-m_iStartTime;
-		float rate = ((float)interval/m_iDuration);
+	if (m_nStatus==1){
+		m_nStartTime=Stage::sm_iCurrentTime;
+		if (!m_pfnUpdate._Empty()) {
+			m_pfnUpdate(0);
+		}
+		if (!m_pfnStart._Empty()){
+			m_pfnStart();
+		}
+		m_nStatus=2;
+	}else if (m_nStatus==2) {
+		long interval=Stage::sm_iCurrentTime-m_nStartTime;
+		float rate = ((float)interval/m_nDuration);
 		if (rate>1) {
-            if (m_fComplete!=nullptr) {
-                m_fComplete();
+			if (!m_pfnUpdate._Empty()) {
+				m_pfnUpdate(1);
+			}
+            if (!m_pfnComplete._Empty()) {
+                m_pfnComplete();
             }
-            vector<Animation*>::iterator itr = Animation::sm_nAnims.begin(),end=Animation::sm_nAnims.end();
+            vector<Animation*>::iterator itr = Animation::sm_gAnims.begin(),end=Animation::sm_gAnims.end();
             while (itr != end){
-                if (*itr == this)Animation::sm_nAnims.erase(itr);
+                if (*itr == this)Animation::sm_gAnims.erase(itr);
                 break;
                 ++itr; 
             }
 			return;
 		}
-        rate=func(rate);
-        if (rate==0&&m_fStart){
-            m_fStart();
-        }
-        if (m_fUpdate) {
-            m_fUpdate(rate);
+        rate=m_pfnEase(rate);
+        if (!m_pfnUpdate._Empty()) {
+            m_pfnUpdate(rate);
         }
 		updateByWeight(rate);
 	}
@@ -142,7 +150,7 @@ void Animation::updateByWeight(float r){
 }
 
 Animation* Animation::setUpdateFunction(std::function<void (float r)>func){
-	m_fUpdate=func;
+	m_pfnUpdate=func;
 	return this;
 }
 

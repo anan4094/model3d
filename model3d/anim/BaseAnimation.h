@@ -36,34 +36,35 @@ namespace ease{
 
 class Animation{
 protected:
-    long m_iStartTime;
-    long m_iDuration;
-    Drawable *m_nNode;
-    bool m_bIsRunning;
-	easeFunc func;
-    std::function< void()> m_fStart;
-    std::function< void()> m_fComplete;
-    std::function< void(float r)> m_fUpdate;
+    long m_nStartTime;
+    long m_nDuration;
+    Drawable *m_iNode;
+    int m_nStatus;
+
+	easeFunc m_pfnEase;
+    std::function< void()> m_pfnStart;
+    std::function< void()> m_pfnComplete;
+    std::function< void(float r)> m_pfnUpdate;
 public:
     static Animation* add(Drawable *node,Animation *anim);
-    static vector<Animation*>sm_nAnims;
+    static vector<Animation*>sm_gAnims;
     
     virtual Animation* start();
     void update();
 	virtual void updateByWeight(float r);
 	template<typename T>
-	Animation* setStartFunction(T *listener,void (T::*func)(Drawable *node)){
-		m_fStart = std::bind(func, listener, m_nNode);
+	Animation* setStartFunction(T *listener,void (T::*pfn)(Drawable *node)){
+		m_fnStart = std::bind(pfn, listener, m_iNode);
 		return this;
 	}
 	template<typename T>
-	Animation* setCompleteFunction(T *listener,void (T::*func)(Drawable *node)){
-		m_fComplete = std::bind(func, listener, m_nNode);
+	Animation* setCompleteFunction(T *listener,void (T::*pfn)(Drawable *node)){
+		m_pfnComplete = std::bind(pfn, listener, m_iNode);
 		return this;
 	}
 	template<typename T>
-	Animation* setUpdateFunction(T *listener,void (T::*func)(Drawable *node,float r)){
-		m_fUpdate = std::bind(func, listener, m_nNode, std::placeholders::_1);
+	Animation* setUpdateFunction(T *listener,void (T::*pfn)(Drawable *node,float r)){
+		m_pfnUpdate = std::bind(pfn, listener, m_iNode, std::placeholders::_1);
 		return this;
 	}
 
