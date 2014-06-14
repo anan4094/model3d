@@ -21,6 +21,7 @@ private:
 	int l1;
 public:
 	inline TestScene():deg(0),l1(0){}
+	void operator()();
 	void initRes();
     void complete(Drawable* node);
     void update(Drawable* node,float r);

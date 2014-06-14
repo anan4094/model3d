@@ -68,6 +68,7 @@ public:
 		return this;
 	}
 
+	Animation* setStartFunction(std::function<void ()>);
 	Animation* setUpdateFunction(std::function<void (float)>);
     Animation();
 };

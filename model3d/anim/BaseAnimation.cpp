@@ -148,6 +148,10 @@ void Animation::update(){
 
 void Animation::updateByWeight(float r){
 }
+Animation* Animation::setStartFunction(std::function<void ()> func){
+	m_pfnStart=func;
+	return this;
+}
 
 Animation* Animation::setUpdateFunction(std::function<void (float r)>func){
 	m_pfnUpdate=func;

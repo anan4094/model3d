@@ -10,6 +10,10 @@
 #include "BaseAnimation.h"
 #include "TranslateAnimation.h"
 
+void TestScene::operator()(){
+	printf("----\n");
+}
+
 void TestScene::initRes(){
 	m_plight = new PointLight(20,0,-20);
 	//m_plight1 = new DirectionalLight(1,0,0);
@@ -91,11 +95,12 @@ bool TestScene::onKeyEvent(KeyEvent &event){
 			break;
 		case '5':{
 			Animation::add(m_pmesh, new TranslateAnimation(m_pmesh->x+10,m_pmesh->y,m_pmesh->z,1000))
-            ->setCompleteFunction<TestScene>(this,&TestScene::complete)
-            ->setUpdateFunction<TestScene>(this,&TestScene::update)->start();
-			/*->setUpdateFunction([&](float r){
-				m_pmesh->radian=180*r;
-			})->start();*/
+				->setStartFunction(*this)
+				->setCompleteFunction<TestScene>(this,&TestScene::complete)
+				->setUpdateFunction<TestScene>(this,&TestScene::update)->start();
+				/*->setUpdateFunction([&](float r){
+					m_pmesh->radian=180*r;
+				})->start();*/
 
 				 }
 				 break;
