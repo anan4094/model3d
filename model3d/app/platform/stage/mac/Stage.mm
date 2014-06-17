@@ -156,13 +156,14 @@ int Stage::run(){
         }
         lastTime = getCurrentMillSecond();
         sm_iCurrentTime=lastTime;
+        top_scene->prepareDraw();
         glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
         top_scene->draw();
         glfwSwapBuffers(m_pWindow);
         glfwPollEvents();
         curTime = getCurrentMillSecond();
-        for (int i=0; i<Animation::sm_nAnims.size(); i++) {
-            Animation::sm_nAnims[i]->update();
+        for (int i=0; i<Animation::sm_gAnims.size(); i++) {
+            Animation::sm_gAnims[i]->update();
         }
         if (curTime - lastTime < m_lAnimationInterval){
             usleep(static_cast<useconds_t>((m_lAnimationInterval - curTime + lastTime)*1000));

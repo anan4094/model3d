@@ -38,9 +38,6 @@ public:
 	virtual void draw();
 	virtual void clear();
     
-    GLfloat   rax,ray,raz,radian;
-	GLfloat   x,y,z;
-	GLfloat   scalex,scaley,scalez;
 protected:
 	GLuint    m_nVerticesID;
 	GLuint    m_nNormalsID;

@@ -8,15 +8,33 @@
 
 #include "Scene.h"
 #include "Stage.h"
+#include "util.h"
 #include <vector>
 using namespace std;
 
-
+void Scene::prepareDraw(){
+    glClearColor(m_fRed, m_fGreen, m_fBlue, 1);
+}
 
 void Scene::draw(){
     vector<Node*>::iterator itr = m_iSubNodes.begin(),end = m_iSubNodes.end();
     for (; itr!=end; itr++) {
         (*itr)->draw();
+    }
+}
+
+void Scene::setBackgroupColor(float red,float green,float blue){
+    m_fRed=red;
+    m_fGreen=green;
+    m_fBlue=blue;
+}
+
+void Scene::setBackgroupColor(const char *color){
+    float clr[3];
+    if (readColor(color, clr)) {
+        m_fRed=clr[0];
+        m_fGreen=clr[1];
+        m_fBlue=clr[2];
     }
 }
 

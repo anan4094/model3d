@@ -31,4 +31,10 @@
 #define glDeleteVertexArrays glDeleteVertexArraysAPPLE
 #endif
 
+#ifdef WIN32
+#define FUNC_ISEMPTY(x) ((x)._Empty())
+#else
+#define FUNC_ISEMPTY(x) (!(x))
+#endif
+
 #endif

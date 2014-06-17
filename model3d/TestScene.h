@@ -23,8 +23,8 @@ public:
 	inline TestScene():deg(0),l1(0){}
 	void operator()();
 	void initRes();
-    void complete(Drawable* node);
-    void update(Drawable* node,float r);
+    void complete(Node* node);
+    void update(Node* node,float r);
 	virtual bool onTouchEvent(MotionEvent &event);
 	virtual bool onKeyEvent(KeyEvent &event);
 };

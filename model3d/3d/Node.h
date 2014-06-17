@@ -19,6 +19,10 @@ class Node:public Object{
 protected:
     vector<Node*> m_iSubNodes;
 public:
+    float   rax,ray,raz,radian;
+	float   x,y,z;
+	float   scalex,scaley,scalez;
+    
     void addSubNode(Node* node);
     virtual void draw() = 0;
 	virtual void clear() = 0;
@@ -27,6 +31,7 @@ public:
 	bool dispatcherKeyEvent(KeyEvent &event);
 	virtual bool onTouchEvent(MotionEvent &event);
 	virtual bool onKeyEvent(KeyEvent &event);
+    Node();
 };
 
 #endif /* defined(__model3d__Node__) */

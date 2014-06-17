@@ -45,6 +45,8 @@ void TestScene::initRes(){
 	m_pmesh->setPosition(0, -9.0f*(hy+ly)/(hy-ly), -20);
 
 	addSubNode(m_pmesh);
+    
+    setBackgroupColor("#fff");
 }
 
 bool TestScene::onTouchEvent(MotionEvent &event){
@@ -65,10 +67,10 @@ bool TestScene::onTouchEvent(MotionEvent &event){
 	}
 	return false;
 }
-void TestScene::complete(Drawable *node){
+void TestScene::complete(Node *node){
     printf("mesh finish %p\n",this);
 }
-void TestScene::update(Drawable *node, float r){
+void TestScene::update(Node *node, float r){
     m_pmesh->radian=90*r;
 }
 bool TestScene::onKeyEvent(KeyEvent &event){

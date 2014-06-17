@@ -138,7 +138,6 @@ Drawable::Drawable():m_nVerticesID(0)
 	,m_pNormals(nullptr)
 	,m_pTexCoords(nullptr)
 	,m_piShader(nullptr)
-	,rax(0),ray(0),raz(1),radian(0),x(0),y(0),z(0),scalex(1),scaley(1),scalez(1)
 	,m_bUseShader(false),m_bHasNormal(false),m_bHasTexCoord(false){
 }
 

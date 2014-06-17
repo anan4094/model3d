@@ -97,7 +97,7 @@ float ease::sineInOut(float r){
 
 vector<Animation*> Animation::sm_gAnims = vector<Animation*>();
 
-Animation* Animation::add(Drawable *node,Animation *anim){
+Animation* Animation::add(Node *node,Animation *anim){
     anim->m_iNode=node;
     return anim;
 }
@@ -113,10 +113,10 @@ Animation::Animation():m_pfnEase(ease::quadInOut),m_pfnStart(nullptr),m_pfnUpdat
 void Animation::update(){
 	if (m_nStatus==1){
 		m_nStartTime=Stage::sm_iCurrentTime;
-		if (!m_pfnUpdate._Empty()) {
+		if (!FUNC_ISEMPTY(m_pfnUpdate)) {
 			m_pfnUpdate(0);
 		}
-		if (!m_pfnStart._Empty()){
+		if (!FUNC_ISEMPTY(m_pfnStart)){
 			m_pfnStart();
 		}
 		m_nStatus=2;
@@ -124,10 +124,10 @@ void Animation::update(){
 		long interval=Stage::sm_iCurrentTime-m_nStartTime;
 		float rate = ((float)interval/m_nDuration);
 		if (rate>1) {
-			if (!m_pfnUpdate._Empty()) {
+			if (!FUNC_ISEMPTY(m_pfnUpdate)) {
 				m_pfnUpdate(1);
 			}
-            if (!m_pfnComplete._Empty()) {
+            if (!FUNC_ISEMPTY(m_pfnComplete)) {
                 m_pfnComplete();
             }
             vector<Animation*>::iterator itr = Animation::sm_gAnims.begin(),end=Animation::sm_gAnims.end();
@@ -139,7 +139,7 @@ void Animation::update(){
 			return;
 		}
         rate=m_pfnEase(rate);
-        if (!m_pfnUpdate._Empty()) {
+        if (!FUNC_ISEMPTY(m_pfnUpdate)) {
             m_pfnUpdate(rate);
         }
 		updateByWeight(rate);
