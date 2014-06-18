@@ -7,3 +7,7 @@
 //
 
 #include "Group.h"
+
+void Group::draw(){
+
+}

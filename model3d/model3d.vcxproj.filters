@@ -151,6 +151,9 @@
     <ClCompile Include="app\base\Object.cpp">
       <Filter>app\base</Filter>
     </ClCompile>
+    <ClCompile Include="3d\Group.cpp">
+      <Filter>3d</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="tools\matrix\Matrices.h">
@@ -254,6 +257,9 @@
     </ClInclude>
     <ClInclude Include="app\base\Object.h">
       <Filter>app\base</Filter>
+    </ClInclude>
+    <ClInclude Include="3d\Group.h">
+      <Filter>3d</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

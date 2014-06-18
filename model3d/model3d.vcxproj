@@ -15,6 +15,7 @@
     <ClCompile Include="3d\Camera.cpp" />
     <ClCompile Include="3d\DirectionalLight.cpp" />
     <ClCompile Include="3d\Drawable.cpp" />
+    <ClCompile Include="3d\Group.cpp" />
     <ClCompile Include="3d\Material.cpp" />
     <ClCompile Include="3d\Mesh.cpp" />
     <ClCompile Include="3d\Node.cpp" />
@@ -46,6 +47,7 @@
     <ClInclude Include="3d\Camera.h" />
     <ClInclude Include="3d\DirectionalLight.h" />
     <ClInclude Include="3d\Drawable.h" />
+    <ClInclude Include="3d\Group.h" />
     <ClInclude Include="3d\Light.h" />
     <ClInclude Include="3d\Material.h" />
     <ClInclude Include="3d\Mesh.h" />
